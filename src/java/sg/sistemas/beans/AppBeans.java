@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sg.solution.beans;
+package sg.sistemas.beans;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
-import sg.solution.util.MyUtil;
+import sg.sistemas.util.MyUtil;
 
 /**
  *
@@ -26,6 +26,10 @@ public class AppBeans implements Serializable {
 
     public String baseUrl() {
         return MyUtil.baseUrl();
+    }
+
+    public String baseUrlIndex() {
+        return MyUtil.baseUrlIndex();
     }
 
     public String basePathLogin() {
@@ -70,5 +74,47 @@ public class AppBeans implements Serializable {
 
     public String baseUrlPagesAM() {
         return MyUtil.baseUrlPagesAM();
+    }
+
+    public String baseUrlPagesDatosBasicos() {
+        return MyUtil.baseUrlPagesDatosBasicos();
+    }
+
+    public String baseUrlPagesAudit() {
+        return MyUtil.baseUrlPagesAudit();
+    }
+
+    public String baseUrlPagesClient() {
+        return MyUtil.baseUrlPagesClient();
+    }
+
+    public String baseUrlPagesConfig() {
+        return MyUtil.baseUrlPagesConfig();
+    }
+
+    public String baseUrlPagesDocumentacion() {
+        return MyUtil.baseUrlPagesDocumentacion();
+    }
+    public String baseUrlPagesIndicadores() {
+        return MyUtil.baseUrlPagesIndicadores();
+    }
+    public String baseUrlPagesIndicadoresG() {
+        return MyUtil.baseUrlPagesIndicadoresGestion();
+    }
+    
+    public String baseUrlPagesPlanesObj() {
+        return MyUtil.baseUrlPagesPlanesObjetivos();
+    }
+    
+    public String baseUrlPagesProveedor() {
+        return MyUtil.baseUrlPagesProveedores();
+    }
+    
+    public String baseUrlPagesRevDireccion() {
+        return MyUtil.baseUrlPagesRevisionDireccion();
+    }
+    
+    public String baseUrlPagesRiesgosOportunidades() {
+        return MyUtil.baseUrlPagesRiesgosOportunidades();
     }
 }

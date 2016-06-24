@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sg.solution.beans;
+package sg.sistemas.beans;
 
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import sg.solution.entity.Usuario;
+import sg.sistemas.entity.Usuario;
 
 /**
  *
@@ -51,7 +51,5 @@ public class ValidarBeans implements Serializable {
         } else {
             return "login?faces-redirect=true";
         }
-
     }
-
 }

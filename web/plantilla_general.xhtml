@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <title>SG Consulting | Plantilla</title>
+        <title>#{bundle.TituloMenu}</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
         <!-- Bootstrap 3.3.6 -->
@@ -46,11 +46,11 @@
             <!-- Main Header -->
             <header class="main-header">
                 <!-- Logo -->
-                <a href="index2.html" class="logo">
+                <a href="#{appBeans.baseUrlIndex()}" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>S</b>GC</span>
+                    <span class="logo-mini"><b>#{bundle.Logo1}</b>#{bundel.Logo2}</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>SG</b>Consulting</span>
+                    <span class="logo-lg"><b>#{bundle.miniLogo1}</b>#{bundle.miniLogo2}</span>
                 </a>
                 <!-- Header Navbar -->
                 <nav class="navbar navbar-static-top">
@@ -62,17 +62,17 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                             <!-- Messages: style can be found in dropdown.less-->
-                            <li class="dropdown messages-menu">
+                            <!--li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-envelope-o"></i>
                                     <span class="label label-success">4</span>
                                 </a>
+                                
                                 <ul class="dropdown-menu">
                                     <li class="header">You have 4 messages</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
+                                    <li>                                       
                                         <ul class="menu">
-                                            <li><!-- start message -->
+                                            <li>
                                                 <a href="#">
                                                     <div class="pull-left">
                                                         <img src="#{appBeans.baseUrlDist()}img/misael-160x160.jpg" class="img-circle" alt="User Image"/>
@@ -84,7 +84,6 @@
                                                     <p>Why not buy a new awesome theme?</p>
                                                 </a>
                                             </li>
-                                            <!-- end message -->
                                             <li>
                                                 <a href="#">
                                                     <div class="pull-left">
@@ -137,7 +136,7 @@
                                     </li>
                                     <li class="footer"><a href="#">See All Messages</a></li>
                                 </ul>
-                            </li>
+                            </li-->
                             <!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -266,13 +265,14 @@
                                         <img src="#{appBeans.baseUrlDist()}img/misael-160x160.jpg" class="img-circle" alt="User Image"/>
 
                                         <p>
-                                            Misael Recinos - Developer
-                                            <small>Member since Nov. 2016</small>
+                                            Misael Recinos
+                                            <small>Analista Programador</small>
+                                            <small>Miembro desde abril 2016</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
                                     <li class="user-body">
-                                        <div class="row">
+                                        <!--div class="row">
                                             <div class="col-xs-4 text-center">
                                                 <a href="#">Followers</a>
                                             </div>
@@ -282,16 +282,16 @@
                                             <div class="col-xs-4 text-center">
                                                 <a href="#">Friends</a>
                                             </div>
-                                        </div>
+                                        </div-->
                                         <!-- /.row -->
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="#" class="btn btn-default btn-flat">Salir</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -332,90 +332,113 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li class="header">Menú de navegación</li>
+                        <li class="header">#{bundle.menunav}</li>
                         <!-- Menú de configuraciones -->
-                        <li class="active treeview">
+                        <!--li class="active treeview"-->
+                        <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i>
+                                <i class="fa fa-gears"></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Empleados</a></li>
-                                <li><a href="menuprincipal.html"><i class="fa fa-circle-o"></i> Tareas</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesNC()}no_conformidad.xhtml"><i class="fa fa-circle-o"></i> Centros</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesNC()}no_conformidad.xhtml"><i class="fa fa-circle-o"></i> Configuración Workflow</a></li>                                
+                                <li class="active"><a href="#{appBeans.baseUrlPagesConfig()}empleados_configuracion.xhtml"><i class="fa fa-circle-o"></i> Empleados</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesConfig()}tareas_configuracion.xhtml"><i class="fa fa-circle-o"></i> Tareas</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesConfig()}tareas_configuracion.xhtml"><i class="fa fa-circle-o"></i> Tareas</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesConfig()}centros_configuracion.xhtml"><i class="fa fa-circle-o"></i> Centros</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesConfig()}workflow_configuracion.xhtml"><i class="fa fa-circle-o"></i> Workflow</a></li>                                
                             </ul>
                         </li>
 
                         <!-- Menú de datos basicos-->
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>Datos básicos</span> <i class="fa fa-angle-left pull-right"></i>
+                                <i class="fa fa-list"></i> <span>Datos básicos</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
-                            <ul class="treeview-menu">
-                                <li><a href="index.html"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-                                <li><a href="menuprincipal.html"><i class="fa fa-circle-o"></i> Departamentos</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesNC()}no_conformidad.xhtml"><i class="fa fa-circle-o"></i> Procesos</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesNC()}no_conformidad.xhtml"><i class="fa fa-circle-o"></i> Proveedores</a></li>                                
-                                <li><a href="#{appBeans.baseUrlPagesNC()}no_conformidad.xhtml"><i class="fa fa-circle-o"></i> Clientes</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesNC()}no_conformidad.xhtml"><i class="fa fa-circle-o"></i> Productos</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesNC()}no_conformidad.xhtml"><i class="fa fa-circle-o"></i> Servicios</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesNC()}no_conformidad.xhtml"><i class="fa fa-circle-o"></i> Normativas</a></li>
+                            <ul class="treeview-menu">                                
+                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}usuarios_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}departamentos_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Departamentos</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}procesos_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Procesos</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}proveedores_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Proveedores</a></li>                                
+                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}clientes_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Clientes</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}productos_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Productos</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}servicios_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Servicios</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}normativas_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Normativas</a></li>
                             </ul>
                         </li>
 
                         <!-- No Conformidad-->
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>No Conformidad</span> <i class="fa fa-angle-left pull-right"></i>
+                                <i class="fa fa-folder"></i> <span>No Conformidad</span> 
+                                <i class="fa fa-angle-left pull-right"></i>
                             </a>
-                            <ul class="treeview-menu">
+                            <!--ul class="treeview-menu">
                                 <li><a href="#{appBeans.baseUrlPages()}layout/top-nav.html"><i class="fa fa-circle-o"></i> Registro</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}layout/boxed.html"><i class="fa fa-circle-o"></i> Segumiento</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}layout/fixed.html"><i class="fa fa-circle-o"></i> Consulta</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Reportes</a></li>
+                            </ul-->
+                            <ul class="treeview-menu">
+                                <li><a href="#{appBeans.baseUrlPagesNC()}consulta_noconformidad.xhtml"><i class="fa fa-circle-o"></i> Registro</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesNC()}registro_noconformidad.xhtml"><i class="fa fa-circle-o"></i> Seguimiento</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesNC()}reportes_noconformidad.xhtml"><i class="fa fa-circle-o"></i> Consulta</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesNC()}seguimiento_noconformidad.xhtml"><i class="fa fa-circle-o"></i> Reportes</a></li>
                             </ul>
                         </li>
                         <!-- Auditorias-->
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-files-o"></i>
+                                <i class="fa fa-list-alt"></i>
                                 <span>Auditorias</span>
-                                <span class="label label-primary pull-right">4</span>
+                                <!--span class="label label-primary pull-right">4</span-->
+                                <i class="fa fa-angle-left pull-right"></i>
                             </a>
-                            <ul class="treeview-menu">
+                            <!--ul class="treeview-menu">
                                 <li><a href="#{appBeans.baseUrlPages()}layout/top-nav.html"><i class="fa fa-circle-o"></i> Registro</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}layout/boxed.html"><i class="fa fa-circle-o"></i> Segumiento</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}layout/fixed.html"><i class="fa fa-circle-o"></i> Consulta</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Reportes</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}calendar.html"><i class="fa fa-calendar"></i> <span>Calendario</span><small class="label pull-right bg-red">3</small></a></li>
+                            </ul-->
+                            <ul class="treeview-menu">
+                                <li><a href="#{appBeans.baseUrlPagesAudit()}consulta_auditorias.xhtml"><i class="fa fa-circle-o"></i> Registro</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesAudit()}registro_auditorias.xhtml"><i class="fa fa-circle-o"></i> Seguimiento</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesAudit()}reportes_auditorias.xhtml"><i class="fa fa-circle-o"></i> Consulta</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesAudit()}seguimiento_auditorias.xhtml"><i class="fa fa-circle-o"></i> Reportes</a></li>
                             </ul>
                         </li>
                         <!--Acciones de mejora -->
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-files-o"></i>
+                                <i class="fa fa-check"></i>
                                 <span>Acciones de mejora</span>
-                                <span class="label label-primary pull-right">4</span>
+                                <!--span class="label label-primary pull-right"></span-->
+                                <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#{appBeans.baseUrlPagesAM()}registro_accionmejora.xhtml"><i class="fa fa-circle-o"></i> Registro</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesAM()}consulta_accionmejora.xhtml"><i class="fa fa-circle-o"></i> Segumiento</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesAM()}consulta_accionmejora.xhtml"><i class="fa fa-circle-o"></i> Seguimiento</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesAM()}seguimientos_accionmejora.xhtml"><i class="fa fa-circle-o"></i> Consulta</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesAM()}reportes_accionmejora.xhtml"><i class="fa fa-circle-o"></i> Reportes</a></li>
                             </ul>
                         </li>
-                        
+
                         <!-- Riesgos y oportunidades-->
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-edit"></i> <span>Riesgos y oportunidades</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
-                            <ul class="treeview-menu">
+                            <!--ul class="treeview-menu">
                                 <li><a href="#{appBeans.baseUrlPages()}layout/top-nav.html"><i class="fa fa-circle-o"></i> Registro</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}layout/boxed.html"><i class="fa fa-circle-o"></i> Segumiento</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}layout/fixed.html"><i class="fa fa-circle-o"></i> Consulta</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Reportes</a></li>
+                            </ul-->
+                            <ul class="treeview-menu">
+                                <li><a href="#{appBeans.baseUrlPagesRiesgosOportunidades()}registro_accionmejora.xhtml"><i class="fa fa-circle-o"></i> Registro</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesRiesgosOportunidades()}consulta_accionmejora.xhtml"><i class="fa fa-circle-o"></i> Seguimiento</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesRiesgosOportunidades()}seguimientos_accionmejora.xhtml"><i class="fa fa-circle-o"></i> Consulta</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesRiesgosOportunidades()}reportes_accionmejora.xhtml"><i class="fa fa-circle-o"></i> Reportes</a></li>
                             </ul>
                         </li>
 
@@ -436,7 +459,7 @@
                         <!-- Revision por la dirección-->
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-folder"></i> <span>Revisión por la dirección </span>
+                                <i class="fa fa-file-text"></i> <span>Revisión por la dirección </span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
@@ -461,7 +484,7 @@
                         <!-- Indicadores-->
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-pie-chart"></i>
+                                <i class="fa fa-ticket"></i>
                                 <span> Indicadores</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -493,9 +516,10 @@
                         <!-- Clientes-->
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-files-o"></i>
+                                <i class="fa fa-group"></i>
                                 <span>Clientes</span>
-                                <span class="label label-primary pull-right">4</span>
+                                <!--span class="label label-primary pull-right"></span-->
+                                <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#{appBeans.baseUrlPages()}layout/top-nav.html"><i class="fa fa-circle-o"></i> Rechazos</a></li>
@@ -510,9 +534,10 @@
 
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-files-o"></i>
+                                <i class="fa fa-car"></i>
                                 <span>Proveedores</span>
-                                <span class="label label-primary pull-right">4</span>
+                                <!--span class="label label-primary pull-right">4</span-->
+                                <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#{appBeans.baseUrlPages()}layout/top-nav.html"><i class="fa fa-circle-o"></i> Rechazos</a></li>
@@ -564,6 +589,7 @@
                                 <li><a href="#{appBeans.baseUrlPages()}forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                           
                             </ul>
                         </li>
                         <li class="header">LABELS</li>
@@ -578,9 +604,9 @@
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
-                <ui:insert name="content" >
+                <ui:insert name="content">
                     <!-- Content Header (Page header) -->
-                    <section class="content-header">
+                    <!--section class="content-header">
                         <h1>
                             Page Header
                             <small>Optional description</small>
@@ -589,14 +615,14 @@
                             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
                             <li class="active">Here</li>
                         </ol>
-                    </section>
+                    </section-->
 
                     <!-- Main content -->
-                    <section class="content">
+                    <!--section class="content">
 
-                        <!-- Your Page Content Here -->
-                    </section>
-                    <!-- /.content -->
+                        Your Page Content Here
+                    </section-->
+                    <!-- /.content --> 
                 </ui:insert>
             </div>
             <!-- /.content-wrapper -->
@@ -608,7 +634,7 @@
                     Anything you want
                 </div>
                 <!-- Default to the left -->
-                <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
             </footer>
 
             <!-- Control Sidebar -->
