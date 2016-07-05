@@ -342,7 +342,6 @@
                             <ul class="treeview-menu">
                                 <li class="active"><a href="#{appBeans.baseUrlPagesConfig()}empleados_configuracion.xhtml"><i class="fa fa-circle-o"></i> Empleados</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesConfig()}tareas_configuracion.xhtml"><i class="fa fa-circle-o"></i> Tareas</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesConfig()}tareas_configuracion.xhtml"><i class="fa fa-circle-o"></i> Tareas</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesConfig()}centros_configuracion.xhtml"><i class="fa fa-circle-o"></i> Centros</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesConfig()}workflow_configuracion.xhtml"><i class="fa fa-circle-o"></i> Workflow</a></li>                                
                             </ul>
@@ -354,7 +353,7 @@
                                 <i class="fa fa-list"></i> <span>Datos básicos</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">                                
-                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}usuarios_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}usuarios_datosbasicos.xhtml" ><i class="fa fa-circle-o"></i> Usuarios</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}departamentos_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Departamentos</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}procesos_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Procesos</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}proveedores_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Proveedores</a></li>                                
@@ -589,7 +588,7 @@
                                 <li><a href="#{appBeans.baseUrlPages()}forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
                                 <li><a href="#{appBeans.baseUrlPages()}forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
-                           
+
                             </ul>
                         </li>
                         <li class="header">LABELS</li>
@@ -722,9 +721,7 @@
         <script src="#{appBeans.baseUrlBootstrap()}/js/bootstrap.min.js"></script>
         <!-- AdminLTE App -->
         <script src="#{appBeans.baseUrlDist()}js/app.min.js"></script>
-
         <!-- ./wrapper -->
-
         <!-- jQuery UI 1.11.4 -->
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -754,8 +751,12 @@
         <script src="#{appBeans.baseUrlPlugins()}fastclick/fastclick.js"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="#{appBeans.baseUrlDist()}js/pages/dashboard.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="#{appBeans.baseUrlDist()}js/pages/dashboard2.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="#{appBeans.baseUrlDist()}js/demo.js"></script>
+        <!-- ChartJS 1.0.1 -->
+        <script src="#{appBeans.baseUrlPlugins()}chartjs/Chart.min.js"></script>
     </h:body>
 </html>
 

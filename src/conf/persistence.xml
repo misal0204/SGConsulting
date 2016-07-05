@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="SGSistemasPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>sg.sistemas.entidades.SgencuestaDetalle</class>
+    <class>sg.sistemas.entidades.Sgcriticidad</class>
+    <class>sg.sistemas.entidades.Sgparametros</class>
+    <class>sg.sistemas.entidades.SgRol</class>
+    <class>sg.sistemas.entidades.SgdetalleAuditoria</class>
+    <class>sg.sistemas.entidades.Sgnc</class>
+    <class>sg.sistemas.entidades.SgprogDetalle</class>
+    <class>sg.sistemas.entidades.SgprocesosRe</class>
+    <class>sg.sistemas.entidades.SgtipoplanDireccion</class>
+    <class>sg.sistemas.entidades.SgaccionCorrectiva</class>
+    <class>sg.sistemas.entidades.SgprocesoRiesgo</class>
+    <class>sg.sistemas.entidades.SgProgramas</class>
+    <class>sg.sistemas.entidades.SgseguimientoIndObj</class>
+    <class>sg.sistemas.entidades.SgaccionesMejora</class>
+    <class>sg.sistemas.entidades.SgobjetivoIndicadores</class>
+    <class>sg.sistemas.entidades.SgpSeccionesEncuesta</class>
+    <class>sg.sistemas.entidades.Sgcliente</class>
+    <class>sg.sistemas.entidades.Sgtareas</class>
+    <class>sg.sistemas.entidades.SgaccionResponsables</class>
+    <class>sg.sistemas.entidades.SgplanForma</class>
+    <class>sg.sistemas.entidades.SgprogramaEmpleado</class>
+    <class>sg.sistemas.entidades.Sgsigue</class>
+    <class>sg.sistemas.entidades.SgprocesoDetalle</class>
+    <class>sg.sistemas.entidades.SgpuestoLaboral</class>
+    <class>sg.sistemas.entidades.Sgprocesos</class>
+    <class>sg.sistemas.entidades.SgtiposDocumentos</class>
+    <class>sg.sistemas.entidades.SgrevisionDireccion</class>
+    <class>sg.sistemas.entidades.Sgnorma</class>
+    <class>sg.sistemas.entidades.Sgverifica</class>
+    <class>sg.sistemas.entidades.SgindicadorC</class>
+    <class>sg.sistemas.entidades.SgprocesosSistema</class>
+    <class>sg.sistemas.entidades.SgproccAuditoria</class>
+    <class>sg.sistemas.entidades.SgplanAuditoria</class>
+    <class>sg.sistemas.entidades.Sgttarea</class>
+    <class>sg.sistemas.entidades.SgdetalleRdireccion</class>
+    <class>sg.sistemas.entidades.SgtipoPlan</class>
+    <class>sg.sistemas.entidades.SgcapturaEncuesta</class>
+    <class>sg.sistemas.entidades.SgcabEncuesta</class>
+    <class>sg.sistemas.entidades.Sgestado</class>
+    <class>sg.sistemas.entidades.SgdetalleDocumento</class>
+    <class>sg.sistemas.entidades.SgseguimientoDetalle</class>
+    <class>sg.sistemas.entidades.SgpuntoNorma</class>
+    <class>sg.sistemas.entidades.SgMenus</class>
+    <class>sg.sistemas.entidades.SgplanProcesos</class>
+    <class>sg.sistemas.entidades.SgplanPrograma</class>
+    <class>sg.sistemas.entidades.SgpCabEncuesta</class>
+    <class>sg.sistemas.entidades.Sgmaterial</class>
+    <class>sg.sistemas.entidades.SgdetalleObjInd</class>
+    <class>sg.sistemas.entidades.SgtipoPregunta</class>
+    <class>sg.sistemas.entidades.Sgcentro</class>
+    <class>sg.sistemas.entidades.Sgmotivo</class>
+    <class>sg.sistemas.entidades.Sgworkflow</class>
+    <class>sg.sistemas.entidades.SgtipoRiesgo</class>
+    <class>sg.sistemas.entidades.Sgtcausa</class>
+    <class>sg.sistemas.entidades.SgUsuario</class>
+    <class>sg.sistemas.entidades.SgcorrecionNc</class>
+    <class>sg.sistemas.entidades.SgvaloracionRiesgo</class>
+    <class>sg.sistemas.entidades.Sgorigen</class>
+    <class>sg.sistemas.entidades.SgUsuariorol</class>
+    <class>sg.sistemas.entidades.Sgdepartamento</class>
+    <class>sg.sistemas.entidades.Sgauditado</class>
+    <class>sg.sistemas.entidades.SgprogAuditoria</class>
+    <class>sg.sistemas.entidades.Sgdocumentos</class>
+    <class>sg.sistemas.entidades.SgplanAnexos</class>
+    <class>sg.sistemas.entidades.SgindicadorProceso</class>
+    <class>sg.sistemas.entidades.Sgcausa</class>
+    <class>sg.sistemas.entidades.SgpEncuestaDetalle</class>
+    <class>sg.sistemas.entidades.SgprobabilidadRiesgo</class>
+    <class>sg.sistemas.entidades.Sgriesgo</class>
+    <class>sg.sistemas.entidades.SgrolAuditor</class>
+    <class>sg.sistemas.entidades.SgtipoAlerta</class>
+    <class>sg.sistemas.entidades.Sgproveedores</class>
+    <class>sg.sistemas.entidades.Sgsociedad</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgsolution?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="sgsolution"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="Manager$15"/>
+    </properties>
+  </persistence-unit>
+</persistence>
