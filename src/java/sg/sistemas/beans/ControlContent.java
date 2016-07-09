@@ -25,6 +25,7 @@ public class ControlContent {
     public void pruebaTrabajo()
     {
         System.out.println("Funciona la actulización");
+        System.out.println("Ejemplo de actualización de github");
     }
     
 }
