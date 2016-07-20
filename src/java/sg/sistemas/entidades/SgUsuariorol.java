@@ -39,7 +39,7 @@ public class SgUsuariorol implements Serializable {
     private String idsociedad;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private SgUsuario sgUsuario;
+    private Sgusuario sgusuario;
     @JoinColumn(name = "IDROL", referencedColumnName = "IDROL", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SgRol sgRol;
@@ -76,12 +76,12 @@ public class SgUsuariorol implements Serializable {
         this.idsociedad = idsociedad;
     }
 
-    public SgUsuario getSgUsuario() {
-        return sgUsuario;
+    public Sgusuario getSgusuario() {
+        return sgusuario;
     }
 
-    public void setSgUsuario(SgUsuario sgUsuario) {
-        this.sgUsuario = sgUsuario;
+    public void setSgusuario(Sgusuario sgusuario) {
+        this.sgusuario = sgusuario;
     }
 
     public SgRol getSgRol() {

@@ -41,12 +41,16 @@ public class SgprocesoDetalle implements Serializable {
     @Column(name = "DESCRIPCION")
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgprocesoDetalle")
-    private List<Sgworkflow> sgworkflowList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgprocesoDetalle")
     private List<SgproccAuditoria> sgproccAuditoriaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgprocesoDetalle")
+    private List<Sganexos> sganexosList;
     @JoinColumn(name = "IDPROCESOS", referencedColumnName = "IDPROCESOS", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Sgprocesos sgprocesos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgprocesoDetalle")
+    private List<SganexoNoacc> sganexoNoaccList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgprocesoDetalle")
+    private List<Sgworkflow> sgworkflowList;
 
     public SgprocesoDetalle() {
     }
@@ -76,15 +80,6 @@ public class SgprocesoDetalle implements Serializable {
     }
 
     @XmlTransient
-    public List<Sgworkflow> getSgworkflowList() {
-        return sgworkflowList;
-    }
-
-    public void setSgworkflowList(List<Sgworkflow> sgworkflowList) {
-        this.sgworkflowList = sgworkflowList;
-    }
-
-    @XmlTransient
     public List<SgproccAuditoria> getSgproccAuditoriaList() {
         return sgproccAuditoriaList;
     }
@@ -93,12 +88,39 @@ public class SgprocesoDetalle implements Serializable {
         this.sgproccAuditoriaList = sgproccAuditoriaList;
     }
 
+    @XmlTransient
+    public List<Sganexos> getSganexosList() {
+        return sganexosList;
+    }
+
+    public void setSganexosList(List<Sganexos> sganexosList) {
+        this.sganexosList = sganexosList;
+    }
+
     public Sgprocesos getSgprocesos() {
         return sgprocesos;
     }
 
     public void setSgprocesos(Sgprocesos sgprocesos) {
         this.sgprocesos = sgprocesos;
+    }
+
+    @XmlTransient
+    public List<SganexoNoacc> getSganexoNoaccList() {
+        return sganexoNoaccList;
+    }
+
+    public void setSganexoNoaccList(List<SganexoNoacc> sganexoNoaccList) {
+        this.sganexoNoaccList = sganexoNoaccList;
+    }
+
+    @XmlTransient
+    public List<Sgworkflow> getSgworkflowList() {
+        return sgworkflowList;
+    }
+
+    public void setSgworkflowList(List<Sgworkflow> sgworkflowList) {
+        this.sgworkflowList = sgworkflowList;
     }
 
     @Override

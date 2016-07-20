@@ -7,6 +7,8 @@ package sg.sistemas.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -14,10 +16,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -39,9 +43,11 @@ public class SgcapturaEncuesta implements Serializable {
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgcapturaEncuesta")
+    private List<SgdetalleCapencuesta> sgdetalleCapencuestaList;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
     @ManyToOne
-    private SgUsuario codUsuario;
+    private Sgusuario codUsuario;
 
     public SgcapturaEncuesta() {
     }
@@ -70,11 +76,20 @@ public class SgcapturaEncuesta implements Serializable {
         this.fecha = fecha;
     }
 
-    public SgUsuario getCodUsuario() {
+    @XmlTransient
+    public List<SgdetalleCapencuesta> getSgdetalleCapencuestaList() {
+        return sgdetalleCapencuestaList;
+    }
+
+    public void setSgdetalleCapencuestaList(List<SgdetalleCapencuesta> sgdetalleCapencuestaList) {
+        this.sgdetalleCapencuestaList = sgdetalleCapencuestaList;
+    }
+
+    public Sgusuario getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(SgUsuario codUsuario) {
+    public void setCodUsuario(Sgusuario codUsuario) {
         this.codUsuario = codUsuario;
     }
 

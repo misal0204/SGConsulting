@@ -81,9 +81,7 @@ public class Sgnc implements Serializable {
     @ManyToMany(mappedBy = "sgncList")
     private List<Sgdepartamento> sgdepartamentoList;
     @ManyToMany(mappedBy = "sgncList")
-    private List<SgUsuario> sgUsuarioList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sgnc")
-    private SgprocesosRe sgprocesosRe;
+    private List<Sgusuario> sgusuarioList;
     @JoinColumn(name = "IDCRITICIDAD", referencedColumnName = "IDCRITICIDAD")
     @ManyToOne
     private Sgcriticidad idcriticidad;
@@ -92,15 +90,19 @@ public class Sgnc implements Serializable {
     private Sgestado idestado;
     @JoinColumn(name = "USUARIO_DESCRIBE", referencedColumnName = "COD_USUARIO")
     @ManyToOne(optional = false)
-    private SgUsuario usuarioDescribe;
+    private Sgusuario usuarioDescribe;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgnc")
     private List<Sgcausa> sgcausaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgnc")
+    private List<Sganexos> sganexosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgnc")
+    private List<Sgverifica> sgverificaList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sgnc")
+    private SgprocesosRe sgprocesosRe;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "sgnc")
     private SgcorrecionNc sgcorrecionNc;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgnc")
     private List<Sgsigue> sgsigueList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgnc")
-    private List<Sgverifica> sgverificaList;
 
     public Sgnc() {
     }
@@ -210,20 +212,12 @@ public class Sgnc implements Serializable {
     }
 
     @XmlTransient
-    public List<SgUsuario> getSgUsuarioList() {
-        return sgUsuarioList;
+    public List<Sgusuario> getSgusuarioList() {
+        return sgusuarioList;
     }
 
-    public void setSgUsuarioList(List<SgUsuario> sgUsuarioList) {
-        this.sgUsuarioList = sgUsuarioList;
-    }
-
-    public SgprocesosRe getSgprocesosRe() {
-        return sgprocesosRe;
-    }
-
-    public void setSgprocesosRe(SgprocesosRe sgprocesosRe) {
-        this.sgprocesosRe = sgprocesosRe;
+    public void setSgusuarioList(List<Sgusuario> sgusuarioList) {
+        this.sgusuarioList = sgusuarioList;
     }
 
     public Sgcriticidad getIdcriticidad() {
@@ -242,11 +236,11 @@ public class Sgnc implements Serializable {
         this.idestado = idestado;
     }
 
-    public SgUsuario getUsuarioDescribe() {
+    public Sgusuario getUsuarioDescribe() {
         return usuarioDescribe;
     }
 
-    public void setUsuarioDescribe(SgUsuario usuarioDescribe) {
+    public void setUsuarioDescribe(Sgusuario usuarioDescribe) {
         this.usuarioDescribe = usuarioDescribe;
     }
 
@@ -257,6 +251,32 @@ public class Sgnc implements Serializable {
 
     public void setSgcausaList(List<Sgcausa> sgcausaList) {
         this.sgcausaList = sgcausaList;
+    }
+
+    @XmlTransient
+    public List<Sganexos> getSganexosList() {
+        return sganexosList;
+    }
+
+    public void setSganexosList(List<Sganexos> sganexosList) {
+        this.sganexosList = sganexosList;
+    }
+
+    @XmlTransient
+    public List<Sgverifica> getSgverificaList() {
+        return sgverificaList;
+    }
+
+    public void setSgverificaList(List<Sgverifica> sgverificaList) {
+        this.sgverificaList = sgverificaList;
+    }
+
+    public SgprocesosRe getSgprocesosRe() {
+        return sgprocesosRe;
+    }
+
+    public void setSgprocesosRe(SgprocesosRe sgprocesosRe) {
+        this.sgprocesosRe = sgprocesosRe;
     }
 
     public SgcorrecionNc getSgcorrecionNc() {
@@ -274,15 +294,6 @@ public class Sgnc implements Serializable {
 
     public void setSgsigueList(List<Sgsigue> sgsigueList) {
         this.sgsigueList = sgsigueList;
-    }
-
-    @XmlTransient
-    public List<Sgverifica> getSgverificaList() {
-        return sgverificaList;
-    }
-
-    public void setSgverificaList(List<Sgverifica> sgverificaList) {
-        this.sgverificaList = sgverificaList;
     }
 
     @Override

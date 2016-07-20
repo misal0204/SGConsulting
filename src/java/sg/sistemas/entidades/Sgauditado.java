@@ -56,7 +56,7 @@ public class Sgauditado implements Serializable {
     private SgproccAuditoria sgproccAuditoria;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
     @ManyToOne
-    private SgUsuario codUsuario;
+    private Sgusuario codUsuario;
 
     public Sgauditado() {
     }
@@ -101,11 +101,11 @@ public class Sgauditado implements Serializable {
         this.sgproccAuditoria = sgproccAuditoria;
     }
 
-    public SgUsuario getCodUsuario() {
+    public Sgusuario getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(SgUsuario codUsuario) {
+    public void setCodUsuario(Sgusuario codUsuario) {
         this.codUsuario = codUsuario;
     }
 

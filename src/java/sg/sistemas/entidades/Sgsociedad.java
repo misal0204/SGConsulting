@@ -52,13 +52,13 @@ public class Sgsociedad implements Serializable {
     @ManyToMany(mappedBy = "sgsociedadList")
     private List<Sgcentro> sgcentroList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgsociedad")
+    private List<Sgproveedores> sgproveedoresList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgsociedad")
     private List<Sgcliente> sgclienteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgsociedad")
     private List<Sgparametros> sgparametrosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgsociedad")
     private List<Sgtareas> sgtareasList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgsociedad")
-    private List<Sgproveedores> sgproveedoresList;
 
     public Sgsociedad() {
     }
@@ -117,6 +117,15 @@ public class Sgsociedad implements Serializable {
     }
 
     @XmlTransient
+    public List<Sgproveedores> getSgproveedoresList() {
+        return sgproveedoresList;
+    }
+
+    public void setSgproveedoresList(List<Sgproveedores> sgproveedoresList) {
+        this.sgproveedoresList = sgproveedoresList;
+    }
+
+    @XmlTransient
     public List<Sgcliente> getSgclienteList() {
         return sgclienteList;
     }
@@ -141,15 +150,6 @@ public class Sgsociedad implements Serializable {
 
     public void setSgtareasList(List<Sgtareas> sgtareasList) {
         this.sgtareasList = sgtareasList;
-    }
-
-    @XmlTransient
-    public List<Sgproveedores> getSgproveedoresList() {
-        return sgproveedoresList;
-    }
-
-    public void setSgproveedoresList(List<Sgproveedores> sgproveedoresList) {
-        this.sgproveedoresList = sgproveedoresList;
     }
 
     @Override

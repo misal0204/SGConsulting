@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "SgRol.findAll", query = "SELECT s FROM SgRol s"),
     @NamedQuery(name = "SgRol.findByIdrol", query = "SELECT s FROM SgRol s WHERE s.idrol = :idrol"),
-    @NamedQuery(name = "SgRol.findByNomber", query = "SELECT s FROM SgRol s WHERE s.nomber = :nomber")})
+    @NamedQuery(name = "SgRol.findByNombre", query = "SELECT s FROM SgRol s WHERE s.nombre = :nombre")})
 public class SgRol implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,8 +38,8 @@ public class SgRol implements Serializable {
     @Column(name = "IDROL")
     private String idrol;
     @Basic(optional = false)
-    @Column(name = "NOMBER")
-    private String nomber;
+    @Column(name = "NOMBRE")
+    private String nombre;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgRol")
     private List<SgUsuariorol> sgUsuariorolList;
 
@@ -50,9 +50,9 @@ public class SgRol implements Serializable {
         this.idrol = idrol;
     }
 
-    public SgRol(String idrol, String nomber) {
+    public SgRol(String idrol, String nombre) {
         this.idrol = idrol;
-        this.nomber = nomber;
+        this.nombre = nombre;
     }
 
     public String getIdrol() {
@@ -63,12 +63,12 @@ public class SgRol implements Serializable {
         this.idrol = idrol;
     }
 
-    public String getNomber() {
-        return nomber;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNomber(String nomber) {
-        this.nomber = nomber;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @XmlTransient

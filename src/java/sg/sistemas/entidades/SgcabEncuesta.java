@@ -18,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -63,15 +64,19 @@ public class SgcabEncuesta implements Serializable {
         @JoinColumn(name = "NOENC", referencedColumnName = "NOENC")}, inverseJoinColumns = {
         @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")})
     @ManyToMany
-    private List<SgUsuario> sgUsuarioList;
+    private List<Sgusuario> sgusuarioList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "sgcabEncuesta")
     private SgencuestaDetalle sgencuestaDetalle;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgcabEncuesta")
+    private List<SgclienteEncuesta> sgclienteEncuestaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgcabEncuesta")
+    private List<SgproveedorEncuesta> sgproveedorEncuestaList;
     @JoinColumn(name = "IDENCUESTA", referencedColumnName = "IDENCUESTA")
     @ManyToOne
     private SgpCabEncuesta idencuesta;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
     @ManyToOne
-    private SgUsuario codUsuario;
+    private Sgusuario codUsuario;
 
     public SgcabEncuesta() {
     }
@@ -133,12 +138,12 @@ public class SgcabEncuesta implements Serializable {
     }
 
     @XmlTransient
-    public List<SgUsuario> getSgUsuarioList() {
-        return sgUsuarioList;
+    public List<Sgusuario> getSgusuarioList() {
+        return sgusuarioList;
     }
 
-    public void setSgUsuarioList(List<SgUsuario> sgUsuarioList) {
-        this.sgUsuarioList = sgUsuarioList;
+    public void setSgusuarioList(List<Sgusuario> sgusuarioList) {
+        this.sgusuarioList = sgusuarioList;
     }
 
     public SgencuestaDetalle getSgencuestaDetalle() {
@@ -149,6 +154,24 @@ public class SgcabEncuesta implements Serializable {
         this.sgencuestaDetalle = sgencuestaDetalle;
     }
 
+    @XmlTransient
+    public List<SgclienteEncuesta> getSgclienteEncuestaList() {
+        return sgclienteEncuestaList;
+    }
+
+    public void setSgclienteEncuestaList(List<SgclienteEncuesta> sgclienteEncuestaList) {
+        this.sgclienteEncuestaList = sgclienteEncuestaList;
+    }
+
+    @XmlTransient
+    public List<SgproveedorEncuesta> getSgproveedorEncuestaList() {
+        return sgproveedorEncuestaList;
+    }
+
+    public void setSgproveedorEncuestaList(List<SgproveedorEncuesta> sgproveedorEncuestaList) {
+        this.sgproveedorEncuestaList = sgproveedorEncuestaList;
+    }
+
     public SgpCabEncuesta getIdencuesta() {
         return idencuesta;
     }
@@ -157,11 +180,11 @@ public class SgcabEncuesta implements Serializable {
         this.idencuesta = idencuesta;
     }
 
-    public SgUsuario getCodUsuario() {
+    public Sgusuario getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(SgUsuario codUsuario) {
+    public void setCodUsuario(Sgusuario codUsuario) {
         this.codUsuario = codUsuario;
     }
 

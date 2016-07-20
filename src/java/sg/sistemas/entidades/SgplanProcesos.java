@@ -6,6 +6,8 @@
 package sg.sistemas.entidades;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -15,9 +17,11 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -51,6 +55,8 @@ public class SgplanProcesos implements Serializable {
     @JoinColumn(name = "IDCOD_PROCESO", referencedColumnName = "IDCOD_PROCESO")
     @ManyToOne
     private SgprocesosSistema idcodProceso;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgplanProcesos")
+    private List<SganxplanProcess> sganxplanProcessList;
 
     public SgplanProcesos() {
     }
@@ -101,6 +107,15 @@ public class SgplanProcesos implements Serializable {
 
     public void setIdcodProceso(SgprocesosSistema idcodProceso) {
         this.idcodProceso = idcodProceso;
+    }
+
+    @XmlTransient
+    public List<SganxplanProcess> getSganxplanProcessList() {
+        return sganxplanProcessList;
+    }
+
+    public void setSganxplanProcessList(List<SganxplanProcess> sganxplanProcessList) {
+        this.sganxplanProcessList = sganxplanProcessList;
     }
 
     @Override

@@ -39,7 +39,7 @@ public class SgrolAuditor implements Serializable {
     @Column(name = "DESCRIPCION")
     private String descripcion;
     @OneToMany(mappedBy = "idrolAuditor")
-    private List<SgUsuario> sgUsuarioList;
+    private List<Sgusuario> sgusuarioList;
 
     public SgrolAuditor() {
     }
@@ -65,12 +65,12 @@ public class SgrolAuditor implements Serializable {
     }
 
     @XmlTransient
-    public List<SgUsuario> getSgUsuarioList() {
-        return sgUsuarioList;
+    public List<Sgusuario> getSgusuarioList() {
+        return sgusuarioList;
     }
 
-    public void setSgUsuarioList(List<SgUsuario> sgUsuarioList) {
-        this.sgUsuarioList = sgUsuarioList;
+    public void setSgusuarioList(List<Sgusuario> sgusuarioList) {
+        this.sgusuarioList = sgusuarioList;
     }
 
     @Override

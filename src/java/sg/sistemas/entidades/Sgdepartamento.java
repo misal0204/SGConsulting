@@ -40,17 +40,17 @@ public class Sgdepartamento implements Serializable {
     private String iddept;
     @Column(name = "DESCRIPCION")
     private String descripcion;
-    @JoinTable(name = "sgdetp_user", joinColumns = {
-        @JoinColumn(name = "IDDEPT", referencedColumnName = "IDDEPT")}, inverseJoinColumns = {
-        @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")})
-    @ManyToMany
-    private List<SgUsuario> sgUsuarioList;
     @JoinTable(name = "sgdepartamento_nc", joinColumns = {
         @JoinColumn(name = "IDDEPT", referencedColumnName = "IDDEPT")}, inverseJoinColumns = {
         @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD"),
         @JoinColumn(name = "NONC", referencedColumnName = "NONC")})
     @ManyToMany
     private List<Sgnc> sgncList;
+    @JoinTable(name = "sgdetp_user", joinColumns = {
+        @JoinColumn(name = "IDDEPT", referencedColumnName = "IDDEPT")}, inverseJoinColumns = {
+        @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")})
+    @ManyToMany
+    private List<Sgusuario> sgusuarioList;
 
     public Sgdepartamento() {
     }
@@ -76,21 +76,21 @@ public class Sgdepartamento implements Serializable {
     }
 
     @XmlTransient
-    public List<SgUsuario> getSgUsuarioList() {
-        return sgUsuarioList;
-    }
-
-    public void setSgUsuarioList(List<SgUsuario> sgUsuarioList) {
-        this.sgUsuarioList = sgUsuarioList;
-    }
-
-    @XmlTransient
     public List<Sgnc> getSgncList() {
         return sgncList;
     }
 
     public void setSgncList(List<Sgnc> sgncList) {
         this.sgncList = sgncList;
+    }
+
+    @XmlTransient
+    public List<Sgusuario> getSgusuarioList() {
+        return sgusuarioList;
+    }
+
+    public void setSgusuarioList(List<Sgusuario> sgusuarioList) {
+        this.sgusuarioList = sgusuarioList;
     }
 
     @Override

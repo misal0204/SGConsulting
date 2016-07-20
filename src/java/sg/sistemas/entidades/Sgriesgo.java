@@ -65,8 +65,6 @@ public class Sgriesgo implements Serializable {
     private String fase;
     @Column(name = "ESTADO")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgriesgo")
-    private List<SgprocesoRiesgo> sgprocesoRiesgoList;
     @JoinColumn(name = "IDPROBABILIDAD", referencedColumnName = "IDPROBABILIDAD")
     @ManyToOne
     private SgprobabilidadRiesgo idprobabilidad;
@@ -75,7 +73,11 @@ public class Sgriesgo implements Serializable {
     private SgtipoRiesgo idtipoRiesgo;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
     @ManyToOne
-    private SgUsuario codUsuario;
+    private Sgusuario codUsuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgriesgo")
+    private List<SgprocesoRiesgo> sgprocesoRiesgoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgriesgo")
+    private List<SgevaluacionRiesgo> sgevaluacionRiesgoList;
 
     public Sgriesgo() {
     }
@@ -160,15 +162,6 @@ public class Sgriesgo implements Serializable {
         this.estado = estado;
     }
 
-    @XmlTransient
-    public List<SgprocesoRiesgo> getSgprocesoRiesgoList() {
-        return sgprocesoRiesgoList;
-    }
-
-    public void setSgprocesoRiesgoList(List<SgprocesoRiesgo> sgprocesoRiesgoList) {
-        this.sgprocesoRiesgoList = sgprocesoRiesgoList;
-    }
-
     public SgprobabilidadRiesgo getIdprobabilidad() {
         return idprobabilidad;
     }
@@ -185,12 +178,30 @@ public class Sgriesgo implements Serializable {
         this.idtipoRiesgo = idtipoRiesgo;
     }
 
-    public SgUsuario getCodUsuario() {
+    public Sgusuario getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(SgUsuario codUsuario) {
+    public void setCodUsuario(Sgusuario codUsuario) {
         this.codUsuario = codUsuario;
+    }
+
+    @XmlTransient
+    public List<SgprocesoRiesgo> getSgprocesoRiesgoList() {
+        return sgprocesoRiesgoList;
+    }
+
+    public void setSgprocesoRiesgoList(List<SgprocesoRiesgo> sgprocesoRiesgoList) {
+        this.sgprocesoRiesgoList = sgprocesoRiesgoList;
+    }
+
+    @XmlTransient
+    public List<SgevaluacionRiesgo> getSgevaluacionRiesgoList() {
+        return sgevaluacionRiesgoList;
+    }
+
+    public void setSgevaluacionRiesgoList(List<SgevaluacionRiesgo> sgevaluacionRiesgoList) {
+        this.sgevaluacionRiesgoList = sgevaluacionRiesgoList;
     }
 
     @Override

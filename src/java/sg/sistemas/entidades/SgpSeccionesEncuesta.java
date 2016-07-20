@@ -8,6 +8,7 @@ package sg.sistemas.entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -38,6 +39,8 @@ public class SgpSeccionesEncuesta implements Serializable {
     private String idseccion;
     @Column(name = "DESCRIPCION")
     private String descripcion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgpSeccionesEncuesta")
+    private List<SgpEncuestaSeccion> sgpEncuestaSeccionList;
     @OneToMany(mappedBy = "idseccion")
     private List<SgpEncuestaDetalle> sgpEncuestaDetalleList;
 
@@ -62,6 +65,15 @@ public class SgpSeccionesEncuesta implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    @XmlTransient
+    public List<SgpEncuestaSeccion> getSgpEncuestaSeccionList() {
+        return sgpEncuestaSeccionList;
+    }
+
+    public void setSgpEncuestaSeccionList(List<SgpEncuestaSeccion> sgpEncuestaSeccionList) {
+        this.sgpEncuestaSeccionList = sgpEncuestaSeccionList;
     }
 
     @XmlTransient

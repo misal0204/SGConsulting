@@ -44,7 +44,7 @@ public class SgseguimientoDetalle implements Serializable {
     private String descripcion;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
     @ManyToOne
-    private SgUsuario codUsuario;
+    private Sgusuario codUsuario;
     @JoinColumns({
         @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD", insertable = false, updatable = false),
         @JoinColumn(name = "NONC", referencedColumnName = "NONC", insertable = false, updatable = false),
@@ -84,11 +84,11 @@ public class SgseguimientoDetalle implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public SgUsuario getCodUsuario() {
+    public Sgusuario getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(SgUsuario codUsuario) {
+    public void setCodUsuario(Sgusuario codUsuario) {
         this.codUsuario = codUsuario;
     }
 

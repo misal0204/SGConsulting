@@ -63,7 +63,7 @@ public class SgrevisionDireccion implements Serializable {
     private SgtipoplanDireccion sgtipoplanDireccion;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
     @ManyToOne
-    private SgUsuario codUsuario;
+    private Sgusuario codUsuario;
 
     public SgrevisionDireccion() {
     }
@@ -141,11 +141,11 @@ public class SgrevisionDireccion implements Serializable {
         this.sgtipoplanDireccion = sgtipoplanDireccion;
     }
 
-    public SgUsuario getCodUsuario() {
+    public Sgusuario getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(SgUsuario codUsuario) {
+    public void setCodUsuario(Sgusuario codUsuario) {
         this.codUsuario = codUsuario;
     }
 

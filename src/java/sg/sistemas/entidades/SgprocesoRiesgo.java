@@ -7,6 +7,8 @@ package sg.sistemas.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -16,10 +18,12 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -60,6 +64,10 @@ public class SgprocesoRiesgo implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "VALOR")
     private Double valor;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgprocesoRiesgo")
+    private List<SgsegumientoRiesgo> sgsegumientoRiesgoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgprocesoRiesgo")
+    private List<SgtramientoRiesgo> sgtramientoRiesgoList;
     @JoinColumns({
         @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD", insertable = false, updatable = false),
         @JoinColumn(name = "IDRIESGO", referencedColumnName = "IDRIESGO", insertable = false, updatable = false)})
@@ -134,6 +142,24 @@ public class SgprocesoRiesgo implements Serializable {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    @XmlTransient
+    public List<SgsegumientoRiesgo> getSgsegumientoRiesgoList() {
+        return sgsegumientoRiesgoList;
+    }
+
+    public void setSgsegumientoRiesgoList(List<SgsegumientoRiesgo> sgsegumientoRiesgoList) {
+        this.sgsegumientoRiesgoList = sgsegumientoRiesgoList;
+    }
+
+    @XmlTransient
+    public List<SgtramientoRiesgo> getSgtramientoRiesgoList() {
+        return sgtramientoRiesgoList;
+    }
+
+    public void setSgtramientoRiesgoList(List<SgtramientoRiesgo> sgtramientoRiesgoList) {
+        this.sgtramientoRiesgoList = sgtramientoRiesgoList;
     }
 
     public Sgriesgo getSgriesgo() {

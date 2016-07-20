@@ -55,7 +55,7 @@ public class SgcorrecionNc implements Serializable {
     private Sgnc sgnc;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
     @ManyToOne
-    private SgUsuario codUsuario;
+    private Sgusuario codUsuario;
 
     public SgcorrecionNc() {
     }
@@ -108,11 +108,11 @@ public class SgcorrecionNc implements Serializable {
         this.sgnc = sgnc;
     }
 
-    public SgUsuario getCodUsuario() {
+    public Sgusuario getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(SgUsuario codUsuario) {
+    public void setCodUsuario(Sgusuario codUsuario) {
         this.codUsuario = codUsuario;
     }
 

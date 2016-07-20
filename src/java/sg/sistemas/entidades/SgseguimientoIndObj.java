@@ -45,7 +45,7 @@ public class SgseguimientoIndObj implements Serializable {
         @JoinColumn(name = "IDTIPO_ALERTA", referencedColumnName = "IDTIPO_ALERTA")}, inverseJoinColumns = {
         @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")})
     @ManyToMany
-    private List<SgUsuario> sgUsuarioList;
+    private List<Sgusuario> sgusuarioList;
     @JoinColumns({
         @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD", insertable = false, updatable = false),
         @JoinColumn(name = "IDOBJ_INDICADOR", referencedColumnName = "IDOBJ_INDICADOR", insertable = false, updatable = false),
@@ -76,12 +76,12 @@ public class SgseguimientoIndObj implements Serializable {
     }
 
     @XmlTransient
-    public List<SgUsuario> getSgUsuarioList() {
-        return sgUsuarioList;
+    public List<Sgusuario> getSgusuarioList() {
+        return sgusuarioList;
     }
 
-    public void setSgUsuarioList(List<SgUsuario> sgUsuarioList) {
-        this.sgUsuarioList = sgUsuarioList;
+    public void setSgusuarioList(List<Sgusuario> sgusuarioList) {
+        this.sgusuarioList = sgusuarioList;
     }
 
     public SgdetalleObjInd getSgdetalleObjInd() {

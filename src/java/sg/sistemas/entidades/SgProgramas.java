@@ -45,7 +45,7 @@ public class SgProgramas implements Serializable {
     @Column(name = "ICON")
     private String icon;
     @ManyToMany(mappedBy = "sgProgramasList")
-    private List<SgUsuario> sgUsuarioList;
+    private List<Sgusuario> sgusuarioList;
     @JoinColumn(name = "IDMENU", referencedColumnName = "IDMENU", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SgMenus sgMenus;
@@ -94,12 +94,12 @@ public class SgProgramas implements Serializable {
     }
 
     @XmlTransient
-    public List<SgUsuario> getSgUsuarioList() {
-        return sgUsuarioList;
+    public List<Sgusuario> getSgusuarioList() {
+        return sgusuarioList;
     }
 
-    public void setSgUsuarioList(List<SgUsuario> sgUsuarioList) {
-        this.sgUsuarioList = sgUsuarioList;
+    public void setSgusuarioList(List<Sgusuario> sgusuarioList) {
+        this.sgusuarioList = sgusuarioList;
     }
 
     public SgMenus getSgMenus() {

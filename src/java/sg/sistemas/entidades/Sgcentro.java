@@ -46,7 +46,7 @@ public class Sgcentro implements Serializable {
         @JoinColumn(name = "NONC", referencedColumnName = "NONC")})
     @ManyToMany
     private List<Sgnc> sgncList;
-    @JoinTable(name = "sociedad_detalle", joinColumns = {
+    @JoinTable(name = "sgsociedad_detalle", joinColumns = {
         @JoinColumn(name = "IDCENTRO", referencedColumnName = "IDCENTRO")}, inverseJoinColumns = {
         @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD")})
     @ManyToMany

@@ -7,6 +7,8 @@ package sg.sistemas.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -14,10 +16,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -57,9 +61,15 @@ public class SgaccionesMejora implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "BORRAR")
     private Double borrar;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgaccionesMejora")
+    private List<SgverificacionNoacc> sgverificacionNoaccList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgaccionesMejora")
+    private List<SgseguimientoNoacc> sgseguimientoNoaccList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgaccionesMejora")
+    private List<SganexoNoacc> sganexoNoaccList;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
     @ManyToOne
-    private SgUsuario codUsuario;
+    private Sgusuario codUsuario;
 
     public SgaccionesMejora() {
     }
@@ -128,11 +138,38 @@ public class SgaccionesMejora implements Serializable {
         this.borrar = borrar;
     }
 
-    public SgUsuario getCodUsuario() {
+    @XmlTransient
+    public List<SgverificacionNoacc> getSgverificacionNoaccList() {
+        return sgverificacionNoaccList;
+    }
+
+    public void setSgverificacionNoaccList(List<SgverificacionNoacc> sgverificacionNoaccList) {
+        this.sgverificacionNoaccList = sgverificacionNoaccList;
+    }
+
+    @XmlTransient
+    public List<SgseguimientoNoacc> getSgseguimientoNoaccList() {
+        return sgseguimientoNoaccList;
+    }
+
+    public void setSgseguimientoNoaccList(List<SgseguimientoNoacc> sgseguimientoNoaccList) {
+        this.sgseguimientoNoaccList = sgseguimientoNoaccList;
+    }
+
+    @XmlTransient
+    public List<SganexoNoacc> getSganexoNoaccList() {
+        return sganexoNoaccList;
+    }
+
+    public void setSganexoNoaccList(List<SganexoNoacc> sganexoNoaccList) {
+        this.sganexoNoaccList = sganexoNoaccList;
+    }
+
+    public Sgusuario getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(SgUsuario codUsuario) {
+    public void setCodUsuario(Sgusuario codUsuario) {
         this.codUsuario = codUsuario;
     }
 

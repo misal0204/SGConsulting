@@ -6,6 +6,8 @@
 package sg.sistemas.entidades;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -14,9 +16,11 @@ import javax.persistence.JoinColumns;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -48,12 +52,16 @@ public class SgdetalleDocumento implements Serializable {
     private Double size;
     @Column(name = "VERSION")
     private Double version;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgdetalleDocumento")
+    private List<SgcontrolVersiones> sgcontrolVersionesList;
     @JoinColumns({
         @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD", insertable = false, updatable = false),
         @JoinColumn(name = "IDDOCUMENTO", referencedColumnName = "IDDOCUMENTO", insertable = false, updatable = false),
         @JoinColumn(name = "IDTIPO_DOCUMENTO", referencedColumnName = "IDTIPO_DOCUMENTO", insertable = false, updatable = false)})
     @OneToOne(optional = false)
     private Sgdocumentos sgdocumentos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgdetalleDocumento")
+    private List<SgresponsableEdicion> sgresponsableEdicionList;
 
     public SgdetalleDocumento() {
     }
@@ -106,12 +114,30 @@ public class SgdetalleDocumento implements Serializable {
         this.version = version;
     }
 
+    @XmlTransient
+    public List<SgcontrolVersiones> getSgcontrolVersionesList() {
+        return sgcontrolVersionesList;
+    }
+
+    public void setSgcontrolVersionesList(List<SgcontrolVersiones> sgcontrolVersionesList) {
+        this.sgcontrolVersionesList = sgcontrolVersionesList;
+    }
+
     public Sgdocumentos getSgdocumentos() {
         return sgdocumentos;
     }
 
     public void setSgdocumentos(Sgdocumentos sgdocumentos) {
         this.sgdocumentos = sgdocumentos;
+    }
+
+    @XmlTransient
+    public List<SgresponsableEdicion> getSgresponsableEdicionList() {
+        return sgresponsableEdicionList;
+    }
+
+    public void setSgresponsableEdicionList(List<SgresponsableEdicion> sgresponsableEdicionList) {
+        this.sgresponsableEdicionList = sgresponsableEdicionList;
     }
 
     @Override

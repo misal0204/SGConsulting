@@ -28,5 +28,4 @@ public class ControlContent {
         System.out.println("Ejemplo de actualización de github");
         System.out.println("Cambio misa");
     }
-    
 }

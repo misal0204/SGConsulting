@@ -49,10 +49,11 @@ public class Sgtareas implements Serializable {
     private String descripcion;
     @Column(name = "ESTADO")
     private String estado;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "ASIGNADO_A")
-    private String asignadoA;
+    private Double asignadoA;
     @Column(name = "ASIGNADO_POR")
-    private String asignadoPor;
+    private Double asignadoPor;
     @Column(name = "FECHA_CREACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
@@ -106,19 +107,19 @@ public class Sgtareas implements Serializable {
         this.estado = estado;
     }
 
-    public String getAsignadoA() {
+    public Double getAsignadoA() {
         return asignadoA;
     }
 
-    public void setAsignadoA(String asignadoA) {
+    public void setAsignadoA(Double asignadoA) {
         this.asignadoA = asignadoA;
     }
 
-    public String getAsignadoPor() {
+    public Double getAsignadoPor() {
         return asignadoPor;
     }
 
-    public void setAsignadoPor(String asignadoPor) {
+    public void setAsignadoPor(Double asignadoPor) {
         this.asignadoPor = asignadoPor;
     }
 

@@ -74,7 +74,9 @@ public class SgdetalleRdireccion implements Serializable {
         @JoinColumn(name = "IDDETALLE_DIRECCION", referencedColumnName = "IDDETALLE_DIRECCION")}, inverseJoinColumns = {
         @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")})
     @ManyToMany
-    private List<SgUsuario> sgUsuarioList;
+    private List<Sgusuario> sgusuarioList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sgdetalleRdireccion")
+    private SgplanProcesos sgplanProcesos;
     @JoinColumns({
         @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD", insertable = false, updatable = false),
         @JoinColumn(name = "IDPLAN_DIRECCION", referencedColumnName = "IDPLAN_DIRECCION"),
@@ -83,9 +85,7 @@ public class SgdetalleRdireccion implements Serializable {
     private SgrevisionDireccion sgrevisionDireccion;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
     @ManyToOne
-    private SgUsuario codUsuario;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sgdetalleRdireccion")
-    private SgplanProcesos sgplanProcesos;
+    private Sgusuario codUsuario;
 
     public SgdetalleRdireccion() {
     }
@@ -163,12 +163,20 @@ public class SgdetalleRdireccion implements Serializable {
     }
 
     @XmlTransient
-    public List<SgUsuario> getSgUsuarioList() {
-        return sgUsuarioList;
+    public List<Sgusuario> getSgusuarioList() {
+        return sgusuarioList;
     }
 
-    public void setSgUsuarioList(List<SgUsuario> sgUsuarioList) {
-        this.sgUsuarioList = sgUsuarioList;
+    public void setSgusuarioList(List<Sgusuario> sgusuarioList) {
+        this.sgusuarioList = sgusuarioList;
+    }
+
+    public SgplanProcesos getSgplanProcesos() {
+        return sgplanProcesos;
+    }
+
+    public void setSgplanProcesos(SgplanProcesos sgplanProcesos) {
+        this.sgplanProcesos = sgplanProcesos;
     }
 
     public SgrevisionDireccion getSgrevisionDireccion() {
@@ -179,20 +187,12 @@ public class SgdetalleRdireccion implements Serializable {
         this.sgrevisionDireccion = sgrevisionDireccion;
     }
 
-    public SgUsuario getCodUsuario() {
+    public Sgusuario getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(SgUsuario codUsuario) {
+    public void setCodUsuario(Sgusuario codUsuario) {
         this.codUsuario = codUsuario;
-    }
-
-    public SgplanProcesos getSgplanProcesos() {
-        return sgplanProcesos;
-    }
-
-    public void setSgplanProcesos(SgplanProcesos sgplanProcesos) {
-        this.sgplanProcesos = sgplanProcesos;
     }
 
     @Override

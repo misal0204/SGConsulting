@@ -58,13 +58,13 @@ public class SgpCabEncuesta implements Serializable {
     private Date fechaFin;
     @Column(name = "ESTADO")
     private String estado;
-    @OneToMany(mappedBy = "idencuesta")
-    private List<SgcabEncuesta> sgcabEncuestaList;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
     @ManyToOne
-    private SgUsuario codUsuario;
+    private Sgusuario codUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgpCabEncuesta")
     private List<SgpEncuestaDetalle> sgpEncuestaDetalleList;
+    @OneToMany(mappedBy = "idencuesta")
+    private List<SgcabEncuesta> sgcabEncuestaList;
 
     public SgpCabEncuesta() {
     }
@@ -121,20 +121,11 @@ public class SgpCabEncuesta implements Serializable {
         this.estado = estado;
     }
 
-    @XmlTransient
-    public List<SgcabEncuesta> getSgcabEncuestaList() {
-        return sgcabEncuestaList;
-    }
-
-    public void setSgcabEncuestaList(List<SgcabEncuesta> sgcabEncuestaList) {
-        this.sgcabEncuestaList = sgcabEncuestaList;
-    }
-
-    public SgUsuario getCodUsuario() {
+    public Sgusuario getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(SgUsuario codUsuario) {
+    public void setCodUsuario(Sgusuario codUsuario) {
         this.codUsuario = codUsuario;
     }
 
@@ -145,6 +136,15 @@ public class SgpCabEncuesta implements Serializable {
 
     public void setSgpEncuestaDetalleList(List<SgpEncuestaDetalle> sgpEncuestaDetalleList) {
         this.sgpEncuestaDetalleList = sgpEncuestaDetalleList;
+    }
+
+    @XmlTransient
+    public List<SgcabEncuesta> getSgcabEncuestaList() {
+        return sgcabEncuestaList;
+    }
+
+    public void setSgcabEncuestaList(List<SgcabEncuesta> sgcabEncuestaList) {
+        this.sgcabEncuestaList = sgcabEncuestaList;
     }
 
     @Override

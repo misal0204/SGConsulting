@@ -7,6 +7,7 @@ package sg.sistemas.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,6 +47,10 @@ public class SgprogramaEmpleado implements Serializable {
     @Column(name = "FECHA_REALIZADO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRealizado;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sgprogramaEmpleado")
+    private SgeficaciaRrhh sgeficaciaRrhh;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sgprogramaEmpleado")
+    private SgeficaciaJefe sgeficaciaJefe;
     @JoinColumns({
         @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD", insertable = false, updatable = false),
         @JoinColumn(name = "IDPLAN_PROG", referencedColumnName = "IDPLAN_PROG", insertable = false, updatable = false)})
@@ -52,7 +58,9 @@ public class SgprogramaEmpleado implements Serializable {
     private SgplanPrograma sgplanPrograma;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private SgUsuario sgUsuario;
+    private Sgusuario sgusuario;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sgprogramaEmpleado")
+    private SgeficaciaEmpleado sgeficaciaEmpleado;
 
     public SgprogramaEmpleado() {
     }
@@ -89,6 +97,22 @@ public class SgprogramaEmpleado implements Serializable {
         this.fechaRealizado = fechaRealizado;
     }
 
+    public SgeficaciaRrhh getSgeficaciaRrhh() {
+        return sgeficaciaRrhh;
+    }
+
+    public void setSgeficaciaRrhh(SgeficaciaRrhh sgeficaciaRrhh) {
+        this.sgeficaciaRrhh = sgeficaciaRrhh;
+    }
+
+    public SgeficaciaJefe getSgeficaciaJefe() {
+        return sgeficaciaJefe;
+    }
+
+    public void setSgeficaciaJefe(SgeficaciaJefe sgeficaciaJefe) {
+        this.sgeficaciaJefe = sgeficaciaJefe;
+    }
+
     public SgplanPrograma getSgplanPrograma() {
         return sgplanPrograma;
     }
@@ -97,12 +121,20 @@ public class SgprogramaEmpleado implements Serializable {
         this.sgplanPrograma = sgplanPrograma;
     }
 
-    public SgUsuario getSgUsuario() {
-        return sgUsuario;
+    public Sgusuario getSgusuario() {
+        return sgusuario;
     }
 
-    public void setSgUsuario(SgUsuario sgUsuario) {
-        this.sgUsuario = sgUsuario;
+    public void setSgusuario(Sgusuario sgusuario) {
+        this.sgusuario = sgusuario;
+    }
+
+    public SgeficaciaEmpleado getSgeficaciaEmpleado() {
+        return sgeficaciaEmpleado;
+    }
+
+    public void setSgeficaciaEmpleado(SgeficaciaEmpleado sgeficaciaEmpleado) {
+        this.sgeficaciaEmpleado = sgeficaciaEmpleado;
     }
 
     @Override

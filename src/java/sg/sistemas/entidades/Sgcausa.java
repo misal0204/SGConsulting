@@ -68,7 +68,7 @@ public class Sgcausa implements Serializable {
     private Sgnc sgnc;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
     @ManyToOne
-    private SgUsuario codUsuario;
+    private Sgusuario codUsuario;
     @JoinColumn(name = "IDTCAUSA", referencedColumnName = "IDTCAUSA")
     @ManyToOne(optional = false)
     private Sgtcausa idtcausa;
@@ -146,11 +146,11 @@ public class Sgcausa implements Serializable {
         this.sgnc = sgnc;
     }
 
-    public SgUsuario getCodUsuario() {
+    public Sgusuario getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(SgUsuario codUsuario) {
+    public void setCodUsuario(Sgusuario codUsuario) {
         this.codUsuario = codUsuario;
     }
 

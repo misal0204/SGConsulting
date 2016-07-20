@@ -54,11 +54,11 @@ public class Sgproveedores implements Serializable {
     private String telefono2;
     @Column(name = "FAX")
     private String fax;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgproveedores")
-    private List<SgprocesosRe> sgprocesosReList;
     @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Sgsociedad sgsociedad;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgproveedores")
+    private List<SgprocesosRe> sgprocesosReList;
 
     public Sgproveedores() {
     }
@@ -127,6 +127,14 @@ public class Sgproveedores implements Serializable {
         this.fax = fax;
     }
 
+    public Sgsociedad getSgsociedad() {
+        return sgsociedad;
+    }
+
+    public void setSgsociedad(Sgsociedad sgsociedad) {
+        this.sgsociedad = sgsociedad;
+    }
+
     @XmlTransient
     public List<SgprocesosRe> getSgprocesosReList() {
         return sgprocesosReList;
@@ -134,14 +142,6 @@ public class Sgproveedores implements Serializable {
 
     public void setSgprocesosReList(List<SgprocesosRe> sgprocesosReList) {
         this.sgprocesosReList = sgprocesosReList;
-    }
-
-    public Sgsociedad getSgsociedad() {
-        return sgsociedad;
-    }
-
-    public void setSgsociedad(Sgsociedad sgsociedad) {
-        this.sgsociedad = sgsociedad;
     }
 
     @Override

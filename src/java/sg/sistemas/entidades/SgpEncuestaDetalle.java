@@ -6,7 +6,9 @@
 package sg.sistemas.entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -14,8 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -37,6 +41,8 @@ public class SgpEncuestaDetalle implements Serializable {
     @Basic(optional = false)
     @Column(name = "PREGUNTA")
     private String pregunta;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgpEncuestaDetalle")
+    private List<SgpEncuestaSeccion> sgpEncuestaSeccionList;
     @JoinColumn(name = "IDSECCION", referencedColumnName = "IDSECCION")
     @ManyToOne
     private SgpSeccionesEncuesta idseccion;
@@ -77,6 +83,15 @@ public class SgpEncuestaDetalle implements Serializable {
 
     public void setPregunta(String pregunta) {
         this.pregunta = pregunta;
+    }
+
+    @XmlTransient
+    public List<SgpEncuestaSeccion> getSgpEncuestaSeccionList() {
+        return sgpEncuestaSeccionList;
+    }
+
+    public void setSgpEncuestaSeccionList(List<SgpEncuestaSeccion> sgpEncuestaSeccionList) {
+        this.sgpEncuestaSeccionList = sgpEncuestaSeccionList;
     }
 
     public SgpSeccionesEncuesta getIdseccion() {

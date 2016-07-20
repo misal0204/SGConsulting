@@ -5,25 +5,19 @@
  */
 package sg.sistemas.entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Misael
  */
-public class Usuario {
-
+public class Usuario implements Serializable{
     private String usuario;
     private String password;
-    private String centro;
 
     public Usuario() {
     }
-
-    public Usuario(String usuario, String password, String centro) {
-        this.usuario = usuario;
-        this.password = password;
-        this.centro = centro;
-    }
-
+    
     public String getUsuario() {
         return usuario;
     }
@@ -39,13 +33,6 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getCentro() {
-        return centro;
-    }
-
-    public void setCentro(String centro) {
-        this.centro = centro;
-    }
-
+    
+    
 }
