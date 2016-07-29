@@ -27,10 +27,10 @@
                 <p class="login-box-msg">#{bundle.startSession}</p>
                 <h:form>
                     <div class="form-group has-feedback">
-                        <h:inputText class="form-control" value="#{validarBeans.user.usuario}" p:placeholder="Usuario" required="true"/>
+                        <h:inputText class="form-control" value="#{ctrlAcceso.autenticar.user}" p:placeholder="Usuario" required="true"/>
                     </div>
                     <div class="form-group has-feedback">
-                        <h:inputSecret class="form-control" value="#{validarBeans.user.password}" p:placeholder="Contraseña" required="true"/>
+                        <h:inputSecret class="form-control" value="#{ctrlAcceso.autenticar.pass}" p:placeholder="Contraseña" required="true"/>
                     </div>
                     <div class="row">
                         <div class="col-xs-8">
@@ -38,7 +38,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-xs-4">
-                            <h:commandButton class="btn btn-primary btn-block btn-flat" value="#{bundle.botonSesion}" action="#{validarBeans.ingresarSistema()}"/>
+                            <h:commandButton class="btn btn-primary btn-block btn-flat" value="#{bundle.botonSesion}" action="#{ctrlAcceso.inicioSession()}"/>
                         </div>
                         <!-- /.col -->
                     </div>

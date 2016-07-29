@@ -181,15 +181,17 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="#{appBeans.baseUrlDist()}img/misael-160x160.jpg" class="user-image" alt="User Image"/>
-                                    <span class="hidden-xs">Misael Recinos</span>
+                                    <!--<span class="hidden-xs">Misael Recinos</span>-->
+                                    <span class="hidden-xs">#{appMenu.usuario.usuario}</span>
+
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
                                         <img src="#{appBeans.baseUrlDist()}img/misael-160x160.jpg" class="img-circle" alt="User Image"/>
-
+                                        <!--<h:graphicImage value="#{appMenu.usuario.foto}"/>-->
                                         <p>
-                                            Misael Recinos
+                                            #{appMenu.usuario.usuario}
                                             <small>Analista Programador</small>
                                             <small>Miembro desde abril 2016</small>
                                         </p>
@@ -200,10 +202,15 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                            <h:form>
+                                                <h:commandButton class="btn btn-default btn-flat" value="Perfil" action="#{appMenu.datosUsuario()}"/>    
+                                            </h:form>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Salir</a>
+                                            <h:form>
+                                                <h:commandButton class="btn btn-default btn-default" value="Salir" action="#{ctrlAcceso.logoutSession()}"/>    
+                                            </h:form>
+
                                         </div>
                                     </li>
                                 </ul>
