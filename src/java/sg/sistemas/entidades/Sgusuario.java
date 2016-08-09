@@ -49,7 +49,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @NamedStoredProcedureQuery(
         name = "SP_INSERT_SGUSUARIO",
-        procedureName = "INSERT_SGUSUARIO",
+        procedureName = "SP_INSERT_SGUSUARIO",
         parameters = {
             @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_cod_usuario"),
             @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_idrol_auditor"),
@@ -61,8 +61,7 @@ import javax.xml.bind.annotation.XmlTransient;
             @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_dui"),
             @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_nit"),
             @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_afp")               
-        } 
-               
+        }               
 )
 public class Sgusuario implements Serializable {
 

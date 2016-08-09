@@ -6,14 +6,20 @@
 package sg.sistemas.controladores;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.RollbackException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.eclipse.persistence.exceptions.DatabaseException;
+import org.omg.CORBA.portable.ApplicationException;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
 
@@ -40,7 +46,7 @@ public class controladorAcesso implements Serializable {
     public controladorAcesso() {
     }
 
-    public String inicioSession() {
+    public String inicioSession() throws EntityExistsException {
         ConnectDB db = new ConnectDB();
         String page = "login.xhtml";
         HttpSession ss;
@@ -56,24 +62,25 @@ public class controladorAcesso implements Serializable {
                 ss = request.getSession(false);
                 ss.setAttribute("credenciales", autenticar);
                 page = "menuprincipal?faces-redirect=true";
+
             } else {
-                System.err.println("Error en credenciales");
+                System.err.println("Mensaje de Error en credenciales");
+
             }
         } catch (Exception e) {
-            System.err.println("Error controlSession: " + e.getMessage());
+            System.err.println("Error controlSession: " + e.getLocalizedMessage());
+            FacesContext.getCurrentInstance().addMessage("formLogin:mensajes", new FacesMessage("Error en credenciales, error en usuario o contraseña"));
         } finally {
             emf.close();
         }
         return page;
     }
 
-    public boolean getUserDB()
-    {
-        
-        
+    public boolean getUserDB() {
+
         return false;
     }
-    
+
     public SgAutenticar getAutenticar() {
         return autenticar;
     }
