@@ -16,6 +16,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -31,6 +35,36 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sgcentro.findAll", query = "SELECT s FROM Sgcentro s"),
     @NamedQuery(name = "Sgcentro.findByIdcentro", query = "SELECT s FROM Sgcentro s WHERE s.idcentro = :idcentro"),
     @NamedQuery(name = "Sgcentro.findByDescripcion", query = "SELECT s FROM Sgcentro s WHERE s.descripcion = :descripcion")})
+@NamedStoredProcedureQueries(
+        {
+            @NamedStoredProcedureQuery(
+                    name = "SP_INSERT_SGCENTRO",
+                    procedureName = "SP_INSERT_SGCENTRO",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDCENTRO"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            ),
+            @NamedStoredProcedureQuery(
+                    name = "SP_UPDATE_SGCENTRO",
+                    procedureName = "SP_UPDATE_SGCENTRO",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDCENTRO"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            ),
+            @NamedStoredProcedureQuery(
+                    name = "SP_DELETE_SGCENTRO",
+                    procedureName = "SP_DELETE_SGCENTRO",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDCENTRO"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            )
+        }
+)
 public class Sgcentro implements Serializable {
 
     private static final long serialVersionUID = 1L;

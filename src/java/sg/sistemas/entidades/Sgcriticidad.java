@@ -13,10 +13,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.eclipse.persistence.annotations.NamedStoredFunctionQueries;
+import org.eclipse.persistence.annotations.NamedStoredFunctionQuery;
 
 /**
  *
@@ -29,6 +35,36 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sgcriticidad.findAll", query = "SELECT s FROM Sgcriticidad s"),
     @NamedQuery(name = "Sgcriticidad.findByIdcriticidad", query = "SELECT s FROM Sgcriticidad s WHERE s.idcriticidad = :idcriticidad"),
     @NamedQuery(name = "Sgcriticidad.findByDescripcion", query = "SELECT s FROM Sgcriticidad s WHERE s.descripcion = :descripcion")})
+@NamedStoredProcedureQueries(
+        {
+            @NamedStoredProcedureQuery(
+                    name = "SP_INSERT_SGCRITICIDAD",
+                    procedureName = "SP_INSERT_SGCRITICIDAD",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDCRITICIDAD"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            ),
+            @NamedStoredProcedureQuery(
+                    name = "SP_UPDATE_SGCRITICIDAD",
+                    procedureName = "SP_UPDATE_SGCRITICIDAD",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDCRITICIDAD"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            ),
+            @NamedStoredProcedureQuery(
+                    name = "SP_DELETE_SGCRITICIDAD",
+                    procedureName = "SP_DELETE_SGCRITICIDAD",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDCRITICIDAD"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            )
+        }
+)
 public class Sgcriticidad implements Serializable {
 
     private static final long serialVersionUID = 1L;

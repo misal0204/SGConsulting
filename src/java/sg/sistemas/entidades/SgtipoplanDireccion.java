@@ -14,7 +14,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -30,6 +34,36 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SgtipoplanDireccion.findAll", query = "SELECT s FROM SgtipoplanDireccion s"),
     @NamedQuery(name = "SgtipoplanDireccion.findByIdtipoPdireccion", query = "SELECT s FROM SgtipoplanDireccion s WHERE s.idtipoPdireccion = :idtipoPdireccion"),
     @NamedQuery(name = "SgtipoplanDireccion.findByDescripcion", query = "SELECT s FROM SgtipoplanDireccion s WHERE s.descripcion = :descripcion")})
+@NamedStoredProcedureQueries(
+        {
+            @NamedStoredProcedureQuery(
+                    name = "SP_INSERT_SGTIPOPLAN_DIRECCION",
+                    procedureName = "SP_INSERT_SGTIPOPLAN_DIRECCION",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDTIPO_PDIRECCION"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            ),
+            @NamedStoredProcedureQuery(
+                    name = "SP_UPDATE_SGTIPOPLAN_DIRECCION",
+                    procedureName = "SP_UPDATE_SGTIPOPLAN_DIRECCION",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDTIPO_PDIRECCION"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            ),
+            @NamedStoredProcedureQuery(
+                    name = "SP_DELETE_SGTIPOPLAN_DIRECCION",
+                    procedureName = "SP_DELETE_SGTIPOPLAN_DIRECCION",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDTIPO_PDIRECCION"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            )
+        }
+)
 public class SgtipoplanDireccion implements Serializable {
 
     private static final long serialVersionUID = 1L;

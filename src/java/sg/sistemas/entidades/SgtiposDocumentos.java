@@ -14,7 +14,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -30,6 +34,36 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SgtiposDocumentos.findAll", query = "SELECT s FROM SgtiposDocumentos s"),
     @NamedQuery(name = "SgtiposDocumentos.findByIdtipoDocumento", query = "SELECT s FROM SgtiposDocumentos s WHERE s.idtipoDocumento = :idtipoDocumento"),
     @NamedQuery(name = "SgtiposDocumentos.findByDescripcion", query = "SELECT s FROM SgtiposDocumentos s WHERE s.descripcion = :descripcion")})
+@NamedStoredProcedureQueries(
+        {
+            @NamedStoredProcedureQuery(
+                    name = "SP_INSERT_SGTIPOS_DOCUMENTOS",
+                    procedureName = "SP_INSERT_SGTIPOS_DOCUMENTOS",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDTIPO_DOCUMENTO"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            ),
+            @NamedStoredProcedureQuery(
+                    name = "SP_UPDATE_SGTIPOS_DOCUMENTOS",
+                    procedureName = "SP_UPDATE_SGTIPOS_DOCUMENTOS",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDTIPO_DOCUMENTO"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            ),
+            @NamedStoredProcedureQuery(
+                    name = "SP_DELETE_SGTIPOS_DOCUMENTOS",
+                    procedureName = "SP_DELETE_SGTIPOS_DOCUMENTOS",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDTIPO_DOCUMENTO"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
+                    }
+            )
+        }
+)
 public class SgtiposDocumentos implements Serializable {
 
     private static final long serialVersionUID = 1L;
