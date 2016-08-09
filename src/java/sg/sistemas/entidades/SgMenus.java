@@ -14,7 +14,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -31,6 +35,39 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SgMenus.findByIdmenu", query = "SELECT s FROM SgMenus s WHERE s.idmenu = :idmenu"),
     @NamedQuery(name = "SgMenus.findByMenuName", query = "SELECT s FROM SgMenus s WHERE s.menuName = :menuName"),
     @NamedQuery(name = "SgMenus.findByIcon", query = "SELECT s FROM SgMenus s WHERE s.icon = :icon")})
+
+@NamedStoredProcedureQueries(
+        {
+            @NamedStoredProcedureQuery(
+                    name = "SP_INSERT_SG_MENUS",
+                    procedureName = "SP_INSERT_SG_MENUS",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Double.class, name = "p_idmenu"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_menu_name"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_icon"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                    }
+            ),
+            @NamedStoredProcedureQuery(
+                    name = "SP_UPDATE_SG_MENUS",
+                    procedureName = "SP_UPDATE_SG_MENUS",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Double.class, name = "p_idmenu"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_menu_name"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_icon"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                    }
+            ),
+            @NamedStoredProcedureQuery(
+                    name = "SP_DELETE_SG_MENUS",
+                    procedureName = "SP_DELETE_SG_MENUS",
+                    parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Double.class, name = "p_idmenu"),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                    }
+            )
+        }
+)
 public class SgMenus implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -116,5 +153,5 @@ public class SgMenus implements Serializable {
     public String toString() {
         return "sg.sistemas.entidades.SgMenus[ idmenu=" + idmenu + " ]";
     }
-    
+
 }
