@@ -103,6 +103,8 @@
     <class>sg.sistemas.entidades.Sgproveedores</class>
     <class>sg.sistemas.entidades.SgeficaciaRrhh</class>
     <class>sg.sistemas.entidades.SganexoNoacc</class>
+    <class>sg.sistemas.entidades.Sgorganigrama</class>
+    <class>sg.sistemas.entidades.SgsociedadDetalle</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgsolution?zeroDateTimeBehavior=convertToNull"/>

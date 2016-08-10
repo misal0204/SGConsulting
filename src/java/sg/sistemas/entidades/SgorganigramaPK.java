@@ -50,6 +50,6 @@ public class SgorganigramaPK  implements Serializable{
     
     @Override
     public String toString(){
-        return "";
+        return "sg.sistemas.entidades.sgorganigrama";
     }
 }
