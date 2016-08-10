@@ -15,7 +15,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -34,6 +38,40 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sgsociedad.findByIcon", query = "SELECT s FROM Sgsociedad s WHERE s.icon = :icon"),
     @NamedQuery(name = "Sgsociedad.findByImagen", query = "SELECT s FROM Sgsociedad s WHERE s.imagen = :imagen"),
     @NamedQuery(name = "Sgsociedad.findByLogo", query = "SELECT s FROM Sgsociedad s WHERE s.logo = :logo")})
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(
+            name = "SP_INSERT_SGSOCIEDAD",
+            procedureName = "SP_INSERT_SGSOCIEDAD",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idsociedad"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_descripcion"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_icon"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_imagen"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_logo"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+            }
+    ),
+    @NamedStoredProcedureQuery(
+            name = "SP_UPDATE_SGSOCIEDAD",
+            procedureName = "SP_UPDATE_SGSOCIEDAD",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idsociedad"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_descripcion"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_icon"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_imagen"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_logo"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+            }
+    ),
+    @NamedStoredProcedureQuery(
+            name = "SP_DELETE_SGSOCIEDAD",
+            procedureName = "SP_DELETE_SGSOCIEDAD",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idsociedad"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+            }
+    )
+})
 public class Sgsociedad implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -176,5 +214,5 @@ public class Sgsociedad implements Serializable {
     public String toString() {
         return "sg.sistemas.entidades.Sgsociedad[ idsociedad=" + idsociedad + " ]";
     }
-    
+
 }

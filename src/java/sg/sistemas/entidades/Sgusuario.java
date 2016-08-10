@@ -19,6 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.ParameterMode;
@@ -47,22 +48,53 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sgusuario.findByAfp", query = "SELECT s FROM Sgusuario s WHERE s.afp = :afp"),
     @NamedQuery(name = "Sgusuario.findByBorrar", query = "SELECT s FROM Sgusuario s WHERE s.borrar = :borrar")})
 
-@NamedStoredProcedureQuery(
-        name = "SP_INSERT_SGUSUARIO",
-        procedureName = "SP_INSERT_SGUSUARIO",
-        parameters = {
-            @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_cod_usuario"),
-            @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_idrol_auditor"),
-            @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_usuario"),
-            @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_email"),
-            @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_estado"),
-            @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_telefono"),
-            @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_extension"),
-            @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_dui"),
-            @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_nit"),
-            @StoredProcedureParameter(mode = ParameterMode.IN,type = String.class, name= "p_afp")               
-        }               
-)
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(
+            name = "SP_INSERT_SGUSUARIO",
+            procedureName = "SP_INSERT_SGUSUARIO",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_cod_usuario"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idrol_auditor"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_usuario"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_email"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_estado"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_telefono"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_extension"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_dui"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_nit"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_afp"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = byte[].class, name = "p_foto"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+            }
+    ),
+    @NamedStoredProcedureQuery(
+            name = "SP_UPDATE_SGUSUARIO",
+            procedureName = "SP_UPDATE_SGUSUARIO",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_cod_usuario"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idrol_auditor"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_usuario"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_email"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_estado"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_telefono"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_extension"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_dui"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_nit"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_afp"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = byte[].class, name = "p_foto"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+            }
+    ),
+    @NamedStoredProcedureQuery(
+            name = "SP_DELETE_SGUSUARIO",
+            procedureName = "SP_DELETE_SGUSUARIO",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_cod_usuario"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+            }
+    )
+})
+
 public class Sgusuario implements Serializable {
 
     private static final long serialVersionUID = 1L;

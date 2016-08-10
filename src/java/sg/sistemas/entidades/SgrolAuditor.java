@@ -13,7 +13,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -29,6 +33,34 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SgrolAuditor.findAll", query = "SELECT s FROM SgrolAuditor s"),
     @NamedQuery(name = "SgrolAuditor.findByIdrolAuditor", query = "SELECT s FROM SgrolAuditor s WHERE s.idrolAuditor = :idrolAuditor"),
     @NamedQuery(name = "SgrolAuditor.findByDescripcion", query = "SELECT s FROM SgrolAuditor s WHERE s.descripcion = :descripcion")})
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(
+            name="SP_INSERT_SGROL_AUDITOR",
+            procedureName = "SP_INSERT_SGROL_AUDITOR",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class,name= "p_idrol_auditor"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class,name= "p_descripcion"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class,name= "p_resultado")
+            }
+    ),
+    @NamedStoredProcedureQuery(
+            name="SP_UPDATE_SGROL_AUDITOR",
+            procedureName = "SP_UPDATE_SGROL_AUDITOR",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class,name= "p_idrol_auditor"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class,name= "p_descripcion"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class,name= "p_resultado")
+            }
+    ),
+    @NamedStoredProcedureQuery(
+            name="SP_DELETE_SGROL_AUDITOR",
+            procedureName = "SP_DELETE_SGROL_AUDITOR",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class,name= "p_idrol_auditor"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class,name= "p_resultado")
+            }
+    )
+})
 public class SgrolAuditor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -97,5 +129,5 @@ public class SgrolAuditor implements Serializable {
     public String toString() {
         return "sg.sistemas.entidades.SgrolAuditor[ idrolAuditor=" + idrolAuditor + " ]";
     }
-    
+
 }

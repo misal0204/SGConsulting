@@ -15,7 +15,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -37,6 +41,50 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sgproveedores.findByTelefono1", query = "SELECT s FROM Sgproveedores s WHERE s.telefono1 = :telefono1"),
     @NamedQuery(name = "Sgproveedores.findByTelefono2", query = "SELECT s FROM Sgproveedores s WHERE s.telefono2 = :telefono2"),
     @NamedQuery(name = "Sgproveedores.findByFax", query = "SELECT s FROM Sgproveedores s WHERE s.fax = :fax")})
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(
+            name = "SP_INSERT_SGPROVEEDOR",
+            procedureName = "SP_INSERT_SGPROVEEDOR",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idsociedad"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idproveedor"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_alias"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_nombre"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_direccion"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_telefono1"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_telefono2"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_fax"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                
+            }
+    ),
+    @NamedStoredProcedureQuery(
+            name = "SP_UPDATE_SGPROVEEDOR",
+            procedureName = "SP_UPDATE_SGPROVEEDOR",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idsociedad"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idproveedor"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_alias"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_nombre"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_direccion"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_telefono1"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_telefono2"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_fax"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                
+            }
+    ),
+    @NamedStoredProcedureQuery(
+            name = "SP_DELETE_SGPROVEEDOR",
+            procedureName = "SP_DELETE_SGPROVEEDOR",
+            parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idsociedad"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idproveedor"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                
+            }
+    )
+})
 public class Sgproveedores implements Serializable {
 
     private static final long serialVersionUID = 1L;
