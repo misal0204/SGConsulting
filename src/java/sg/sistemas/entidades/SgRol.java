@@ -22,7 +22,17 @@ import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
+/*Se agrego los sp a las entidades:
+-SgRol
+-SgCentro
+-SgCriticidad
+-SgDepartamento
+-SgEstado
+-SgMotivo
+-SgOrigen
+-SgProcesosSistemas
+-SgTipoPlanDireccion
+-SgTiposDocumentos*/
 /**
  *
  * @author Misael
