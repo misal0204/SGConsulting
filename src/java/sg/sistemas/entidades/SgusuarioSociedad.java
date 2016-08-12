@@ -25,18 +25,21 @@ public class SgusuarioSociedad implements Serializable{
     
     @EmbeddedId
     protected SgusuarioSociedadPK sgusuarioSociedadPK;
-    @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
+    @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Sgusuario sgusuario;
     
-    @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD")
+    @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Sgsociedad sgsociedad;
+
+    public SgusuarioSociedad() {
+    }
 
     public SgusuarioSociedad(SgusuarioSociedadPK sgusuarioSociedadPK) {
         this.sgusuarioSociedadPK = sgusuarioSociedadPK;
     }
-
+    
     public SgusuarioSociedad(Sgusuario sgusuario, Sgsociedad sgsociedad) {
         this.sgusuario = sgusuario;
         this.sgsociedad = sgsociedad;
