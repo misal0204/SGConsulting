@@ -29,7 +29,7 @@ public class SgusuarioSociedad implements Serializable{
     @ManyToOne(optional = false)
     private Sgusuario sgusuario;
     
-    @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD", insertable = false, updatable = false)
+    @JoinColumn(name = "IDSOCIEDAD", referencedColumnName = "IDSOCIEDAD", insertable=false, updatable=false)
     @ManyToOne(optional = false)
     private Sgsociedad sgsociedad;
 
