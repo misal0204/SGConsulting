@@ -68,7 +68,7 @@ public class controladorAcesso implements Serializable {
 
             }
         } catch (Exception e) {
-            System.err.println("Error controlSession: " + e.getLocalizedMessage());
+            System.err.println("Error controlSession: " + e.getMessage());
             FacesContext.getCurrentInstance().addMessage("formLogin:mensajes", new FacesMessage("Error en credenciales, error en usuario o contraseña"));
         } finally {
             emf.close();

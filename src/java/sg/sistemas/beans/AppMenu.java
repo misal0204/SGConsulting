@@ -5,6 +5,7 @@
  */
 package sg.sistemas.beans;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -26,7 +27,7 @@ import sg.sistemas.util.ManejoSessiones;
  */
 @ManagedBean(name = "appMenu")
 @SessionScoped
-public class AppMenu {
+public class AppMenu implements Serializable{
 
     private EntityManagerFactory emf;
     private EntityManager em;
