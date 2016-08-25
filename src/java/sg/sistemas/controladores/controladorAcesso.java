@@ -6,7 +6,6 @@
 package sg.sistemas.controladores;
 
 import java.io.Serializable;
-import java.sql.SQLException;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -15,11 +14,8 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.RollbackException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.eclipse.persistence.exceptions.DatabaseException;
-import org.omg.CORBA.portable.ApplicationException;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
 
@@ -68,7 +64,7 @@ public class controladorAcesso implements Serializable {
 
             }
         } catch (Exception e) {
-            System.err.println("Error controlSession: " + e.getLocalizedMessage());
+            System.err.println("Error controlSession: " + e.getMessage());
             FacesContext.getCurrentInstance().addMessage("formLogin:mensajes", new FacesMessage("Error en credenciales, error en usuario o contraseña"));
         } finally {
             emf.close();
