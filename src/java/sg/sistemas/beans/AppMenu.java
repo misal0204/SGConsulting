@@ -6,7 +6,9 @@
 package sg.sistemas.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -14,10 +16,19 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.ParameterMode;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
+import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
+import org.eclipse.persistence.internal.sessions.ArrayRecord;
+import org.eclipse.persistence.jpa.JpaEntityManager;
+import org.eclipse.persistence.jpa.jpql.Assert;
+import org.eclipse.persistence.queries.DataReadQuery;
+import org.eclipse.persistence.queries.StoredProcedureCall;
 import sg.sistemas.entidades.Sgusuario;
 import sg.sistemas.entity.SgAutenticar;
+import sg.sistemas.entity.SgPrivilegios;
 import sg.sistemas.util.ConnectDB;
 import sg.sistemas.util.ManejoSessiones;
 
@@ -27,7 +38,7 @@ import sg.sistemas.util.ManejoSessiones;
  */
 @ManagedBean(name = "appMenu")
 @SessionScoped
-public class AppMenu implements Serializable{
+public class AppMenu implements Serializable {
 
     private EntityManagerFactory emf;
     private EntityManager em;
@@ -50,15 +61,15 @@ public class AppMenu implements Serializable{
     }
 
     public AppMenu() {
-        db = new ConnectDB();
         ss = ManejoSessiones.getSession();
         datos = (SgAutenticar) ss.getAttribute("credenciales");
         usuario = datosUsuario();
-        
+        privilegiosUsuario();
     }
 
     private Sgusuario datosUsuario() {
         Sgusuario sg = null;
+        db = new ConnectDB();
         try {
             emf = db.accesoDB(datos.getUser(), datos.getPass());
             em = emf.createEntityManager();
@@ -81,7 +92,33 @@ public class AppMenu implements Serializable{
 
         return sg;
     }
-    
+
+    private void privilegiosUsuario() {
+        List<SgPrivilegios> listado = null;
+        db = new ConnectDB();
+        try {
+            emf = db.accesoDB(datos.getUser(), datos.getPass());
+            em = emf.createEntityManager();
+
+            if (em != null) {
+                em.getTransaction().begin();
+
+                StoredProcedureQuery sp = em.createStoredProcedureQuery("SP_SELECT_SGPRIVILEGIOS");
+                sp.registerStoredProcedureParameter("P_COD_USUARIO", String.class, ParameterMode.IN);
+                sp.setParameter("P_COD_USUARIO", datos.getUser());
+                sp.execute();
+                listado = (List<SgPrivilegios>) sp.getResultList();
+
+                for (SgPrivilegios l : listado) {
+                    System.out.println(l.getIdprogram() + " " + l.getIdmenu());
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Listado de privilegios: " + e.getMessage());
+        } finally {
+            emf.close();
+        }
+    }
 
     public SgAutenticar getDatos() {
         return datos;
