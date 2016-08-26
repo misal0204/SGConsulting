@@ -35,29 +35,29 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SgtipoPlan.findByDescripcion", query = "SELECT s FROM SgtipoPlan s WHERE s.descripcion = :descripcion")})
 @NamedStoredProcedureQueries({
     @NamedStoredProcedureQuery(
-            name="SP_INSERT_SGTIPO_PLAN",
+            name = "SP_INSERT_SGTIPO_PLAN",
             procedureName = "SP_INSERT_SGTIPO_PLAN",
             parameters = {
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name="p_idtipo_plan"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name="p_descripcion"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name="p_resultado")
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDTIPO_PLAN"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
             }
     ),
     @NamedStoredProcedureQuery(
-            name="SP_UPDATE_SGTIPO_PLAN",
+            name = "SP_UPDATE_SGTIPO_PLAN",
             procedureName = "SP_UPDATE_SGTIPO_PLAN",
             parameters = {
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name="p_idtipo_plan"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name="p_descripcion"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name="p_resultado")
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDTIPO_PLAN"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
             }
-    ),@NamedStoredProcedureQuery(
-            name="SP_DELETE_SGTIPO_PLAN",
+    ),
+    @NamedStoredProcedureQuery(
+            name = "SP_DELETE_SGTIPO_PLAN",
             procedureName = "SP_DELETE_SGTIPO_PLAN",
             parameters = {
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name="p_idtipo_plan"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name="p_descripcion"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name="p_resultado")
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name="P_IDTIPO_PLAN"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name="P_RESULTADO")
             }
     )
 })

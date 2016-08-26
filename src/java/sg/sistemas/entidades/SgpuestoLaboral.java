@@ -36,28 +36,28 @@ import javax.xml.bind.annotation.XmlRootElement;
             name= "SP_INSERT_SGPUESTO_LABORAL",
             procedureName = "SP_INSERT_SGPUESTO_LABORAL",
             parameters = {
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idpuesto"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_puesto"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_descripcion"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDPUESTO"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_PUESTO"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
             }
     ),
     @NamedStoredProcedureQuery(
             name= "SP_UPDATE_SGPUESTO_LABORAL",
             procedureName = "SP_UPDATE_SGPUESTO_LABORAL",
             parameters = {
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idpuesto"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_puesto"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_descripcion"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDPUESTO"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_PUESTO"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
             }
     ),
     @NamedStoredProcedureQuery(
             name= "SP_DELETE_SGPUESTO_LABORAL",
             procedureName = "SP_DELETE_SGPUESTO_LABORAL",
             parameters = {
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idpuesto"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDPUESTO"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
             }
     )
 })

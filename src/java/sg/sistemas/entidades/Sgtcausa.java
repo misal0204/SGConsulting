@@ -39,26 +39,26 @@ import javax.xml.bind.annotation.XmlTransient;
             name="SP_INSERT_SGTCAUSA",
             procedureName = "SP_INSERT_SGTCAUSA",
             parameters ={
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idtcausa"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_descripcion"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDTCAUSA"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO"),
             }
     ),
     @NamedStoredProcedureQuery(
             name="SP_UPDATE_SGTCAUSA",
             procedureName = "SP_UPDATE_SGTCAUSA",
             parameters ={
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idtcausa"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_descripcion"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDTCAUSA"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO"),
             }
     ),
     @NamedStoredProcedureQuery(
             name="SP_DELETE_SGTCAUSA",
             procedureName = "SP_DELETE_SGTCAUSA",
             parameters ={
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idtcausa"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDTCAUSA"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO"),
             }
     )
 })

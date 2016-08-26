@@ -43,32 +43,32 @@ import javax.xml.bind.annotation.XmlTransient;
             name = "SP_INSERT_SGSOCIEDAD",
             procedureName = "SP_INSERT_SGSOCIEDAD",
             parameters = {
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idsociedad"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_descripcion"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_icon"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_imagen"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_logo"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDSOCIEDAD"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_ICON"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IMAGEN"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_LOGO"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
             }
     ),
     @NamedStoredProcedureQuery(
             name = "SP_UPDATE_SGSOCIEDAD",
             procedureName = "SP_UPDATE_SGSOCIEDAD",
             parameters = {
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idsociedad"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_descripcion"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_icon"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_imagen"),
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_logo"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDSOCIEDAD"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_DESCRIPCION"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_ICON"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IMAGEN"),
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_LOGO"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
             }
     ),
     @NamedStoredProcedureQuery(
             name = "SP_DELETE_SGSOCIEDAD",
             procedureName = "SP_DELETE_SGSOCIEDAD",
             parameters = {
-                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "p_idsociedad"),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "p_resultado")
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "P_IDSOCIEDAD"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "P_RESULTADO")
             }
     )
 })
