@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
  * @author Misael
  */
 public class ManejoSessiones {
+    
+    public static String sessionName="credenciales";
 
     public static HttpSession getSession() {
         return (HttpSession) FacesContext

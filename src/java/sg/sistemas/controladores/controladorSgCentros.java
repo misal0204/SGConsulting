@@ -11,44 +11,46 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.ParameterMode;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
 import sg.sistemas.entidades.SgRol;
+import sg.sistemas.entidades.Sgcentro;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
 import sg.sistemas.util.ManejoSessiones;
 
 /**
  *
- * @author Misael
+ * @author Carlos
  */
-@ManagedBean(name = "ctrlRol")
+@ManagedBean(name = "ctrlCentros")
 @RequestScoped
-public class controladorSgRol implements Serializable {
+public class controladorSgCentros implements Serializable {
 
-    /**
-     * Creates a new instance of controladorSgRol
-     */
-    private String SELECT_TABLE="SgRol.findAll";
-    private String SP_CREATE="SP_INSERT_SG_ROL";
-    private String SP_UPDATE="SP_UPDATE_SG_ROL";
-    private String SP_DELETE="SP_DELETE_SG_ROL";
-    private String SP_IN_PARAMETER1="P_IDROL";
-    private String SP_IN_PARAMETER2="P_NOMBRE";
-    private String SP_OUT_PARAMETER="P_RESULTADO";
-    private final String RESULT_SP="OK";
-    private final String msjDialog="form1:mjs";
-    private final String msjCreate="Se inserto correctamente";
-    private final String msjUpdate="Se actualizo correctamente";
-    private final String msjDelete="Se Elimino correctamente";
-    private final String error="La operacion no ha sido realiazada";
-    
+    private final String SELECT_TABLE = "Sgcentro.findAll";
+    private final String SP_CREATE = "SP_INSERT_SGCENTRO";
+    private final String SP_UPDATE = "SP_UPDATE_SGCENTRO";
+    private final String SP_DELETE = "SP_DELETE_SGCENTRO";
+    private final String SP_IN_PARAMETER1 = "P_IDCENTRO";
+    private final String SP_IN_PARAMETER2 = "P_DESCRIPCION";
+    private final String SP_OUT_PARAMETER = "P_RESULTADO";
+    private final String RESULT_SP = "OK";
+    private final String msjDialog = "form1:mjs";
+    private final String msjCreate = "Se inserto correctamente";
+    private final String msjUpdate = "Se actualizo correctamente";
+    private final String msjDelete = "Se Elimino correctamente";
+    private final String error = "La operacion no ha sido realiazada";
+
     private SgAutenticar autenticar;
-    private SgRol sgrol;
+    private Sgcentro sgcentro;
 
     EntityManagerFactory emf;
     EntityManager em;
@@ -57,41 +59,38 @@ public class controladorSgRol implements Serializable {
     @PostConstruct
     public void init() {
         autenticar = new SgAutenticar();
-        sgrol = new SgRol();
+        sgcentro = new Sgcentro();
         HttpSession ss = (HttpSession) ManejoSessiones.getSession();
         autenticar = (SgAutenticar) ss.getAttribute(ManejoSessiones.sessionName);
         db = new ConnectDB();
         emf = db.accesoDB(autenticar.getUser(), autenticar.getPass());
     }
 
-    public controladorSgRol() {
+    public controladorSgCentros() {
     }
 
-    public void readAllRol() {
-        List<SgRol> result = null;
+    public void readAllCentros() {
+        List<Sgcentro> result = null;
 
         try {
             em = emf.createEntityManager();
-            TypedQuery<SgRol> query = em.createNamedQuery(SELECT_TABLE, SgRol.class);
+            TypedQuery<Sgcentro> query = em.createNamedQuery(SELECT_TABLE, Sgcentro.class);
 
             result = query.getResultList();
 
         } catch (Exception e) {
-            System.err.println("Error sgrol: " + e.getMessage());
+            System.err.println("Error sgcentro: " + e.getMessage());
         } finally {
-            emf.close();
-        }
 
-        for (SgRol r : result) {
-            System.out.println(r.getIdrol() + " " + r.getNombre());
+            emf.close();
         }
     }
 
-    public void insertRol() {
+    public void insertCentros() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
+            query.setParameter(SP_IN_PARAMETER1, "c000");
             query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
 
             query.execute();
@@ -104,13 +103,13 @@ public class controladorSgRol implements Serializable {
             }
 
         } catch (Exception e) {
-            System.err.println("Error sgrol: " + e.getMessage());
+            System.err.println("Error sgcentro: " + e.getMessage());
         } finally {
             emf.close();
         }
     }
 
-    public void updateRol() {
+    public void updateCentros() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
@@ -126,13 +125,13 @@ public class controladorSgRol implements Serializable {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjUpdate));
             }
         } catch (Exception e) {
-            System.err.println("Error sgrol: " + e.getMessage());
+            System.err.println("Error sgCentros: " + e.getMessage());
         } finally {
             emf.close();
         }
     }
 
-    public void deleteRol() {
+    public void deleteCentros() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
@@ -152,20 +151,8 @@ public class controladorSgRol implements Serializable {
         }
     }
 
-    public SgAutenticar getAutenticar() {
-        return autenticar;
-    }
-
-    public void setAutenticar(SgAutenticar autenticar) {
-        this.autenticar = autenticar;
-    }
-
-    public SgRol getSgrol() {
-        return sgrol;
-    }
-
-    public void setSgrol(SgRol sgrol) {
-        this.sgrol = sgrol;
+    public Sgcentro getSgcentro() {
+        return sgcentro;
     }
 
 }
