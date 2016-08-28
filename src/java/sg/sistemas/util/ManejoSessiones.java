@@ -6,6 +6,7 @@
 package sg.sistemas.util;
 
 import javax.faces.context.FacesContext;
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 public class ManejoSessiones {
     
     public static String sessionName="credenciales";
+    
 
     public static HttpSession getSession() {
         return (HttpSession) FacesContext

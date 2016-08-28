@@ -6,26 +6,16 @@
 package sg.sistemas.beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.ParameterMode;
 import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
-import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
-import org.eclipse.persistence.internal.sessions.ArrayRecord;
-import org.eclipse.persistence.jpa.JpaEntityManager;
-import org.eclipse.persistence.jpa.jpql.Assert;
-import org.eclipse.persistence.queries.DataReadQuery;
-import org.eclipse.persistence.queries.StoredProcedureCall;
 import sg.sistemas.entidades.Sgusuario;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.entity.SgPrivilegios;
@@ -94,29 +84,25 @@ public class AppMenu implements Serializable {
     }
 
     private void privilegiosUsuario() {
-        List<SgPrivilegios> listado = null;
+        List<SgPrivilegios> result = null;
         db = new ConnectDB();
         try {
             emf = db.accesoDB(datos.getUser(), datos.getPass());
             em = emf.createEntityManager();
 
-            if (em != null) {
-                em.getTransaction().begin();
+            em.getTransaction().begin();
 
-                StoredProcedureQuery sp = em.createStoredProcedureQuery("SP_SELECT_SGPRIVILEGIOS");
-                sp.registerStoredProcedureParameter("P_COD_USUARIO", String.class, ParameterMode.IN);
-                sp.setParameter("P_COD_USUARIO", datos.getUser());
-                sp.execute();
-                listado = (List<SgPrivilegios>) sp.getResultList();
+            StoredProcedureQuery query = em.createStoredProcedureQuery("SP_SELECT_SGPRIVILEGIOS", SgPrivilegios.class);
+            query.registerStoredProcedureParameter("P_COD_USUARIO", String.class, ParameterMode.IN);
+            query.setParameter("P_COD_USUARIO", "mrecinos");
+            query.execute();
+            result = query.getResultList();
 
-                for (SgPrivilegios l : listado) {
-                    System.out.println(l.getIdprogram() + " " + l.getIdmenu());
-                }
+            for (SgPrivilegios l : result) {
+                System.out.println(l.getCod_usuario() + " - " + l.getIdprogram() + " - " + l.getIdmenu());
             }
         } catch (Exception e) {
             System.err.println("Listado de privilegios: " + e.getMessage());
-        } finally {
-            emf.close();
         }
     }
 

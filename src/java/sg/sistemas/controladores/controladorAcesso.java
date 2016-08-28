@@ -90,6 +90,7 @@ public class controladorAcesso implements Serializable {
                 .getExternalContext()
                 .getSession(false);
         session.invalidate();
+        
 
         return "/login?faces-redirect=true";
     }
