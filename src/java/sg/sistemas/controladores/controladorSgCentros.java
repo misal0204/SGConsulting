@@ -69,9 +69,9 @@ public class controladorSgCentros implements Serializable {
     public controladorSgCentros() {
     }
 
-    public void readAllCentros() {
+    public List<Sgcentro> readAllCentros() {
         List<Sgcentro> result = null;
-
+        
         try {
             em = emf.createEntityManager();
             TypedQuery<Sgcentro> query = em.createNamedQuery(SELECT_TABLE, Sgcentro.class);
@@ -80,10 +80,8 @@ public class controladorSgCentros implements Serializable {
 
         } catch (Exception e) {
             System.err.println("Error sgcentro: " + e.getMessage());
-        } finally {
-
-            emf.close();
         }
+        return result;
     }
 
     public void insertCentros() {
@@ -155,4 +153,7 @@ public class controladorSgCentros implements Serializable {
         return sgcentro;
     }
 
+    public void setSgcentro(Sgcentro sgcentro) {
+        this.sgcentro = sgcentro;
+    }
 }

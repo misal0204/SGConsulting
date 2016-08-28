@@ -67,7 +67,7 @@ public class controladorSgRol implements Serializable {
     public controladorSgRol() {
     }
 
-    public void readAllRol() {
+    public List<SgRol> readAllRol() {
         List<SgRol> result = null;
 
         try {
@@ -78,13 +78,9 @@ public class controladorSgRol implements Serializable {
 
         } catch (Exception e) {
             System.err.println("Error sgrol: " + e.getMessage());
-        } finally {
-            emf.close();
         }
-
-        for (SgRol r : result) {
-            System.out.println(r.getIdrol() + " " + r.getNombre());
-        }
+        
+        return result;
     }
 
     public void insertRol() {

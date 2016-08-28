@@ -40,6 +40,17 @@
         <link rel="stylesheet" href="#{appBeans.baseUrlPlugins()}daterangepicker/daterangepicker-bs3.css"/>
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="#{appBeans.baseUrlPlugins()}bootstrap-wysihtml5/bootstrap3-wysihtml5.css"/>
+
+        <link rel="stylesheet" href="#{appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.css"/>
+        <script src="#{appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.js"></script>
+
+        <script type="text/javascript" src="#{appBeans.baseUrlPlugins()}datatables/dataTables.bootstrap.js"></script>
+        
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function () {
+                $('#dataTableSgRol').DataTable();
+            });
+        </script>
     </h:head>
     <h:body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -271,7 +282,6 @@
                                 <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}productos_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Productos</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}servicios_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Servicios</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}normativas_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Normativas</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}rol_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Rol</a></li>
                             </ul>
                         </li>
 
@@ -590,8 +600,16 @@
         <script src="#{appBeans.baseUrlDist()}js/demo.js"></script>
         <!-- ChartJS 1.0.1 -->
         <script src="#{appBeans.baseUrlPlugins()}chartjs/Chart.min.js"></script>
-        
+
+        <script src="#{appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.js"></script>
         <ui:insert name="scriptsPersonalizados"></ui:insert>
+
+        <script type="text/javascript">
+            // For demo to fit into DataTables site builder...
+            $('#dataTableSgRol')
+                    .removeClass('display')
+                    .addClass('table table-striped table-bordered');
+        </script>
     </h:body>
 </html>
 
