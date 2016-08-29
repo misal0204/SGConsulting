@@ -17,7 +17,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
-import sg.sistemas.entidades.Sgcriticidad;
 import sg.sistemas.entidades.Sgestado;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
@@ -68,7 +67,7 @@ public class controladorSgEstado implements Serializable {
     public controladorSgEstado() {
     }
 
-    public void readAllEstado() {
+    public List<Sgestado> readAllEstado() {
         List<Sgestado> result = null;
 
         try {
@@ -86,14 +85,15 @@ public class controladorSgEstado implements Serializable {
         for (Sgestado c : result) {
             System.out.println(c.getIdestado() + " " + c.getDescripcion());
         }
+        return result;
     }
 
     public void insertEstado() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "c000");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgestado.getIdestado());
+            query.setParameter(SP_IN_PARAMETER2, sgestado.getDescripcion());
 
             query.execute();
 
@@ -115,8 +115,8 @@ public class controladorSgEstado implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II Y III");
+            query.setParameter(SP_IN_PARAMETER1, sgestado.getIdestado());
+            query.setParameter(SP_IN_PARAMETER2, sgestado.getDescripcion());
 
             query.execute();
 
@@ -137,7 +137,7 @@ public class controladorSgEstado implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
+            query.setParameter(SP_IN_PARAMETER1, sgestado.getIdestado());
 
             query.execute();
 

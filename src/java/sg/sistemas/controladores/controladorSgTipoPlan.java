@@ -17,7 +17,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
-import sg.sistemas.entidades.SgprocesosSistema;
 import sg.sistemas.entidades.SgtipoPlan;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
@@ -71,7 +70,7 @@ public class controladorSgTipoPlan implements Serializable {
     public controladorSgTipoPlan() {
     }
 
-    public void readAllSgTipoPLan() {
+    public List<SgtipoPlan> readAllSgTipoPLan() {
         List<SgtipoPlan> result = null;
 
         try {
@@ -89,14 +88,15 @@ public class controladorSgTipoPlan implements Serializable {
         for (SgtipoPlan c : result) {
             System.out.println(c.getIdtipoPlan() + " " + c.getDescripcion());
         }
+        return result;
     }
 
     public void insertSgTipoPlan() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "c000");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgtipoplan.getIdtipoPlan());
+            query.setParameter(SP_IN_PARAMETER2, sgtipoplan.getDescripcion());
 
             query.execute();
 
@@ -118,8 +118,8 @@ public class controladorSgTipoPlan implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II Y III");
+            query.setParameter(SP_IN_PARAMETER1, sgtipoplan.getIdtipoPlan());
+            query.setParameter(SP_IN_PARAMETER2, sgtipoplan.getDescripcion());
 
             query.execute();
 
@@ -140,7 +140,7 @@ public class controladorSgTipoPlan implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
+            query.setParameter(SP_IN_PARAMETER1, sgtipoplan.getIdtipoPlan());
 
             query.execute();
 

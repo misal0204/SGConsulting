@@ -67,7 +67,7 @@ public class controladorSgDepartamentos implements Serializable {
     public controladorSgDepartamentos() {
     }
 
-    public void readAllCentros() {
+    public List<Sgdepartamento> readAllCentros() {
         List<Sgdepartamento> result = null;
 
         try {
@@ -85,14 +85,15 @@ public class controladorSgDepartamentos implements Serializable {
         for (Sgdepartamento c : result) {
             System.out.println(c.getIddept() + " " + c.getDescripcion());
         }
+        return result;
     }
 
     public void insertCentros() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "c000");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgdepartamento.getIddept());
+            query.setParameter(SP_IN_PARAMETER2, sgdepartamento.getDescripcion());
 
             query.execute();
 
@@ -114,9 +115,9 @@ public class controladorSgDepartamentos implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II Y III");
-
+            query.setParameter(SP_IN_PARAMETER1, sgdepartamento.getIddept());
+            query.setParameter(SP_IN_PARAMETER2, sgdepartamento.getDescripcion());
+            
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
@@ -136,8 +137,8 @@ public class controladorSgDepartamentos implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-
+            query.setParameter(SP_IN_PARAMETER1, sgdepartamento.getIddept());
+            
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);

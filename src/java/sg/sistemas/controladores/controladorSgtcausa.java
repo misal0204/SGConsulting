@@ -71,7 +71,7 @@ public class controladorSgtcausa implements Serializable {
     public controladorSgtcausa() {
     }
 
-    public void readAllTCausa() {
+    public List<Sgtcausa> readAllTCausa() {
         List<Sgtcausa> result = null;
 
         try {
@@ -89,14 +89,15 @@ public class controladorSgtcausa implements Serializable {
         for (Sgtcausa c : result) {
             System.out.println(c.getIdtcausa() + " " + c.getDescripcion());
         }
+        return result;
     }
 
     public void insertTCausa() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "c000");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgtcausa.getIdtcausa());
+            query.setParameter(SP_IN_PARAMETER2, sgtcausa.getDescripcion());
 
             query.execute();
 
@@ -118,8 +119,8 @@ public class controladorSgtcausa implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II Y III");
+            query.setParameter(SP_IN_PARAMETER1, sgtcausa.getIdtcausa());
+            query.setParameter(SP_IN_PARAMETER2, sgtcausa.getDescripcion());
 
             query.execute();
 
@@ -140,7 +141,7 @@ public class controladorSgtcausa implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
+            query.setParameter(SP_IN_PARAMETER1, sgtcausa.getIdtcausa());
 
             query.execute();
 

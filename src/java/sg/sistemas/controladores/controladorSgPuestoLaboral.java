@@ -17,7 +17,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
-import sg.sistemas.entidades.SgprocesosSistema;
 import sg.sistemas.entidades.SgpuestoLaboral;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
@@ -72,7 +71,7 @@ public class controladorSgPuestoLaboral implements Serializable {
     public controladorSgPuestoLaboral() {
     }
 
-    public void readAllPuestoLaboral() {
+    public List<SgpuestoLaboral> readAllPuestoLaboral() {
         List<SgpuestoLaboral> result = null;
 
         try {
@@ -90,15 +89,16 @@ public class controladorSgPuestoLaboral implements Serializable {
         for (SgpuestoLaboral c : result) {
             System.out.println(c.getIdpuesto() + " " + c.getPuesto());
         }
+        return result;
     }
 
     public void insertPuestoLaboral() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "c000");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
-            query.setParameter(SP_IN_PARAMETER3, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgpuestolaboral.getIdpuesto());
+            query.setParameter(SP_IN_PARAMETER2, sgpuestolaboral.getPuesto());
+            query.setParameter(SP_IN_PARAMETER3, sgpuestolaboral.getDescripcion());
 
             query.execute();
 
@@ -120,9 +120,10 @@ public class controladorSgPuestoLaboral implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II Y III");
-            query.setParameter(SP_IN_PARAMETER3, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgpuestolaboral.getIdpuesto());
+            query.setParameter(SP_IN_PARAMETER2, sgpuestolaboral.getPuesto());
+            query.setParameter(SP_IN_PARAMETER3, sgpuestolaboral.getDescripcion());
+            
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
@@ -142,7 +143,7 @@ public class controladorSgPuestoLaboral implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
+            query.setParameter(SP_IN_PARAMETER1, sgpuestolaboral.getIdpuesto());
 
             query.execute();
 

@@ -18,7 +18,6 @@ import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
 import sg.sistemas.entidades.Sgprocesos;
-import sg.sistemas.entidades.SgprocesosSistema;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
 import sg.sistemas.util.ManejoSessiones;
@@ -71,7 +70,7 @@ public class controladorSgProcesos implements Serializable {
     public controladorSgProcesos() {
     }
 
-    public void readAllProcesos() {
+    public List<Sgprocesos> readAllProcesos() {
         List<Sgprocesos> result = null;
 
         try {
@@ -89,14 +88,15 @@ public class controladorSgProcesos implements Serializable {
         for (Sgprocesos c : result) {
             System.out.println(c.getIdprocesos() + " " + c.getDescripcion());
         }
+        return result;
     }
 
     public void insertProcesos() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "c000");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1,sgprocesos.getIdprocesos());
+            query.setParameter(SP_IN_PARAMETER2, sgprocesos.getDescripcion());
 
             query.execute();
 
@@ -118,9 +118,9 @@ public class controladorSgProcesos implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II Y III");
-
+            query.setParameter(SP_IN_PARAMETER1,sgprocesos.getIdprocesos());
+            query.setParameter(SP_IN_PARAMETER2, sgprocesos.getDescripcion());
+            
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
@@ -140,7 +140,7 @@ public class controladorSgProcesos implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
+            query.setParameter(SP_IN_PARAMETER1,sgprocesos.getIdprocesos());
 
             query.execute();
 

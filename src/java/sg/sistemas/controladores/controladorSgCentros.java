@@ -88,20 +88,20 @@ public class controladorSgCentros implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "c000");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgcentro.getIdcentro());
+            query.setParameter(SP_IN_PARAMETER2, sgcentro.getDescripcion());
 
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
 
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjCreate));
             }
 
         } catch (Exception e) {
-            System.err.println("Error sgcentro: " + e.getMessage());
+            System.err.println(e.getMessage());
         } finally {
             emf.close();
         }
@@ -111,19 +111,19 @@ public class controladorSgCentros implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II Y III");
+            query.setParameter(SP_IN_PARAMETER1, sgcentro.getIdcentro());
+            query.setParameter(SP_IN_PARAMETER2, sgcentro.getDescripcion());
 
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
 
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjUpdate));
             }
         } catch (Exception e) {
-            System.err.println("Error sgCentros: " + e.getMessage());
+            System.err.println(e.getMessage());
         } finally {
             emf.close();
         }
@@ -133,17 +133,17 @@ public class controladorSgCentros implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
+            query.setParameter(SP_IN_PARAMETER1, sgcentro.getIdcentro());
 
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjDelete));
             }
         } catch (Exception e) {
-            System.err.println("Error sgrol: " + e.getMessage());
+            System.err.println(e.getMessage());
         } finally {
             emf.close();
         }

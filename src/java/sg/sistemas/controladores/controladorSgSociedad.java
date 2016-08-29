@@ -17,7 +17,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
-import sg.sistemas.entidades.SgprocesosSistema;
 import sg.sistemas.entidades.Sgsociedad;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
@@ -74,7 +73,7 @@ public class controladorSgSociedad implements Serializable {
     public controladorSgSociedad() {
     }
 
-    public void readAllSgSociedad() {
+    public List<Sgsociedad> readAllSgSociedad() {
         List<Sgsociedad> result = null;
 
         try {
@@ -92,17 +91,18 @@ public class controladorSgSociedad implements Serializable {
         for (Sgsociedad c : result) {
             System.out.println(c.getIdsociedad() + " " + c.getDescripcion());
         }
+        return result;
     }
 
     public void insertSgsociedad() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "c000");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
-            query.setParameter(SP_IN_PARAMETER3, "Supervisor de planta II");
-            query.setParameter(SP_IN_PARAMETER4, "Supervisor de planta II");
-            query.setParameter(SP_IN_PARAMETER5, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgsociedad.getIdsociedad());
+            query.setParameter(SP_IN_PARAMETER2, sgsociedad.getDescripcion());
+            query.setParameter(SP_IN_PARAMETER3, sgsociedad.getIcon());
+            query.setParameter(SP_IN_PARAMETER4, sgsociedad.getImagen());
+            query.setParameter(SP_IN_PARAMETER5, sgsociedad.getLogo());
 
             query.execute();
 
@@ -124,11 +124,11 @@ public class controladorSgSociedad implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II Y III");
-            query.setParameter(SP_IN_PARAMETER3, "Supervisor de planta II");
-            query.setParameter(SP_IN_PARAMETER4, "Supervisor de planta II");
-            query.setParameter(SP_IN_PARAMETER5, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgsociedad.getIdsociedad());
+            query.setParameter(SP_IN_PARAMETER2, sgsociedad.getDescripcion());
+            query.setParameter(SP_IN_PARAMETER3, sgsociedad.getIcon());
+            query.setParameter(SP_IN_PARAMETER4, sgsociedad.getImagen());
+            query.setParameter(SP_IN_PARAMETER5, sgsociedad.getLogo());
 
             query.execute();
 
@@ -149,7 +149,7 @@ public class controladorSgSociedad implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
+            query.setParameter(SP_IN_PARAMETER1, sgsociedad.getIdsociedad());
 
             query.execute();
 

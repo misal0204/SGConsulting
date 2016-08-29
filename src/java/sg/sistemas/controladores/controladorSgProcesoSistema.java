@@ -17,7 +17,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
-import sg.sistemas.entidades.Sgcriticidad;
 import sg.sistemas.entidades.SgprocesosSistema;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;

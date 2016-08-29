@@ -17,7 +17,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
-import sg.sistemas.entidades.SgprocesosSistema;
 import sg.sistemas.entidades.SgtipoAlerta;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
@@ -71,7 +70,7 @@ public class controladorSgTipoAlerta implements Serializable {
     public controladorSgTipoAlerta() {
     }
 
-    public void readAllSgTipoAlerta() {
+    public List<SgtipoAlerta> readAllSgTipoAlerta() {
         List<SgtipoAlerta> result = null;
 
         try {
@@ -89,14 +88,15 @@ public class controladorSgTipoAlerta implements Serializable {
         for (SgtipoAlerta c : result) {
             System.out.println(c.getIdtipoAlerta() + " " + c.getDescripcion());
         }
+        return result;
     }
 
     public void insertSgTipoAlerta() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "c000");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgtipoalerta.getIdtipoAlerta());
+            query.setParameter(SP_IN_PARAMETER2, sgtipoalerta.getDescripcion());
 
             query.execute();
 
@@ -118,8 +118,8 @@ public class controladorSgTipoAlerta implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II Y III");
+            query.setParameter(SP_IN_PARAMETER1, sgtipoalerta.getIdtipoAlerta());
+            query.setParameter(SP_IN_PARAMETER2, sgtipoalerta.getDescripcion());
 
             query.execute();
 
@@ -140,7 +140,7 @@ public class controladorSgTipoAlerta implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
+            query.setParameter(SP_IN_PARAMETER1, sgtipoalerta.getIdtipoAlerta());
 
             query.execute();
 

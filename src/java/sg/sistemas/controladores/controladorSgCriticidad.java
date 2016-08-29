@@ -67,7 +67,7 @@ public class controladorSgCriticidad implements Serializable {
     public controladorSgCriticidad() {
     }
 
-    public void readAllCriticidad() {
+    public List<Sgcriticidad> readAllCriticidad() {
         List<Sgcriticidad> result = null;
 
         try {
@@ -85,19 +85,20 @@ public class controladorSgCriticidad implements Serializable {
         for (Sgcriticidad c : result) {
             System.out.println(c.getIdcriticidad() + " " + c.getDescripcion());
         }
+        return result;
     }
 
     public void insertCriticidad() {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "c000");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgcriticidad.getIdcriticidad());
+            query.setParameter(SP_IN_PARAMETER2, sgcriticidad.getDescripcion());
 
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
 
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjCreate));
@@ -114,13 +115,12 @@ public class controladorSgCriticidad implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II Y III");
-
+            query.setParameter(SP_IN_PARAMETER1, sgcriticidad.getIdcriticidad());
+            query.setParameter(SP_IN_PARAMETER2, sgcriticidad.getDescripcion());
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
 
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjUpdate));
@@ -136,8 +136,7 @@ public class controladorSgCriticidad implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-
+            query.setParameter(SP_IN_PARAMETER1, sgcriticidad.getIdcriticidad());
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);

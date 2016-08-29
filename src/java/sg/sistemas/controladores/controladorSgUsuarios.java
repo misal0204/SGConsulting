@@ -15,12 +15,12 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean (name="ctrlUsuarios")
 @RequestScoped
-public class SgUsuarios implements Serializable{
+public class controladorSgUsuarios implements Serializable{
 
     /**
      * Creates a new instance of SgUsuarios
      */
-    public SgUsuarios() {
+    public controladorSgUsuarios() {
     }
     
 }

@@ -87,8 +87,8 @@ public class controladorSgRol implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II");
+            query.setParameter(SP_IN_PARAMETER1, sgrol.getIdrol());
+            query.setParameter(SP_IN_PARAMETER2, sgrol.getNombre());
 
             query.execute();
 
@@ -110,8 +110,8 @@ public class controladorSgRol implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
-            query.setParameter(SP_IN_PARAMETER2, "Supervisor de planta II Y III");
+            query.setParameter(SP_IN_PARAMETER1, sgrol.getIdrol());
+            query.setParameter(SP_IN_PARAMETER2, sgrol.getNombre());
 
             query.execute();
 
@@ -132,7 +132,7 @@ public class controladorSgRol implements Serializable {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, "SUPER3");
+            query.setParameter(SP_IN_PARAMETER1, sgrol.getIdrol());
 
             query.execute();
 
