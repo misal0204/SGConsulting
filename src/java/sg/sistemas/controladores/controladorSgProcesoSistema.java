@@ -81,8 +81,8 @@ public class controladorSgProcesoSistema implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
 
         for (SgprocesosSistema c : result) {
@@ -108,9 +108,9 @@ public class controladorSgProcesoSistema implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
-        }
+        }finally{
+            em.close();
+        } 
     }
 
     public void updateProcesosSistema() {
@@ -130,8 +130,8 @@ public class controladorSgProcesoSistema implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -150,8 +150,8 @@ public class controladorSgProcesoSistema implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
     

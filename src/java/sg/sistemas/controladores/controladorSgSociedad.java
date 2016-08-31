@@ -84,10 +84,11 @@ public class controladorSgSociedad implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
-
+        
+        
         for (Sgsociedad c : result) {
             System.out.println(c.getIdsociedad() + " " + c.getDescripcion());
         }
@@ -115,8 +116,9 @@ public class controladorSgSociedad implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } 
+        finally{
+            em.close();
         }
     }
 
@@ -140,8 +142,9 @@ public class controladorSgSociedad implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } 
+        finally{
+            em.close();
         }
     }
 
@@ -160,8 +163,9 @@ public class controladorSgSociedad implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } 
+        finally{
+            em.close();
         }
     }
 

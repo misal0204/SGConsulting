@@ -82,9 +82,9 @@ public class controladorSgPuestoLaboral implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
-        }
+        }finally{
+            em.close();
+        } 
 
         for (SgpuestoLaboral c : result) {
             System.out.println(c.getIdpuesto() + " " + c.getPuesto());
@@ -111,8 +111,8 @@ public class controladorSgPuestoLaboral implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -134,8 +134,8 @@ public class controladorSgPuestoLaboral implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -154,8 +154,8 @@ public class controladorSgPuestoLaboral implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 

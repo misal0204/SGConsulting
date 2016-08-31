@@ -81,8 +81,8 @@ public class controladorSgRolAuditor implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
 
         for (SgrolAuditor c : result) {
@@ -109,8 +109,8 @@ public class controladorSgRolAuditor implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 
@@ -120,7 +120,7 @@ public class controladorSgRolAuditor implements Serializable {
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_UPDATE);
             query.setParameter(SP_IN_PARAMETER1, sgrolauditor.getIdrolAuditor());
             query.setParameter(SP_IN_PARAMETER2, sgrolauditor.getDescripcion());
-            
+
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
@@ -131,8 +131,8 @@ public class controladorSgRolAuditor implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 
@@ -141,7 +141,7 @@ public class controladorSgRolAuditor implements Serializable {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
             query.setParameter(SP_IN_PARAMETER1, sgrolauditor.getIdrolAuditor());
-            
+
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
@@ -151,8 +151,8 @@ public class controladorSgRolAuditor implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 
@@ -163,5 +163,5 @@ public class controladorSgRolAuditor implements Serializable {
     public void setSgrolauditor(SgrolAuditor sgrolauditor) {
         this.sgrolauditor = sgrolauditor;
     }
-    
+
 }

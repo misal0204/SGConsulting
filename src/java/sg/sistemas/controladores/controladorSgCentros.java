@@ -80,6 +80,8 @@ public class controladorSgCentros implements Serializable {
 
         } catch (Exception e) {
             System.err.println("Error sgcentro: " + e.getMessage());
+        }finally{
+            em.close();
         }
         return result;
     }
@@ -102,8 +104,8 @@ public class controladorSgCentros implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -124,8 +126,8 @@ public class controladorSgCentros implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -144,8 +146,8 @@ public class controladorSgCentros implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 

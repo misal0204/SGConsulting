@@ -78,8 +78,8 @@ public class controladorSgDepartamentos implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
 
         for (Sgdepartamento c : result) {
@@ -106,8 +106,8 @@ public class controladorSgDepartamentos implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -128,8 +128,8 @@ public class controladorSgDepartamentos implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -148,8 +148,8 @@ public class controladorSgDepartamentos implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 

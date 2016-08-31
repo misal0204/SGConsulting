@@ -78,8 +78,8 @@ public class controladorSgCriticidad implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
 
         for (Sgcriticidad c : result) {
@@ -106,8 +106,8 @@ public class controladorSgCriticidad implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -127,8 +127,8 @@ public class controladorSgCriticidad implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -146,8 +146,8 @@ public class controladorSgCriticidad implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 

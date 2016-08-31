@@ -81,8 +81,8 @@ public class controladorSgTipoAlerta implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
 
         for (SgtipoAlerta c : result) {
@@ -109,8 +109,8 @@ public class controladorSgTipoAlerta implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 
@@ -131,8 +131,8 @@ public class controladorSgTipoAlerta implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 
@@ -151,8 +151,8 @@ public class controladorSgTipoAlerta implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 

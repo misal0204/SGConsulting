@@ -81,8 +81,8 @@ public class controladorSgTipoPlan implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
 
         for (SgtipoPlan c : result) {
@@ -109,8 +109,8 @@ public class controladorSgTipoPlan implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 
@@ -131,8 +131,8 @@ public class controladorSgTipoPlan implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 
@@ -151,8 +151,8 @@ public class controladorSgTipoPlan implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 
@@ -163,5 +163,5 @@ public class controladorSgTipoPlan implements Serializable {
     public void setSgtipoplan(SgtipoPlan sgtipoplan) {
         this.sgtipoplan = sgtipoplan;
     }
-    
+
 }

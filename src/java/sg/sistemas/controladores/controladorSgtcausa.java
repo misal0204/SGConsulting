@@ -82,8 +82,8 @@ public class controladorSgtcausa implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
 
         for (Sgtcausa c : result) {
@@ -110,8 +110,8 @@ public class controladorSgtcausa implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 
@@ -132,8 +132,8 @@ public class controladorSgtcausa implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 
@@ -152,8 +152,8 @@ public class controladorSgtcausa implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 

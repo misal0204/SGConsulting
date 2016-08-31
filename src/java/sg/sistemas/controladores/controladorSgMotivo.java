@@ -77,8 +77,8 @@ public class controladorSgMotivo implements Serializable{
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
 
         for (Sgmotivo c : result) {
@@ -105,8 +105,8 @@ public class controladorSgMotivo implements Serializable{
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -127,8 +127,8 @@ public class controladorSgMotivo implements Serializable{
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -147,8 +147,8 @@ public class controladorSgMotivo implements Serializable{
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 

@@ -63,7 +63,7 @@ public class controladorSgRol implements Serializable {
         db = new ConnectDB();
         emf = db.accesoDB(autenticar.getUser(), autenticar.getPass());
     }
-
+    
     public controladorSgRol() {
     }
 
@@ -78,6 +78,8 @@ public class controladorSgRol implements Serializable {
 
         } catch (Exception e) {
             System.err.println("Error sgrol: " + e.getMessage());
+        }finally{
+            em.close();
         }
         
         return result;
@@ -86,6 +88,7 @@ public class controladorSgRol implements Serializable {
     public void insertRol() {
         try {
             em = emf.createEntityManager();
+            em.getTransaction().begin();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_CREATE);
             query.setParameter(SP_IN_PARAMETER1, sgrol.getIdrol());
             query.setParameter(SP_IN_PARAMETER2, sgrol.getNombre());
@@ -101,8 +104,8 @@ public class controladorSgRol implements Serializable {
 
         } catch (Exception e) {
             System.err.println("Error sgrol: " + e.getMessage());
-        } finally {
-            emf.close();
+        }finally{
+            em.close();
         }
     }
 
@@ -123,8 +126,8 @@ public class controladorSgRol implements Serializable {
             }
         } catch (Exception e) {
             System.err.println("Error sgrol: " + e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -143,8 +146,8 @@ public class controladorSgRol implements Serializable {
             }
         } catch (Exception e) {
             System.err.println("Error sgrol: " + e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -163,5 +166,4 @@ public class controladorSgRol implements Serializable {
     public void setSgrol(SgRol sgrol) {
         this.sgrol = sgrol;
     }
-
 }

@@ -78,8 +78,8 @@ public class controladorSgEstado implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
 
         for (Sgestado c : result) {
@@ -106,9 +106,9 @@ public class controladorSgEstado implements Serializable {
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
-        }
+        }finally{
+            em.close();
+        } 
     }
 
     public void updateEstado() {
@@ -128,8 +128,8 @@ public class controladorSgEstado implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
@@ -148,8 +148,8 @@ public class controladorSgEstado implements Serializable {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        } finally {
-            emf.close();
+        } finally{
+            em.close();
         }
     }
 
