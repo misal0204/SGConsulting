@@ -45,14 +45,14 @@
         <script src="#{appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.js"></script>
 
         <script type="text/javascript" src="#{appBeans.baseUrlPlugins()}datatables/dataTables.bootstrap.js"></script>
-        
         <script type="text/javascript" charset="utf-8">
             $(document).ready(function () {
                 $('#dataTableSgRol').DataTable();
             });
         </script>
+
     </h:head>
-    <h:body class="hold-transition skin-blue sidebar-mini">
+    <h:body class="hold-transition skin-blue sidebar-mini" style="padding-right: 0px;">
         <div class="wrapper">
             <!-- Main Header -->
             <header class="main-header">
@@ -602,7 +602,6 @@
         <script src="#{appBeans.baseUrlPlugins()}chartjs/Chart.min.js"></script>
 
         <script src="#{appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.js"></script>
-        <ui:insert name="scriptsPersonalizados"></ui:insert>
 
         <script type="text/javascript">
             // For demo to fit into DataTables site builder...

@@ -10,14 +10,39 @@
         <ui:composition template="./../../../../plantilla_general.xhtml">
 
             <ui:define name="content">
-                <h:form>
+                <h:form id="form1">
+                    <h:messages id="mjs"/>
                     <h:panelGrid columns="2">
-                        <h:outputLabel value="Idprocesos: " for="editIDProcesos"/>
-                        <h:inputText id="editIDProcesos" value="#{ctrlTareas.sgcentro.idcentro}"/>
-                        <h:outputLabel value="Proceso: " for="editProcesos"/>
-                        <h:inputText id="editProcesos" value="#{ctrlTareas.sgcentro.descripcion}"/>
+                        <h:outputLabel value="Idprocesos: " for="insertIDProcesos"/>
+                        <h:inputText id="insertIDProcesos" value="#{ctrlRol.sgrol.idrol}"/>
+                        <h:outputLabel value="Proceso: " for="insertProcesos"/>
+                        <h:inputText id="insertProcesos" value="#{ctrlRol.sgrol.nombre}"/>
                         <f:facet name="footer">
-                            <h:commandButton value="Insertar" action="#{ctrlTareas.insertCentro()}"/>
+                            <h:commandButton value="Insertar" action="#{ctrlRol.insertRol()}"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+                
+                <h:form id="form2">
+                    <h:messages id="mjs"/>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Idprocesos: " for="insertIDProcesos"/>
+                        <h:inputText id="insertIDProcesos" value="#{ctrlRol.sgrol.idrol}"/>
+                        <h:outputLabel value="Proceso: " for="insertProcesos"/>
+                        <h:inputText id="insertProcesos" value="#{ctrlRol.sgrol.nombre}"/>
+                        <f:facet name="footer">
+                            <h:commandButton value="Insertar" action="#{ctrlRol.updateRol()}"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+                
+                <h:form id="form3">
+                    <h:messages id="mjs"/>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Idprocesos: " for="insertIDProcesos"/>
+                        <h:inputText id="insertIDProcesos" value="#{ctrlRol.sgrol.idrol}"/>
+                        <f:facet name="footer">
+                            <h:commandButton value="Insertar" action="#{ctrlRol.deleteRol()}"/>
                         </f:facet>
                     </h:panelGrid>
                 </h:form>
