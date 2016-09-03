@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
     <body>
 
@@ -11,161 +12,126 @@
 
             <ui:define name="content">
                 <div class="content">
-                    <div class="box box-default">
+                    <div class="box box-primary">
                         <div class="box-header with-border">
-                            CRUD
+                            Roles de usuario
                         </div>
 
                         <div class="box-body">
                             <div class="box-body">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#InsertRol">
-                                    <i class="fa fa-plus"/> Nuevo Rol
-                                </button>
+                                <div class="btn-group col-sm-8">
+                                    <a data-toggle="modal" data-target="#ModalNuevo">
+                                        <button type="button" class="btn btn-primary col-sm-2">
+                                            <i class="chevron-right glyphicon glyphicon-plus-sign"/> &nbsp; Nuevo
+                                        </button>
+                                    </a>
 
-                                <div class="modal fade" tabindex="-1" role="dialog" id="InsertRol">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <h:form class="form-horizontal">
-                                                <div class="box-header">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="box-title">#{bundle.SgRolTitulo}</h4>
-                                                        <h4 class="box-title">- Crear Nuevo Rol</h4>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-body">                                                    
-                                                    <div class="box-body">
-                                                        <div class="form-group">
-                                                            <h:outputLabel class="col-sm-2 control-label" value="Id Rol: " for="insertIDProcesos"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText id="insertIDProcesos" value="#{ctrlRol.sgrol.idrol}" class="form-control" required="true">
-                                                                    <f:validateLongRange minimum="6" maximum="6"></f:validateLongRange>
-                                                                </h:inputText>
-                                                                <h:message for="insertIDProcesos"></h:message>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <h:outputLabel class="col-sm-2 control-label" value="Rol: " for="insertProcesos"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText id="insertProcesos" value="#{ctrlRol.sgrol.nombre}" class="form-control" required="true">
-                                                                    <f:validateLongRange minimum="20" maximum="20"></f:validateLongRange>
-                                                                </h:inputText>
-                                                                <h:message for="insertProcesos"></h:message>
-                                                            </div>
-                                                        </div>
-                                                        <!--h:messages id="mjs"/-->
-                                                    </div>
-                                                    <!-- /.box-body -->
-                                                    <h:messages id="mjs"/>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    <h:commandButton class="btn btn-primary" value="Insertar" action="#{ctrlRol.insertRol()}"/>
-                                                </div>
-                                            </h:form>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
+                                    <a data-toggle="modal" data-target="#ModalEditar">
+                                        <button type="button" class="btn btn-primary col-sm-2">
+                                            <i class="glyphicon glyphicon-edit"/> &nbsp; Editar
+                                        </button>
+                                    </a>
+
+                                    <a data-toggle="modal" data-target="#ModalEliminar">
+                                        <button type="button" class="btn btn-primary col-sm-2">
+                                            <i class="glyphicon glyphicon-trash"/> &nbsp; Eliminar
+                                        </button>
+                                    </a>
+
+                                    <a>
+                                        <button type="button" class="btn btn-primary col-sm-2">
+                                            <i class="glyphicon glyphicon-print"/> &nbsp; Imprimir
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
 
-                            <div class="box-body">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#UpdateRol">
-                                    <i class="glyphicon glyphicon-pencil"/> Editar Rol
-                                </button>
+                            <!-- Modal Insertar Nuevo Rol -->
+                            <div class="modal fade" id="ModalNuevo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <a data-dismiss="modal" aria-label="Close">
+                                                <!--h:form>
+                                                    <h:commandButton type="button" class="close" value="X"/>
+                                                </h:form-->
+                                                <button type="button" class="close">X</button>
+                                            </a>
+                                            <h4 class="modal-title" id="myModalLabel">Nuevo Rol</h4>
+                                        </div>
+                                        <h:form class="form-horizontal" id="InsertSgRol" >
 
-                                <div class="modal fade" tabindex="-1" role="dialog" id="UpdateRol">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <h:form class="form-horizontal">
-                                                <div class="box-header">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="box-title">#{bundle.SgRolTitulo}</h4>
-                                                        <h4 class="box-title">- Actualizar Rol</h4>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <h:outputLabel value="Id Rol: " for="editIDProcesos" class="col-sm-2 control-label"/>
+                                                    <div class="col-sm-10">
+                                                        <h:inputText class="form-control" id="editIDProcesos" value="#{ctrlRol.sgrol.idrol}" p:placeholder="ID" maxlength="6" onblur="value = value.toUpperCase()" required="true" requiredMessage="Identificardor obligatorio"/>
+                                                        <h:message for="editIDProcesos" style="color: red;"/>
+                                                    </div>                                    
+                                                </div>
+                                                <div class="form-group">
+                                                    <h:outputLabel value="Descripciòn: " for="editProcesos" class="col-sm-2 control-label"/>
+                                                    <div class="col-sm-10">
+                                                        <h:inputText class="form-control" id="editProcesos" value="#{ctrlRol.sgrol.nombre}" p:placeholder="Descripciòn" maxlength="30" onblur="value = value.toUpperCase()" required="true" requiredMessage="Descripción obligatoria"/>
+                                                        <h:message for="editProcesos" style="color: red;"/>
                                                     </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <div class="box-body">
-                                                        <div class="form-group">
-                                                            <h:outputLabel class="col-sm-2 control-label" value="Id Rol: " for="updateIDProcesos"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText id="updateIDProcesos" value="#{ctrlRol.sgrol.idrol}" class="form-control"/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <h:outputLabel class="col-sm-2 control-label" value="Rol: " for="updateProcesos"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText id="updateProcesos" value="#{ctrlRol.sgrol.nombre}" class="form-control"/>
-                                                            </div>
-                                                        </div>
-                                                        <!--h:messages id="mjs"/-->
-                                                    </div>
-                                                    <!-- /.box-body -->
-                                                    <h:messages id="mjs"/>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    <h:commandButton class="btn btn-primary" value="Insertar" action="#{ctrlRol.updateRol()}"/>
-                                                </div>
-                                            </h:form>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
-                            </div>
-                            
-                            <div class="box-body">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DeleteRol">
-                                    <i class="glyphicon glyphicon-trash"/> Eliminar Rol
-                                </button>
 
-                                <div class="modal fade" tabindex="-1" role="dialog" id="DeleteRol">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <h:form class="form-horizontal">
-                                                <div class="box-header">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="box-title">#{bundle.SgRolTitulo}</h4>
-                                                        <h4 class="box-title">- Eliminar Rol</h4>
-                                                    </div>
+                                                <div class="alert alert-info" for="ok">
+                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                    <strong>Resultado!</strong> <h:messages id="mjs"/>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <div class="box-body">
-                                                        <div class="form-group">
-                                                            <h:outputLabel class="col-sm-2 control-label" value="Id Rol: " for="deleteIDProcesos"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText id="deleteIDProcesos" value="#{ctrlRol.sgrol.idrol}" class="form-control"/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <h:outputLabel class="col-sm-2 control-label" value="Rol: " for="deleteProcesos"/>
-                                                            <div class="col-sm-10">
-                                                                <h:inputText id="deleteProcesos" value="#{ctrlRol.sgrol.nombre}" class="form-control"/>
-                                                            </div>
-                                                        </div>
-                                                        <!--h:messages id="mjs"/-->
-                                                    </div>
-                                                    <!-- /.box-body -->
-                                                    <h:messages id="mjs"/>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    <h:commandButton class="btn btn-primary" value="Insertar" action="#{ctrlRol.deleteRol()}"/>
-                                                </div>
-                                            </h:form>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
+
+                                                
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <a data-dismiss="modal">
+                                                    <h:commandButton type="button" class="btn btn-default"  value="Cerrar"/>
+                                                </a>
+                                                <h:commandButton id="ok" value="Insertar" action="#{ctrlRol.insertRol()}" class="btn btn-primary">
+                                                    <f:ajax execute="InsertSgRol" render="InsertSgRol"  />
+                                                </h:commandButton>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- Fin Modal Insertar nuevo rol -->
+
+                            <!-- Modal Eliminar-->
+                            <div class="modal fade" id="ModalEliminar" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+
+                                        </div>
+                                        <div class="modal-footer ">
+                                            <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content --> 
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+
                         </div>
 
                         <div class="box-footer">
 
                         </div>
                     </div>
-                </div>                
-            </ui:define>
+                </div>
 
+            </ui:define>
         </ui:composition>
+
     </body>
 </html>

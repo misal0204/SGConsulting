@@ -8,78 +8,62 @@
         <ui:composition template="./../../../../plantilla_general.xhtml">
 
             <ui:define name="content">
-                <p class="text-center">
-                    <button class="btn btn-default" data-toggle="modal" data-target="#loginModal">Login</button>
-                </p>
+                <div class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
 
-                <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h5 class="modal-title">Login</h5>
+                        </div>
+
+                        <div class="box-body">
+                            <button class="btn btn-default" data-toggle="modal" data-target="#loginModal">Login</button>
+
+                            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                            <h5 class="modal-title">Login</h5>
+                                        </div> <div class="modal-body">
+                                            <!-- The form is placed inside the body of modal -->
+                                            <form id="loginForm" method="post" class="form-horizontal fv-form fv-form-bootstrap" novalidate="novalidate">
+                                                <button type="submit" class="fv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                                                <div class="form-group has-feedback">
+                                                    <label class="col-xs-3 control-label">Username</label>
+                                                    <div class="col-xs-5">
+                                                        <input type="text" class="form-control" name="username" data-fv-field="username"></input>
+                                                        <i class="form-control-feedback" data-fv-icon-for="username" style="display: none;"></i>
+                                                        <small class="help-block" data-fv-validator="notEmpty" data-fv-for="username" data-fv-result="NOT_VALIDATED" style="display: none;">The username is required</small>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group has-feedback">
+                                                    <label class="col-xs-3 control-label">Password</label>
+                                                    <div class="col-xs-5">
+                                                        <input type="password" class="form-control" name="password" data-fv-field="password"></input>
+                                                        <i class="form-control-feedback" data-fv-icon-for="password" style="display: none;"></i>
+                                                        <small class="help-block" data-fv-validator="notEmpty" data-fv-for="password" data-fv-result="NOT_VALIDATED" style="display: none;">The password is required</small>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-xs-5 col-xs-offset-3">
+                                                        <button type="submit" class="btn btn-primary">Login</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="modal-body">
-                                <!-- The form is placed inside the body of modal -->
-                                <form id="loginForm" method="post" class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-xs-3 control-label">Username</label>
-                                        <div class="col-xs-5">
-                                            <input type="text" class="form-control" name="username" />
-                                        </div>
-                                    </div>
+                        </div>
 
-                                    <div class="form-group">
-                                        <label class="col-xs-3 control-label">Password</label>
-                                        <div class="col-xs-5">
-                                            <input type="password" class="form-control" name="password" />
-                                        </div>
-                                    </div>
+                        <div class="box-footer">
 
-                                    <div class="form-group">
-                                        <div class="col-xs-5 col-xs-offset-3">
-                                            <button type="submit" class="btn btn-primary">Login</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!--script>
-                    $(document).ready(function () {
-                        $('#loginForm').formValidation({
-                            framework: 'bootstrap',
-                            excluded: ':disabled',
-                            icon: {
-                                valid: 'glyphicon glyphicon-ok',
-                                invalid: 'glyphicon glyphicon-remove',
-                                validating: 'glyphicon glyphicon-refresh'
-                            },
-                            fields: {
-                                username: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: 'The username is required'
-                                        }
-                                    }
-                                },
-                                password: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: 'The password is required'
-                                        }
-                                    }
-                                }
-                            }
-                        });
-                    });
-                </script-->
             </ui:define>
 
         </ui:composition>

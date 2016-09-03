@@ -5,127 +5,83 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-
     <body>
 
         <ui:composition template="./../../../../plantilla_general.xhtml">
 
             <ui:define name="content">                
                 <div class="content">
-                    <div class="box box-default">
+
+                    <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h1>
-                                Roles de Usuario
-                            </h1>
+                            <h1 class="box-title">SG Roles</h1>
                         </div>
-                        <div class="box-body">                           
 
-                            <div class="content">
-                                <div class="box-body">
-                                    <div class="btn-group col-sm-6">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#InsertRol">
-                                            <i class="glyphicon glyphicon-plus"/> Adicionar
+                        <div class="box-body">
+
+                            <div class="box-body">
+                                <div class="btn-group col-sm-8">
+                                    <a>
+                                        <button type="button" class="btn btn-primary col-sm-2">
+                                            <i class="chevron-right glyphicon glyphicon-plus-sign"/> &nbsp; Nuevo
                                         </button>
-
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#InsertRol">
-                                            <i class="glyphicon glyphicon-pencil"/> Actualizar
-                                        </button>
-
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#InsertRol">
-                                            <i class="glyphicon glyphicon-trash"/> Eliminar
-                                        </button>
-
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#InsertRol">
-                                            <i class="glyphicon glyphicon-print"/> Imprimir
-                                        </button>
-                                    </div>
-
-                                    <div class="modal fade" tabindex="-1" role="dialog" id="InsertRol">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <h:form class="form-horizontal">
-                                                    <div class="box-header">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title">#{bundle.SgRolTitulo}</h4>
-                                                            <h5>Crear Nuevo Rol</h5>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="box-body">
-                                                            <div class="form-group">
-                                                                <h:outputLabel class="col-sm-2 control-label" value="Id Rol: " for="insertIDProcesos"/>
-                                                                <div class="col-sm-10">
-                                                                    <h:inputText id="insertIDProcesos" value="#{ctrlRol.sgrol.idrol}" class="form-control"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <h:outputLabel class="col-sm-2 control-label" value="Rol: " for="insertProcesos"/>
-                                                                <div class="col-sm-10">
-                                                                    <h:inputText id="insertProcesos" value="#{ctrlRol.sgrol.nombre}" class="form-control"/>
-                                                                </div>
-                                                            </div>
-                                                            <!--h:messages id="mjs"/-->
-                                                        </div>
-                                                        <!-- /.box-body -->
-                                                        <h:messages id="mjs"/>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        <h:commandButton class="btn btn-primary" value="Insertar" action="#{ctrlRol.insertRol()}"/>
-                                                    </div>
-                                                </h:form>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
+                                    </a>
+                                    <!--button type="button" class="btn btn-primary col-sm-2">
+                                        <i class="glyphicon glyphicon-edit"/> &nbsp; Editar
+                                    </button-->
+                                    <button type="button" class="btn btn-primary col-sm-2">
+                                        <i class="glyphicon glyphicon-trash"/> &nbsp; Eliminar
+                                    </button>
+                                    <button type="button" class="btn btn-primary col-sm-2">
+                                        <i class="glyphicon glyphicon-print"/> &nbsp; Imprimir
+                                    </button>
                                 </div>
+                            </div>
 
+                            <div class="box-body">
                                 <div class="box-body">
-                                    <!--Inicio DataTable-->
                                     <h:dataTable value="#{ctrlRol.readAllRol()}" var="atributo" class="table table-striped table-bordered display" id="dataTableSgRol" cellspacing="0" width="100%">
                                         <h:column>
                                             <f:facet name="header">
-                                                ID ROL
+                                                Id Rol
                                             </f:facet>
                                             #{atributo.idrol}
                                         </h:column>
+
                                         <h:column>
                                             <f:facet name="header">
-                                                ROL
+                                                Descripción
                                             </f:facet>
                                             #{atributo.nombre}
                                         </h:column>
-                                        <h:column class="display disabled">
-                                            <f:facet name="header" class="display disabled">
-                                                ACCIÓN
-                                            </f:facet>
-                                            <!--h:commandButton type="button" class="btn btn-default btn-xs center-block" value="Editar"/-->
-                                            <div class="center-block">
-                                                <div class="btn-group">                                                    
-                                                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#InsertRol">
-                                                        <i class="glyphicon glyphicon-pencil"/> Editar
-                                                    </button>                                                    
-                                                </div>
 
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#InsertRol">
-                                                        <i class="glyphicon glyphicon-trash"/> Eliminar
-                                                    </button>
-                                                </div>
-                                            </div>
+                                        <h:column class="col-sm-1">
+                                            <f:facet name="header" class="col-sm-1">
+                                                Acción
+                                            </f:facet>
+
+                                            <button class="btn btn-primary btn-xs center-block"><i class="glyphicon glyphicon-edit"/> &nbsp; Editar</button>
+                                            <!--button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"/> &nbsp; Eliminar</button-->
 
                                         </h:column>
-                                    </h:dataTable>
-                                    <!--Fin DataTable-->
-                                </div>
 
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Eliminar
+                                            </f:facet>
+                                            <h:selectBooleanCheckbox value="true" class=""/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
                             </div>
                         </div>
+
                         <div class="box-footer">
 
                         </div>
                     </div>
-                </div>                
+
+                </div>
             </ui:define>
         </ui:composition>    
     </body>
