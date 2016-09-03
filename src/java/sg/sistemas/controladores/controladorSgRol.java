@@ -6,7 +6,10 @@
 package sg.sistemas.controladores;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -47,6 +50,13 @@ public class controladorSgRol implements Serializable {
     private final String msjDelete = "Se Elimino correctamente";
     private final String error = "La operacion no ha sido realiazada";
 
+    private boolean inputText = false;
+    private boolean btnInsert = true;
+    private boolean btnClose = false;
+
+    private Map<String, Boolean> checked = new HashMap<String, Boolean>();
+    private List<SgRol> items;
+
     private SgAutenticar autenticar;
     private SgRol sgrol;
 
@@ -65,6 +75,30 @@ public class controladorSgRol implements Serializable {
     }
 
     public controladorSgRol() {
+    }
+
+    public void submit() {
+        List<SgRol> checkedItems = new ArrayList<SgRol>();
+        items = readAllRol();
+
+        for (SgRol item : items) {
+            if (checked.get(sgrol.getIdrol())) {
+                checkedItems.add(item);
+            }
+        }
+
+        for (SgRol r : checkedItems) {
+            System.out.println("seleccionado: " + r.getIdrol() + " " + r.getNombre() + " Eliminado");
+            deleteRol(r.getIdrol());
+        }
+        checked.clear();
+    }
+
+    public void changeState() {
+        inputText = false;
+        btnInsert = true;
+        btnClose = false;
+
     }
 
     public List<SgRol> readAllRol() {
@@ -99,6 +133,9 @@ public class controladorSgRol implements Serializable {
             System.out.println(resultado);
 
             if (resultado.equals(RESULT_SP)) {
+                inputText = true;
+                btnInsert = false;
+                btnClose = true;
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjCreate));
             } else {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(error + " : " + resultado));
@@ -137,11 +174,11 @@ public class controladorSgRol implements Serializable {
         }
     }
 
-    public void deleteRol() {
+    public void deleteRol(String id) {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, sgrol.getIdrol());
+            query.setParameter(SP_IN_PARAMETER1, id);
 
             query.execute();
 
@@ -175,4 +212,45 @@ public class controladorSgRol implements Serializable {
     public void setSgrol(SgRol sgrol) {
         this.sgrol = sgrol;
     }
+
+    public boolean isInputText() {
+        return inputText;
+    }
+
+    public void setInputText(boolean inputText) {
+        this.inputText = inputText;
+    }
+
+    public boolean isBtnInsert() {
+        return btnInsert;
+    }
+
+    public void setBtnInsert(boolean btnInsert) {
+        this.btnInsert = btnInsert;
+    }
+
+    public boolean isBtnClose() {
+        return btnClose;
+    }
+
+    public void setBtnClose(boolean btnClose) {
+        this.btnClose = btnClose;
+    }
+
+    public Map<String, Boolean> getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Map<String, Boolean> checked) {
+        this.checked = checked;
+    }
+
+    public List<SgRol> getItems() {
+        return items;
+    }
+
+    public void setItems(List<SgRol> items) {
+        this.items = items;
+    }
+
 }
