@@ -79,7 +79,7 @@ public class controladorSgCentros implements Serializable {
             result = query.getResultList();
 
         } catch (Exception e) {
-            System.err.println("Error sgcentro: " + e.getMessage());
+            System.err.println(e.getMessage());
         }finally{
             em.close();
         }

@@ -6,6 +6,7 @@
 package sg.sistemas.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -15,6 +16,7 @@ import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,6 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "sg_privilegios")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SgPrivilegios.findByUser", query = "SELECT s FROM SgPrivilegios s WHERE s.cod_usuario = :cod_usuario")})
 
@@ -65,6 +68,41 @@ public class SgPrivilegios implements Serializable {
         this.idmenu = idmenu;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.cod_usuario);
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.idprogram) ^ (Double.doubleToLongBits(this.idprogram) >>> 32));
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.idmenu) ^ (Double.doubleToLongBits(this.idmenu) >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SgPrivilegios other = (SgPrivilegios) obj;
+        if (Double.doubleToLongBits(this.idprogram) != Double.doubleToLongBits(other.idprogram)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.idmenu) != Double.doubleToLongBits(other.idmenu)) {
+            return false;
+        }
+        if (!Objects.equals(this.cod_usuario, other.cod_usuario)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Sgprivilegios{" + "cod_usuario=" + cod_usuario + ", idprogram=" + idprogram + ", idmenu=" + idmenu + '}';

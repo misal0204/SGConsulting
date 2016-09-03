@@ -33,20 +33,20 @@ public class controladorSgRol implements Serializable {
     /**
      * Creates a new instance of controladorSgRol
      */
-    private String SELECT_TABLE="SgRol.findAll";
-    private String SP_CREATE="SP_INSERT_SG_ROL";
-    private String SP_UPDATE="SP_UPDATE_SG_ROL";
-    private String SP_DELETE="SP_DELETE_SG_ROL";
-    private String SP_IN_PARAMETER1="P_IDROL";
-    private String SP_IN_PARAMETER2="P_NOMBRE";
-    private String SP_OUT_PARAMETER="P_RESULTADO";
-    private final String RESULT_SP="OK";
-    private final String msjDialog="form1:mjs";
-    private final String msjCreate="Se inserto correctamente";
-    private final String msjUpdate="Se actualizo correctamente";
-    private final String msjDelete="Se Elimino correctamente";
-    private final String error="La operacion no ha sido realiazada";
-    
+    private String SELECT_TABLE = "SgRol.findAll";
+    private String SP_CREATE = "SP_INSERT_SG_ROL";
+    private String SP_UPDATE = "SP_UPDATE_SG_ROL";
+    private String SP_DELETE = "SP_DELETE_SG_ROL";
+    private String SP_IN_PARAMETER1 = "P_IDROL";
+    private String SP_IN_PARAMETER2 = "P_NOMBRE";
+    private String SP_OUT_PARAMETER = "P_RESULTADO";
+    private final String RESULT_SP = "OK";
+    private final String msjDialog = "form1:msj";
+    private final String msjCreate = "Se inserto correctamente";
+    private final String msjUpdate = "Se actualizo correctamente";
+    private final String msjDelete = "Se Elimino correctamente";
+    private final String error = "La operacion no ha sido realiazada";
+
     private SgAutenticar autenticar;
     private SgRol sgrol;
 
@@ -63,7 +63,7 @@ public class controladorSgRol implements Serializable {
         db = new ConnectDB();
         emf = db.accesoDB(autenticar.getUser(), autenticar.getPass());
     }
-    
+
     public controladorSgRol() {
     }
 
@@ -77,11 +77,11 @@ public class controladorSgRol implements Serializable {
             result = query.getResultList();
 
         } catch (Exception e) {
-            System.err.println("Error sgrol: " + e.getMessage());
-        }finally{
+            System.err.println(e.getMessage());
+        } finally {
             em.close();
         }
-        
+
         return result;
     }
 
@@ -96,15 +96,18 @@ public class controladorSgRol implements Serializable {
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
 
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjCreate));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(error + " : " + resultado));
             }
 
         } catch (Exception e) {
-            System.err.println("Error sgrol: " + e.getMessage());
-        }finally{
+            System.err.println(e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(e.getMessage()));
+        } finally {
             em.close();
         }
     }
@@ -119,14 +122,17 @@ public class controladorSgRol implements Serializable {
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
 
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjUpdate));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(error + " : " + resultado));
             }
         } catch (Exception e) {
-            System.err.println("Error sgrol: " + e.getMessage());
-        } finally{
+            System.err.println(e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(e.getMessage()));
+        } finally {
             em.close();
         }
     }
@@ -140,13 +146,16 @@ public class controladorSgRol implements Serializable {
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjDelete));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(error + " : " + resultado));
             }
         } catch (Exception e) {
-            System.err.println("Error sgrol: " + e.getMessage());
-        } finally{
+            System.err.println(e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(e.getMessage()));
+        } finally {
             em.close();
         }
     }

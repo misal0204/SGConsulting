@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
+import sg.sistemas.util.ManejoSessiones;
 
 /**
  *
@@ -56,7 +57,7 @@ public class controladorAcesso implements Serializable {
 
             if (em != null) {
                 ss = request.getSession(false);
-                ss.setAttribute("credenciales", autenticar);
+                ss.setAttribute(ManejoSessiones.sessionName, autenticar);
                 page = "menuprincipal?faces-redirect=true";
 
             } else {

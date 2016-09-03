@@ -97,7 +97,7 @@ public class controladorSgMotivo implements Serializable{
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
 
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjCreate));
@@ -120,7 +120,7 @@ public class controladorSgMotivo implements Serializable{
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
 
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjUpdate));
@@ -141,7 +141,7 @@ public class controladorSgMotivo implements Serializable{
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjDelete));
             }

@@ -17,7 +17,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
-import sg.sistemas.entidades.SgprocesosSistema;
 import sg.sistemas.entidades.Sgtcausa;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
@@ -102,7 +101,7 @@ public class controladorSgtcausa implements Serializable {
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
 
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjCreate));
@@ -125,7 +124,7 @@ public class controladorSgtcausa implements Serializable {
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
 
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjUpdate));
@@ -146,7 +145,7 @@ public class controladorSgtcausa implements Serializable {
             query.execute();
 
             String resultado = (String) query.getOutputParameterValue(SP_OUT_PARAMETER);
-            System.out.println("Resultado: " + resultado);
+            System.out.println(resultado);
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjDelete));
             }

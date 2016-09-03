@@ -15,6 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.ParameterMode;
 import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
+import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
 import sg.sistemas.entidades.Sgusuario;
 import sg.sistemas.entity.SgAutenticar;
@@ -69,15 +70,12 @@ public class AppMenu implements Serializable {
                         .setParameter("codUsuario", datos.getUser());
 
                 sg = (Sgusuario) q.getSingleResult();
-                /*System.out.println("Nombre: " + usuario.getUsuario());
-                System.out.println("Nombre: " + usuario.getDui());
-                System.out.println("Nombre: " + usuario.getEmail());*/
             }
 
         } catch (Exception e) {
             System.err.println("Error AppMenu " + e.getMessage());
         } finally {
-            emf.close();
+            em.close();
         }
 
         return sg;
@@ -92,10 +90,9 @@ public class AppMenu implements Serializable {
 
             em.getTransaction().begin();
 
-            StoredProcedureQuery query = em.createStoredProcedureQuery("SP_SELECT_SGPRIVILEGIOS", SgPrivilegios.class);
-            query.registerStoredProcedureParameter("P_COD_USUARIO", String.class, ParameterMode.IN);
-            query.setParameter("P_COD_USUARIO", "mrecinos");
-            query.execute();
+            TypedQuery<SgPrivilegios> query = em.createNamedQuery("SgPrivilegios.findByUser", SgPrivilegios.class);
+            query.setParameter("cod_usuario", datos.getUser());
+            
             result = query.getResultList();
 
             for (SgPrivilegios l : result) {

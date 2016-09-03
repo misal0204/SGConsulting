@@ -16,18 +16,25 @@ import javax.persistence.Persistence;
  * @author Misael
  */
 public class ConnectDB {
+
     private EntityManagerFactory emf;
     private EntityManager em;
     public static String namePersistenceUnit = "SGSistemasPU";
-    
-    public EntityManagerFactory accesoDB(String usuario,String pass)
-    {
-        Map properties = PropertiesPersistence(usuario, pass);
-        emf= Persistence.createEntityManagerFactory(namePersistenceUnit, properties);
-        return emf;
+
+    public EntityManagerFactory accesoDB(String usuario, String pass) {
+        try {
+
+            Map properties = PropertiesPersistence(usuario, pass);
+            emf = Persistence.createEntityManagerFactory(namePersistenceUnit, properties);
+            return emf;
+        } catch (Exception e) {
+            
+            System.err.println("Error en conexion: "+e.getMessage());
+            return null;
+        }
     }
-    
-    private Map PropertiesPersistence(String usuario, String pass){
+
+    private Map PropertiesPersistence(String usuario, String pass) {
         Map properties = new HashMap();
         properties.put("javax.persistence.jdbc.user", usuario);
         properties.put("javax.persistence.jdbc.password", pass);

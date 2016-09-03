@@ -103,15 +103,12 @@
     <class>sg.sistemas.entidades.Sgproveedores</class>
     <class>sg.sistemas.entidades.SgeficaciaRrhh</class>
     <class>sg.sistemas.entidades.SganexoNoacc</class>
-    <class>sg.sistemas.entidades.Sgorganigrama</class>
-    <class>sg.sistemas.entidades.SgsociedadDetalle</class>
-    <class>sg.sistemas.entidades.SgusuarioSociedad</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgsolution?zeroDateTimeBehavior=convertToNull"/>
-      <property name="javax.persistence.jdbc.user" value="sgsolution"/>
+      <!--<property name="javax.persistence.jdbc.user" value="sgsolution"/>-->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="Manager$15"/>
+      <!--<property name="javax.persistence.jdbc.password" value="Manager$15"/>-->
     </properties>
   </persistence-unit>
 </persistence>
