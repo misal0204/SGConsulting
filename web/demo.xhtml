@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="#{appBeans.baseUrlBootstrap()}css/bootstrap.css"/>
+        <!-- jQuery 2.2.0 -->
+        <script src="#{appBeans.baseUrlPlugins()}jQuery/jQuery-2.2.0.min.js"></script>
+        <!-- Bootstrap 3.3.6 -->
+        <script src="#{appBeans.baseUrlBootstrap()}/js/bootstrap.min.js"></script>
+            <link rel="stylesheet" href="#{appBeans.baseUrlPlugins()}bootstrap-table/bootstrap-table.css"/>
+            <script src="#{appBeans.baseUrlPlugins()}bootstrap-table/bootstrap-table.js"></script>
+            <script src="#{appBeans.baseUrlPlugins()}bootstrap-table/bootstrap-table-es-MX.js"></script>
+            <script src="#{appBeans.baseUrlPlugins()}custom/EMPLEADOS.js"></script>
+    </head>
+    <body>
+        <div id="toolbarDemo">
+            <a class="btn btn-success"><i class="glyphicon glyphicon-plus-sign"/> Nuevo</a>
+        </div>
+        <h:dataTable id="TABL_ROL" value="#{ctrlRol.readAllRol()}" var="row"
+                         class="table table-hover table-bordered table-condensed table-striped datatable"
+                         pt:data-search="true"
+                         pt:data-toolbar="#toolbarDemo"
+                         pt:data-search-align="right"
+                         pt:data-buttons-align="left"
+                         pt:data-toolbar-align="left"
+                         pt:data-pagination="true"                                            
+                         pt:data-click-to-select="true" 
+                         pt:data-select-item-name="radio"
+                         pt:data-single-select="true">
+            <h:column pt:data-field="state" pt:data-checkbox="true">   
+                    ${row.idrol}
+            </h:column>
+            <h:column pt:data-field="id" pt:data-visible="false">
+                <f:facet name="header" class="widget-header">
+                    Id
+                </f:facet>
+                    #{row.idrol}
+            </h:column>
+            <h:column>                                            
+                <f:facet name="header" class="widget-header">
+                    Descripción
+                </f:facet>
+                    #{row.nombre}
+            </h:column>
+        </h:dataTable>
+    </body>
+</html>

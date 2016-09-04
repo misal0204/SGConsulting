@@ -17,9 +17,11 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 import sg.sistemas.entidades.SgRol;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
@@ -117,6 +119,106 @@ public class controladorSgRol implements Serializable {
         }
 
         return result;
+    }
+    
+    public void nuevoElem()
+    {
+        RequestContext context = RequestContext.getCurrentInstance();
+        try
+        {
+            this.sgrol = new SgRol();
+            context.execute("ABRI_FORM();");
+        }
+        catch(Exception ex)
+        {}
+        finally
+        {}
+    }
+    
+    public void consultarElem()
+    {
+        RequestContext context = RequestContext.getCurrentInstance();
+        String codi = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codi");
+        try
+        {
+            em = emf.createEntityManager();
+            this.sgrol = em.find(SgRol.class, codi);
+            this.btnInsert = false;
+            context.execute("ABRI_FORM();");
+            context.execute("setMessage('MESS_INFO', 'Atención', 'Registro consultado');");
+        }
+        catch(Exception ex)
+        {
+            context.execute("setMessage('MESS_ERRO', 'Error', '" + ex.getMessage() + "');");
+        }
+        finally
+        {}
+    }
+    
+    public void guardarElem()
+    {
+        RequestContext context = RequestContext.getCurrentInstance();
+        em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        try
+        {
+            em.persist(this.sgrol);
+            this.btnInsert = false;
+            tx.commit();
+            context.execute("setMessage('MESS_INFO', 'Atención', 'Guardado');");
+        }
+        catch(Exception ex)
+        {
+            context.execute("setMessage('MESS_ERRO', 'Error', '" + ex.getMessage() + "');");
+            tx.rollback();
+        }
+        finally
+        {}
+    }
+    
+    public void actualizarElem()
+    {
+        RequestContext context = RequestContext.getCurrentInstance();
+        em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        try
+        {
+            em.merge(this.sgrol);
+            this.btnInsert = false;
+            tx.commit();
+            context.execute("setMessage('MESS_INFO', 'Atención', 'Modificado');");
+        }
+        catch(Exception ex)
+        {
+            context.execute("setMessage('MESS_ERRO', 'Error', '" + ex.getMessage() + "');");
+            tx.rollback();
+        }
+        finally
+        {}
+    }
+    
+    public void eliminarElem()
+    {
+        RequestContext context = RequestContext.getCurrentInstance();
+        em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        try
+        {
+            em.remove(this.sgrol);
+            this.btnInsert = false;
+            tx.commit();
+            context.execute("setMessage('MESS_INFO', 'Atención', 'Eliminado');");
+        }
+        catch(Exception ex)
+        {
+            context.execute("setMessage('MESS_ERRO', 'Error', '" + ex.getMessage() + "');");
+            tx.rollback();
+        }
+        finally
+        {}
     }
 
     public void insertRol() {

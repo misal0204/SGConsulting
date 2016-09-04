@@ -42,15 +42,15 @@
         <link rel="stylesheet" href="#{appBeans.baseUrlPlugins()}bootstrap-wysihtml5/bootstrap3-wysihtml5.css"/>
 
         <link rel="stylesheet" href="#{appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.css"/>
-        <script src="#{appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.js"></script>
+        <!--script src="{appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.js"></script-->
 
-        <script type="text/javascript" src="#{appBeans.baseUrlPlugins()}datatables/dataTables.bootstrap.js"></script>
+        <!--script type="text/javascript" src="{appBeans.baseUrlPlugins()}datatables/dataTables.bootstrap.js"></script-->
         
-        <script type="text/javascript" charset="utf-8">
+        <!--script type="text/javascript" charset="utf-8">
             $(document).ready(function () {
                 $('#dataTableSgRol').DataTable();
             });
-        </script>
+        </script-->
     </h:head>
     <h:body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -555,6 +555,7 @@
             <div class="control-sidebar-bg"></div>
         </div>
         <!-- ./wrapper -->
+    </h:body>
 
         <!-- REQUIRED JS SCRIPTS -->
 
@@ -571,9 +572,9 @@
         <script>
             $.widget.bridge('uibutton', $.ui.button);
         </script>
-        <!-- Morris.js charts -->
+        <!-- Morris.js charts
         <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="#{appBeans.baseUrlPlugins()}morris/morris.min.js"></script>
+        <script src="# {appBeans.baseUrlPlugins()}morris/morris.min.js"></script> -->
         <!-- Sparkline -->
         <script src="#{appBeans.baseUrlPlugins()}sparkline/jquery.sparkline.min.js"></script>
         <!-- jvectormap -->
@@ -593,23 +594,22 @@
         <!-- FastClick -->
         <script src="#{appBeans.baseUrlPlugins()}fastclick/fastclick.js"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="#{appBeans.baseUrlDist()}js/pages/dashboard.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="#{appBeans.baseUrlDist()}js/pages/dashboard2.js"></script>
+        <!--script src="# {appBeans.baseUrlDist()}js/pages/dashboard.js"></script-->
+        <!-- AdminLTE dashboard demo (This is only for demo purposes)-->
+        <!--script src="# {appBeans.baseUrlDist()}js/pages/dashboard2.js"></script>-->
         <!-- AdminLTE for demo purposes -->
         <script src="#{appBeans.baseUrlDist()}js/demo.js"></script>
         <!-- ChartJS 1.0.1 -->
         <script src="#{appBeans.baseUrlPlugins()}chartjs/Chart.min.js"></script>
-
-        <script src="#{appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.js"></script>
         <ui:insert name="scriptsPersonalizados"></ui:insert>
 
-        <script type="text/javascript">
+        <!--script src="# {appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.js"></script-->
+
+        <!--script type="text/javascript">
             // For demo to fit into DataTables site builder...
             $('#dataTableSgRol')
                     .removeClass('display')
                     .addClass('table table-striped table-bordered');
-        </script>
-    </h:body>
+        </script-->
 </html>
 

@@ -21,10 +21,8 @@
                             <!--Inicio menubar-->
                             <div class="box-body">
                                 <div class="btn-group col-sm-8">
-                                    <a data-toggle="modal" data-target="#ModalNuevo">
-                                        <button type="button" class="btn btn-primary col-sm-2">
-                                            <i class="chevron-right glyphicon glyphicon-plus-sign"/> &nbsp; Nuevo
-                                        </button>
+                                    <a data-toggle="modal" data-target="#ModalNuevo" class="btn btn-primary">
+                                        <i class="chevron-right glyphicon glyphicon-plus-sign"/> &nbsp; Nuevo
                                     </a>
 
                                     <!--a data-toggle="modal" data-target="#ModalEditar">
@@ -33,16 +31,12 @@
                                         </button>
                                     </a-->
 
-                                    <a data-toggle="modal" data-target="#ModalEliminar">
-                                        <button type="button" class="btn btn-primary col-sm-2">
+                                    <a data-toggle="modal" data-target="#ModalEliminar" class="btn btn-primary">
                                             <i class="glyphicon glyphicon-trash"/> &nbsp; Eliminar
-                                        </button>
                                     </a>
 
-                                    <a>
-                                        <button type="button" class="btn btn-primary col-sm-2">
+                                    <a class="btn btn-primary">
                                             <i class="glyphicon glyphicon-print"/> &nbsp; Imprimir
-                                        </button>
                                     </a>
                                 </div>
                             </div>
@@ -165,16 +159,18 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+                                            <h4 class="modal-title custom_align" id="Heading">Eliminar rol/es</h4>
                                         </div>
                                         <div class="modal-body">
 
-                                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+                                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Esta seguro/a que quiere eliminar estos elementos de la base de datos</div>
 
                                         </div>
                                         <div class="modal-footer ">
-                                            <h:commandButton class="btn btn-success" action="#{ctrlRol.submit()}"><span class="glyphicon glyphicon-ok-sign"></span> Yes</h:commandButton>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                                            <h:form>
+                                            <h:commandButton class="btn btn-success" action="#{ctrlRol.submit()}" value="Si"/>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                            </h:form>
                                         </div>
                                     </div>
                                     <!-- /.modal-content --> 
@@ -183,7 +179,7 @@
                             </div>
                             <!-- fin de la menubar-->
 
-                            <h:commandButton value="seleccionados" action="#{ctrlRol.submit()}"/>
+                            <!--h:commandButton value="seleccionados" action="{ctrlRol.submit()}"/-->
 
                             <!-- Inicio del data Table-->
                             <div class="box-body">
@@ -220,7 +216,7 @@
                                             <f:facet name="header">
                                                 Eliminar
                                             </f:facet>
-                                            <h:selectBooleanCheckbox value="#{ctrlRol.checked[atributo.idrol]}"/>
+                                            <!--h:selectBooleanCheckbox value="{ctrlRol.checked[atributo.idrol]}"/-->
                                         </h:column>
                                     </h:dataTable>
                                 </div>
