@@ -100,7 +100,6 @@ public class controladorSgRol implements Serializable {
         inputText = false;
         btnInsert = true;
         btnClose = false;
-
     }
 
     public List<SgRol> readAllRol() {
@@ -145,7 +144,7 @@ public class controladorSgRol implements Serializable {
             this.sgrol = em.find(SgRol.class, codi);
             this.btnInsert = false;
             context.execute("ABRI_FORM();");
-            context.execute("setMessage('MESS_INFO', 'Atención', 'Registro consultado');");
+            //context.execute("setMessage('MESS_INFO', 'Atención', 'Registro consultado');");
         }
         catch(Exception ex)
         {
@@ -207,10 +206,11 @@ public class controladorSgRol implements Serializable {
         tx.begin();
         try
         {
-            em.remove(this.sgrol);
+            em.remove(em.merge(this.sgrol));
             this.btnInsert = false;
             tx.commit();
             context.execute("setMessage('MESS_INFO', 'Atención', 'Eliminado');");
+            context.execute("CERR_FORM();");
         }
         catch(Exception ex)
         {
@@ -309,11 +309,11 @@ public class controladorSgRol implements Serializable {
 
     public SgRol getSgrol() {
         return sgrol;
-    }
+    } //YA ---------------------------------------------
 
     public void setSgrol(SgRol sgrol) {
         this.sgrol = sgrol;
-    }
+    } //YA ---------------------------------------------
 
     public boolean isInputText() {
         return inputText;

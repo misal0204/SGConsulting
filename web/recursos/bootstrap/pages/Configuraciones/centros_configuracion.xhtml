@@ -4,186 +4,157 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./../../../../plantilla_general.xhtml">
 
+            <ui:define name="scriptsPersonalizados">
+                <link rel="stylesheet" href="#{appBeans.baseUrlPlugins()}toastr/toastr.css"/>
+                <script src="#{appBeans.baseUrlPlugins()}toastr/toastr.min.js"></script>
+                <script src="#{appBeans.baseUrlPlugins()}custom/MENS.js"></script>
+                <script src="#{appBeans.baseUrlPlugins()}bootstrap-tooltip/bootstrap-tooltip.js"></script>
+                <script src="#{appBeans.baseUrlPlugins()}confirmation/bootstrap-confirmation.min.js"></script>
+                <link rel="stylesheet" href="#{appBeans.baseUrlPlugins()}bootstrap-table/bootstrap-table.css"/>
+                <script src="#{appBeans.baseUrlPlugins()}bootstrap-table/bootstrap-table.js"></script>
+                <script src="#{appBeans.baseUrlPlugins()}bootstrap-table/bootstrap-table-es-MX.js"></script>
+                <script src="#{appBeans.baseUrlPlugins()}custom/EMPLEADOS.js"></script>
+            </ui:define>
+
             <ui:define name="content">
-                <h:form>
-                    <div class="content">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3>Centros de Distribución</h3>
+                <div class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h1 class="box-title">Mantenimiento Centros</h1>
+                        </div>
+
+                        <div class="box-body">
+                            <div class="modal fade" id="MODA_ELEM" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <h:form id="FORM_ELEM" styleClass="form-horizontal">
+                                            <p:remoteCommand name="guarElem" process="@form" update="@form :PanelTablaElem" 
+                                                             actionListener="#{ctrlCentros.guardarElem()}" oncomplete="REFR_OBJE_ROL(); REFR_OBJE_FORM_ROL();"/>
+                                            <p:remoteCommand name="actuElem" process="@form" update="@form :PanelTablaElem" 
+                                                             actionListener="#{ctrlCentros.actualizarElem()}" oncomplete="REFR_OBJE_ROL(); REFR_OBJE_FORM_ROL();"/>
+                                            <p:remoteCommand name="elimElem" process="@form" update="@form :PanelTablaElem" 
+                                                             actionListener="#{ctrlCentros.eliminarElem()}" oncomplete="REFR_OBJE_ROL(); REFR_OBJE_FORM_ROL();"/>
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                    <i class="fa fa-times fa fa-white"></i>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">Formulario Centro</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <fieldset>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group ">
+                                                            <div class="col-lg-12">
+                                                                <h:outputLabel styleClass="control-label">Centro: <span class="symbol required"/></h:outputLabel>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <h:inputText value="#{ctrlCentros.sgcentro.idcentro}" id="codi" styleClass="form-control" pt:placeholder="Ingrese el Código"
+                                                                             readonly="#{ctrlCentros.btnInsert eq false}"/>
+                                                            </div>
+                                                        </div>   
+                                                        <div class="form-group ">
+                                                            <div class="col-lg-12">
+                                                                <h:outputLabel styleClass="control-label">Descripción: <span class="symbol required"/></h:outputLabel>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <h:inputText value="#{ctrlCentros.sgcentro.descripcion}" id="nomb" styleClass="form-control" pt:placeholder="Ingrese el nombre"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="btn-group">
+                                                    <h:outputLink class="btn btn-default" pt:data-dismiss="modal">
+                                                        <i class="fa fa-share"></i>
+                                                        Cerrar
+                                                    </h:outputLink>
+                                                    <h:panelGroup rendered="#{ctrlCentros.btnInsert}">
+                                                        <h:outputLink id="btnGuarElem" class="btn btn-primary">
+                                                            <i class="fa fa-plus"></i>
+                                                            Guardar
+                                                        </h:outputLink>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{ctrlCentros.btnInsert eq false}">
+                                                        <h:outputLink id="btnEditElem" class="btn btn-warning">
+                                                            <i class="fa fa-exclamation-triangle"></i>
+                                                            Modificar
+                                                        </h:outputLink>
+                                                        <h:outputLink id="btnElimElem" class="btn btn-danger" pt:data-title="¿Está seguro?"
+                                                                      pt:data-toggle="confirmation-popout" pt:data-placement="left"
+                                                                      pt:data-btnOkClass="btn-danger" pt:data-btnOkLabel="Sí"
+                                                                      pt:data-btnCancelClass="btn-default" pt:data-btnCancelLabel="No">
+                                                            <i class="fa fa-times fa fa-white"></i>
+                                                            Eliminar
+                                                        </h:outputLink>
+                                                    </h:panelGroup>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
                             </div>
-                            
-                            <h:commandButton value="seleccionados" action="#{ctrlRol.submit()}"/>
-                            
-                            <div class="content">                                
-                                <h:dataTable value="#{ctrlRol.readAllRol()}" var="atributo" class="table table-striped table-bordered display" id="dataTableSgRol" cellspacing="0">
-                                    <f:facet name="header" class="row">
-
-                                        <div class="col-sm-6">
-                                            <!-- Button trigger modal Insertar-->
-                                            <a data-toggle="modal" data-target="#ModalCrear">
-                                                <h:commandButton type="button" class="btn btn-primary" value="Nuevo +"/>
-                                            </a>                                            
+                            <h:panelGroup id="PanelTablaElem">
+                                <div id="toolbarDemo">
+                                    <h:form>
+                                        <div class="btn-group">
+                                            <p:remoteCommand name="consElem" actionListener="#{ctrlCentros.consultarElem()}" update=":FORM_ELEM"/>
+                                            <h:commandLink class="btn btn-primary" actionListener="#{ctrlCentros.nuevoElem()}">
+                                                <f:ajax render="FORM_ELEM"/>
+                                                <i class="glyphicon glyphicon-plus-sign"/> Nuevo
+                                            </h:commandLink>
+                                            <h:commandLink class="btn btn-primary">
+                                                <f:ajax render="FORM_ELEM"/>
+                                                <i class="glyphicon glyphicon-print"/> Imprimir
+                                            </h:commandLink>
                                         </div>
-
-                                        <div class="col-sm-6">
-                                            <h:outputLabel value="Buscar: " for="ID"/>
-                                            &nbsp;
-                                            <h:inputText id="ID"/>
-                                        </div>
-                                    </f:facet>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            Id de Rol
-                                        </f:facet>
-                                        #{atributo.idrol}
+                                    </h:form>
+                                </div>
+                                <h:dataTable id="TABL_ROL" value="#{ctrlCentros.readAllCentros()}" var="row"
+                                             class="table table-hover table-bordered table-condensed table-striped datatable"
+                                             pt:data-search="true"
+                                             pt:data-show-refresh="false"
+                                             pt:data-show-toggle="false"
+                                             pt:data-show-columns="false"
+                                             pt:data-toolbar="#toolbarDemo"
+                                             pt:data-search-align="right"
+                                             pt:data-buttons-align="left"
+                                             pt:data-toolbar-align="left"
+                                             pt:data-pagination="true"                                            
+                                             pt:data-click-to-select="true" 
+                                             pt:data-select-item-name="radio"
+                                             pt:data-single-select="true">
+                                    <h:column pt:data-field="state" pt:data-checkbox="true">   
+                                        ${row.idcentro}
                                     </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            Rol de usuario
+                                    <h:column pt:data-field="id" pt:data-visible="true">
+                                        <f:facet name="header" class="widget-header">
+                                            Centro
                                         </f:facet>
-                                        #{atributo.nombre}
+                                        #{row.idcentro}
                                     </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            Editar
+                                    <h:column>                                            
+                                        <f:facet name="header" class="widget-header">
+                                            Descripción
                                         </f:facet>
-
-                                        <!-- Button trigger modal Insertar-->
-                                        <a data-toggle="modal" data-target="#ModalInsertar">
-                                            <h:commandButton type="button" class="btn btn-primary btn-lg" style="display: none">
-                                                <button class="btn btn-default glyphicon glyphicon-edit btn-xs"/>
-                                            </h:commandButton>
-                                        </a>
-
-                                    </h:column>                                    
-                                    <h:column>
-                                        <f:facet name="header">
-                                            Eliminar
-                                        </f:facet>
-                                        <!-- Button trigger modal Eliminar-->
-                                        <h:selectBooleanCheckbox value="#{ctrlRol.checked[dato.idrol]}" />
+                                        #{row.descripcion}
                                     </h:column>
                                 </h:dataTable>
+                            </h:panelGroup>
+                        </div>
 
-                                <!-- Modal Nuevo -->
-                                <div class="modal fade" id="ModalCrear" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <h:form class="form-horizontal">
-                                                <div class="modal-header">
-                                                    <a data-dismiss="modal" aria-label="Close">
-                                                        <h:commandButton type="button" class="close" value="X"/>
-                                                    </a>
-                                                    <h4 class="modal-title" id="myModalLabel">Nuevo Centro de Distribución</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="box-body">
-                                                        <div class="form-group">
-                                                            <h:outputLabel for="inputCentroID" class="col-sm-4 control-label" value="Id Centro"/>
-                                                            <div class="col-sm-8">
-                                                                <h:inputText class="form-control" id="inputCentroID" value="#{ctrlCentros.sgcentro.idcentro}" p:placeholder="ID" maxlength="4" required="true" requiredMessage="Este valor es obligatorio.">
-                                                                    
-                                                                </h:inputText>
-                                                            </div>
-                                                        </div>
-                                                        <div class="box-body"/>
-                                                        <div class="form-group">
-                                                            <h:outputLabel for="inputCentro" class="col-sm-4 control-label" value="Centro de distribución"/>
-                                                            <div class="col-sm-8">
-                                                                <h:inputText class="form-control" id="inputCentro" value="#{ctrlCentros.sgcentro.descripcion}" p:placeholder="Centro de distribución" required="true" requiredMessage="Este valor es obligatorio.">
-                                                                    
-                                                                </h:inputText>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a data-dismiss="modal">
-                                                        <h:commandButton type="button" class="btn btn-default"  value="Cerrar"/>
-                                                    </a>
-                                                    <h:commandButton type="button" class="btn btn-primary" value="Crear" action="#{ctrlCentros.insertCentros()}" />    
-                                                </div>
-                                            </h:form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Fin Modal Editar -->
+                        <div class="box-footer">
 
-                                <!-- Modal Editar -->
-                                <div class="modal fade" id="ModalInsertar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <a data-dismiss="modal" aria-label="Close">
-                                                    <h:commandButton type="button" class="close" value="X"/>
-                                                </a>
-                                                <h4 class="modal-title" id="myModalLabel">Nuevo Centro de Distribución</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h:form class="form-horizontal" rendered="">
-                                                    <div class="box-body">
-                                                        <div class="form-group">
-                                                            <h:outputLabel for="inputCentroID" class="col-sm-4 control-label" value="Id Centro"/>
-                                                            <div class="col-sm-8">
-                                                                <h:inputText class="form-control" id="inputCentroID" p:placeholder="#{atributo.idrol}" maxlength="4" disabled="true" value="#{ctrlCentros.sgcentro.idcentro}">
-                                                                    
-                                                                </h:inputText>
-                                                            </div>
-                                                        </div>
-                                                        <div class="box-body"/>
-                                                        <div class="form-group">
-                                                            <h:outputLabel for="inputCentro" class="col-sm-4 control-label" value="Centro de distribución"/>
-                                                            <div class="col-sm-8">
-                                                                <h:inputText class="form-control" id="inputCentro" p:placeholder="#{atributo.nombre}" value="#{ctrlCentros.sgcentro.descripcion}">
-                                                                    
-                                                                </h:inputText>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </h:form>                                                
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a data-dismiss="modal">
-                                                    <h:commandButton type="button" class="btn btn-default"  value="Cerrar"/>
-                                                </a>
-                                                <h:commandButton type="button" class="btn btn-primary" value="#{ctrlCentros.insertCentros()}"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Fin Modal Editar -->
-
-                                <!-- Modal Eliminar -->
-                                <div class="modal fade" id="ModalEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content alert alert-warning">
-                                            <div class="modal-body">
-                                                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-
-                                                Warning alert preview. This alert is dismissable.
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <h:commandButton type="button" class="btn btn-default" value="Si"/>
-                                                <a data-dismiss="modal">
-                                                    <h:commandButton type="button" class="btn btn-default"  value="No"/>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Modal Eliminar -->
-
-                            </div>
                         </div>
                     </div>
-                </h:form>
+                </div>
             </ui:define>
 
         </ui:composition>

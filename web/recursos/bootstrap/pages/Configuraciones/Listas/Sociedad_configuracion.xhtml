@@ -8,7 +8,9 @@
       xmlns:p="http://primefaces.org/ui">
 
     <body>
-        <ui:composition template="./../../../../plantilla_general.xhtml">
+
+        <ui:composition template="./../../../../../plantilla_general.xhtml">
+
             <ui:define name="scriptsPersonalizados">
                 <link rel="stylesheet" href="#{appBeans.baseUrlPlugins()}toastr/toastr.css"/>
                 <script src="#{appBeans.baseUrlPlugins()}toastr/toastr.min.js"></script>
@@ -20,11 +22,12 @@
                 <script src="#{appBeans.baseUrlPlugins()}bootstrap-table/bootstrap-table-es-MX.js"></script>
                 <script src="#{appBeans.baseUrlPlugins()}custom/mtto.js"></script>
             </ui:define>
+            
             <ui:define name="content">
                 <div class="content">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h1 class="box-title">Mantenimiento Roles</h1>
+                            <h1 class="box-title">Mantenimiento Sociedades</h1>
                         </div>
 
                         <div class="box-body">
@@ -42,14 +45,14 @@
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                                     <i class="fa fa-times fa fa-white"></i>
                                                 </button>
-                                                <h4 class="modal-title" id="myModalLabel">Formulario Rol</h4>
+                                                <h4 class="modal-title" id="myModalLabel">Formulario Sociedad</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <fieldset>
                                                     <div class="col-md-12">
                                                         <div class="form-group ">
                                                             <div class="col-lg-12">
-                                                                <h:outputLabel styleClass="control-label">Rol: <span class="symbol required"/></h:outputLabel>
+                                                                <h:outputLabel styleClass="control-label">Sociedad: <span class="symbol required"/></h:outputLabel>
                                                             </div>
                                                             <div class="col-lg-12">
                                                                 <h:inputText value="#{ctrlRol.sgrol.idrol}" id="codi" styleClass="form-control" pt:placeholder="Ingrese el Código"
@@ -133,7 +136,7 @@
                                     </h:column>
                                     <h:column pt:data-field="id" pt:data-visible="true">
                                         <f:facet name="header" class="widget-header">
-                                            Rol
+                                            Sociedad
                                         </f:facet>
                                         #{row.idrol}
                                     </h:column>
@@ -152,7 +155,9 @@
                         </div>
                     </div>
                 </div>
-            </ui:define>
+            </ui:define>            
+
         </ui:composition>
+
     </body>
 </html>

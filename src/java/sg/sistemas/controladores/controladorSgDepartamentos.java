@@ -6,7 +6,10 @@
 package sg.sistemas.controladores;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -14,9 +17,11 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 import sg.sistemas.entidades.Sgdepartamento;
 import sg.sistemas.entity.SgAutenticar;
 import sg.sistemas.util.ConnectDB;
@@ -43,7 +48,14 @@ public class controladorSgDepartamentos implements Serializable {
     private final String msjUpdate = "Se actualizo correctamente";
     private final String msjDelete = "Se Elimino correctamente";
     private final String error = "La operacion no ha sido realiazada";
+    
+    private boolean inputText = false;
+    private boolean btnInsert = true;
+    private boolean btnClose = false;
 
+    private Map<String, Boolean> checked = new HashMap<String, Boolean>();
+    private List<Sgdepartamento> items;
+    
     /**
      * Creates a new instance of controladorSgDepartamentos
      */
@@ -66,7 +78,30 @@ public class controladorSgDepartamentos implements Serializable {
 
     public controladorSgDepartamentos() {
     }
+    
+    public void submit() {
+        List<Sgdepartamento> checkedItems = new ArrayList<Sgdepartamento>();
+        items = readAllCentros();
 
+        for (Sgdepartamento item : items) {
+            if (checked.get(sgdepartamento.getIddept())) {
+                checkedItems.add(item);
+            }
+        }
+
+        for (Sgdepartamento r : checkedItems) {
+            System.out.println("seleccionado: " + r.getIddept()+ " " + r.getDescripcion()+ " Eliminado");
+            deleteCentros(r.getIddept());
+        }
+        checked.clear();
+    }
+    
+    public void changeState() {
+        inputText = false;
+        btnInsert = true;
+        btnClose = false;
+    }
+    
     public List<Sgdepartamento> readAllCentros() {
         List<Sgdepartamento> result = null;
 
@@ -87,6 +122,107 @@ public class controladorSgDepartamentos implements Serializable {
         }
         return result;
     }
+    
+    public void nuevoElem()
+    {
+        RequestContext context = RequestContext.getCurrentInstance();
+        try
+        {
+            this.sgdepartamento = new Sgdepartamento();
+            context.execute("ABRI_FORM();");
+        }
+        catch(Exception ex)
+        {}
+        finally
+        {}
+    }
+    
+    public void consultarElem()
+    {
+        RequestContext context = RequestContext.getCurrentInstance();
+        String codi = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codi");
+        try
+        {
+            em = emf.createEntityManager();
+            this.sgdepartamento = em.find(Sgdepartamento.class, codi);
+            this.btnInsert = false;
+            context.execute("ABRI_FORM();");
+            //context.execute("setMessage('MESS_INFO', 'Atención', 'Registro consultado');");
+        }
+        catch(Exception ex)
+        {
+            context.execute("setMessage('MESS_ERRO', 'Error', '" + ex.getMessage() + "');");
+        }
+        finally
+        {}
+    }
+    
+    public void guardarElem()
+    {
+        RequestContext context = RequestContext.getCurrentInstance();
+        em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        try
+        {
+            em.persist(this.sgdepartamento);
+            this.btnInsert = false;
+            tx.commit();
+            context.execute("setMessage('MESS_INFO', 'Atención', 'Guardado');");
+        }
+        catch(Exception ex)
+        {
+            context.execute("setMessage('MESS_ERRO', 'Error', '" + ex.getMessage() + "');");
+            tx.rollback();
+        }
+        finally
+        {}
+    }
+    
+    public void actualizarElem()
+    {
+        RequestContext context = RequestContext.getCurrentInstance();
+        em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        try
+        {
+            em.merge(this.sgdepartamento);
+            this.btnInsert = false;
+            tx.commit();
+            context.execute("setMessage('MESS_INFO', 'Atención', 'Modificado');");
+        }
+        catch(Exception ex)
+        {
+            context.execute("setMessage('MESS_ERRO', 'Error', '" + ex.getMessage() + "');");
+            tx.rollback();
+        }
+        finally
+        {}
+    }
+    
+    public void eliminarElem()
+    {
+        RequestContext context = RequestContext.getCurrentInstance();
+        em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        try
+        {
+            em.remove(em.merge(this.sgdepartamento));
+            this.btnInsert = false;
+            tx.commit();
+            context.execute("setMessage('MESS_INFO', 'Atención', 'Eliminado');");
+            context.execute("CERR_FORM();");
+        }
+        catch(Exception ex)
+        {
+            context.execute("setMessage('MESS_ERRO', 'Error', '" + ex.getMessage() + "');");
+            tx.rollback();
+        }
+        finally
+        {}
+    }//fin
 
     public void insertCentros() {
         try {
@@ -133,11 +269,11 @@ public class controladorSgDepartamentos implements Serializable {
         }
     }
 
-    public void deleteCentros() {
+    public void deleteCentros(String id) {
         try {
             em = emf.createEntityManager();
             StoredProcedureQuery query = em.createNamedStoredProcedureQuery(SP_DELETE);
-            query.setParameter(SP_IN_PARAMETER1, sgdepartamento.getIddept());
+            query.setParameter(SP_IN_PARAMETER1, id);
             
             query.execute();
 
@@ -145,9 +281,12 @@ public class controladorSgDepartamentos implements Serializable {
             System.out.println(resultado);
             if (resultado.equals(RESULT_SP)) {
                 FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(msjDelete));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(error + " : " + resultado));
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(msjDialog, new FacesMessage(e.getMessage()));
         } finally{
             em.close();
         }
@@ -160,5 +299,52 @@ public class controladorSgDepartamentos implements Serializable {
     public void setSgdepartamento(Sgdepartamento sgdepartamento) {
         this.sgdepartamento = sgdepartamento;
     }
+    
+    public SgAutenticar getAutenticar() {
+        return autenticar;
+    }
 
+    public void setAutenticar(SgAutenticar autenticar) {
+        this.autenticar = autenticar;
+    }
+    
+    public boolean isInputText() {
+        return inputText;
+    }
+
+    public void setInputText(boolean inputText) {
+        this.inputText = inputText;
+    }
+
+    public boolean isBtnInsert() {
+        return btnInsert;
+    }
+
+    public void setBtnInsert(boolean btnInsert) {
+        this.btnInsert = btnInsert;
+    }
+
+    public boolean isBtnClose() {
+        return btnClose;
+    }
+
+    public void setBtnClose(boolean btnClose) {
+        this.btnClose = btnClose;
+    }
+
+    public Map<String, Boolean> getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Map<String, Boolean> checked) {
+        this.checked = checked;
+    }
+
+    public List<Sgdepartamento> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Sgdepartamento> items) {
+        this.items = items;
+    }
 }

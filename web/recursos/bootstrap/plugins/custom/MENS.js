@@ -8,7 +8,7 @@ function setMessage(tipo, title, msg)
         "positionClass": "toast-top-right",
         "preventDuplicates": false,
         "onclick": null,
-        "showDuration": "300",
+        "showDuration": "900",
         "hideDuration": "1000",
         "timeOut": "3000",
         "extendedTimeOut": "1000",

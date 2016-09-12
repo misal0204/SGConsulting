@@ -45,7 +45,7 @@
         <!--script src="{appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.js"></script-->
 
         <!--script type="text/javascript" src="{appBeans.baseUrlPlugins()}datatables/dataTables.bootstrap.js"></script-->
-        
+
         <!--script type="text/javascript" charset="utf-8">
             $(document).ready(function () {
                 $('#dataTableSgRol').DataTable();
@@ -263,7 +263,23 @@
                                 <li class="active"><a href="#{appBeans.baseUrlPagesConfig()}empleados_configuracion.xhtml"><i class="fa fa-circle-o"></i> Empleados</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesConfig()}tareas_configuracion.xhtml"><i class="fa fa-circle-o"></i> Tareas</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesConfig()}centros_configuracion.xhtml"><i class="fa fa-circle-o"></i> Centros</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesConfig()}workflow_configuracion.xhtml"><i class="fa fa-circle-o"></i> Workflow</a></li>                                
+                                <li><a href="#{appBeans.baseUrlPagesConfig()}workflow_configuracion.xhtml"><i class="fa fa-circle-o"></i> Workflow</a></li>
+
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-gears"></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li class="active"><a href="#{appBeans.baseUrlPagesConfig()}empleados_configuracion.xhtml"><i class="fa fa-circle-o"></i> Empleados</a></li>
+                                        <li><a href="#{appBeans.baseUrlPagesConfig()}tareas_configuracion.xhtml"><i class="fa fa-circle-o"></i> Tareas</a></li>
+                                        <li><a href="#{appBeans.baseUrlPagesConfig()}centros_configuracion.xhtml"><i class="fa fa-circle-o"></i> Centros</a></li>
+                                        <li><a href="#{appBeans.baseUrlPagesConfig()}workflow_configuracion.xhtml"><i class="fa fa-circle-o"></i> Workflow</a></li>
+
+
+
+                                    </ul>
+                                </li>
+
                             </ul>
                         </li>
 
@@ -281,7 +297,7 @@
                                 <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}clientes_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Clientes</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}productos_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Productos</a></li>
                                 <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}servicios_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Servicios</a></li>
-                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}normativas_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Normativas</a></li>
+                                <li><a href="#{appBeans.baseUrlPagesDatosBasicos()}normativas_datosbasicos.xhtml"><i class="fa fa-circle-o"></i> Normativas</a></li>                                
                             </ul>
                         </li>
 
@@ -557,59 +573,59 @@
         <!-- ./wrapper -->
     </h:body>
 
-        <!-- REQUIRED JS SCRIPTS -->
+    <!-- REQUIRED JS SCRIPTS -->
 
-        <!-- jQuery 2.2.0 -->
-        <script src="#{appBeans.baseUrlPlugins()}jQuery/jQuery-2.2.0.min.js"></script>
-        <!-- Bootstrap 3.3.6 -->
-        <script src="#{appBeans.baseUrlBootstrap()}/js/bootstrap.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="#{appBeans.baseUrlDist()}js/app.min.js"></script>
-        <!-- ./wrapper -->
-        <!-- jQuery UI 1.11.4 -->
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <script>
-            $.widget.bridge('uibutton', $.ui.button);
-        </script>
-        <!-- Morris.js charts
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="# {appBeans.baseUrlPlugins()}morris/morris.min.js"></script> -->
-        <!-- Sparkline -->
-        <script src="#{appBeans.baseUrlPlugins()}sparkline/jquery.sparkline.min.js"></script>
-        <!-- jvectormap -->
-        <script src="#{appBeans.baseUrlPlugins()}jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="#{appBeans.baseUrlPlugins()}jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="#{appBeans.baseUrlPlugins()}knob/jquery.knob.js"></script>
-        <!-- daterangepicker -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-        <script src="#{appBeans.baseUrlPlugins()}daterangepicker/daterangepicker.js"></script>
-        <!-- datepicker -->
-        <script src="#{appBeans.baseUrlPlugins()}datepicker/bootstrap-datepicker.js"></script>
-        <!-- Bootstrap WYSIHTML5 -->
-        <script src="#{appBeans.baseUrlPlugins()}bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-        <!-- Slimscroll -->
-        <script src="#{appBeans.baseUrlPlugins()}slimScroll/jquery.slimscroll.min.js"></script>
-        <!-- FastClick -->
-        <script src="#{appBeans.baseUrlPlugins()}fastclick/fastclick.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <!--script src="# {appBeans.baseUrlDist()}js/pages/dashboard.js"></script-->
-        <!-- AdminLTE dashboard demo (This is only for demo purposes)-->
-        <!--script src="# {appBeans.baseUrlDist()}js/pages/dashboard2.js"></script>-->
-        <!-- AdminLTE for demo purposes -->
-        <script src="#{appBeans.baseUrlDist()}js/demo.js"></script>
-        <!-- ChartJS 1.0.1 -->
-        <script src="#{appBeans.baseUrlPlugins()}chartjs/Chart.min.js"></script>
-        <ui:insert name="scriptsPersonalizados"></ui:insert>
+    <!-- jQuery 2.2.0 -->
+    <script src="#{appBeans.baseUrlPlugins()}jQuery/jQuery-2.2.0.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="#{appBeans.baseUrlBootstrap()}/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="#{appBeans.baseUrlDist()}js/app.min.js"></script>
+    <!-- ./wrapper -->
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Morris.js charts
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="# {appBeans.baseUrlPlugins()}morris/morris.min.js"></script> -->
+    <!-- Sparkline -->
+    <script src="#{appBeans.baseUrlPlugins()}sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="#{appBeans.baseUrlPlugins()}jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="#{appBeans.baseUrlPlugins()}jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="#{appBeans.baseUrlPlugins()}knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="#{appBeans.baseUrlPlugins()}daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="#{appBeans.baseUrlPlugins()}datepicker/bootstrap-datepicker.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="#{appBeans.baseUrlPlugins()}bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="#{appBeans.baseUrlPlugins()}slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="#{appBeans.baseUrlPlugins()}fastclick/fastclick.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <!--script src="# {appBeans.baseUrlDist()}js/pages/dashboard.js"></script-->
+    <!-- AdminLTE dashboard demo (This is only for demo purposes)-->
+    <!--script src="# {appBeans.baseUrlDist()}js/pages/dashboard2.js"></script>-->
+    <!-- AdminLTE for demo purposes -->
+    <script src="#{appBeans.baseUrlDist()}js/demo.js"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="#{appBeans.baseUrlPlugins()}chartjs/Chart.min.js"></script>
+    <ui:insert name="scriptsPersonalizados"></ui:insert>
 
-        <!--script src="# {appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.js"></script-->
+    <!--script src="# {appBeans.baseUrlPlugins()}datatables/jquery.dataTables.min.js"></script-->
 
-        <!--script type="text/javascript">
-            // For demo to fit into DataTables site builder...
-            $('#dataTableSgRol')
-                    .removeClass('display')
-                    .addClass('table table-striped table-bordered');
-        </script-->
+    <!--script type="text/javascript">
+        // For demo to fit into DataTables site builder...
+        $('#dataTableSgRol')
+                .removeClass('display')
+                .addClass('table table-striped table-bordered');
+    </script-->
 </html>
 

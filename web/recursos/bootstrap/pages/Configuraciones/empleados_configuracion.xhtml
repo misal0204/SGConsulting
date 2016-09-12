@@ -13,6 +13,7 @@
                 <link rel="stylesheet" href="#{appBeans.baseUrlPlugins()}toastr/toastr.css"/>
                 <script src="#{appBeans.baseUrlPlugins()}toastr/toastr.min.js"></script>
                 <script src="#{appBeans.baseUrlPlugins()}custom/MENS.js"></script>
+                <script src="#{appBeans.baseUrlPlugins()}bootstrap-tooltip/bootstrap-tooltip.js"></script>
                 <script src="#{appBeans.baseUrlPlugins()}confirmation/bootstrap-confirmation.min.js"></script>
                 <link rel="stylesheet" href="#{appBeans.baseUrlPlugins()}bootstrap-table/bootstrap-table.css"/>
                 <script src="#{appBeans.baseUrlPlugins()}bootstrap-table/bootstrap-table.js"></script>
@@ -41,22 +42,23 @@
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                                     <i class="fa fa-times fa fa-white"></i>
                                                 </button>
-                                                <h4 class="modal-title" id="myModalLabel">Formulario de Elementos</h4>
+                                                <h4 class="modal-title" id="myModalLabel">Formulario de Roles</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <fieldset>
                                                     <div class="col-md-12">
                                                         <div class="form-group ">
                                                             <div class="col-lg-12">
-                                                                <h:outputLabel styleClass="control-label">Codigo: <span class="symbol required"/></h:outputLabel>
+                                                                <h:outputLabel styleClass="control-label">Rol: <span class="symbol required"/></h:outputLabel>
                                                             </div>
                                                             <div class="col-lg-12">
-                                                                <h:inputText value="#{ctrlRol.sgrol.idrol}" id="codi" styleClass="form-control" pt:placeholder="Ingrese el Código"/>
+                                                                <h:inputText value="#{ctrlRol.sgrol.idrol}" id="codi" styleClass="form-control" pt:placeholder="Ingrese el Código"
+                                                                             readonly="#{ctrlRol.btnInsert eq false}"/>
                                                             </div>
                                                         </div>   
                                                         <div class="form-group ">
                                                             <div class="col-lg-12">
-                                                                <h:outputLabel styleClass="control-label">Nombre: <span class="symbol required"/></h:outputLabel>
+                                                                <h:outputLabel styleClass="control-label">Descripción: <span class="symbol required"/></h:outputLabel>
                                                             </div>
                                                             <div class="col-lg-12">
                                                                 <h:inputText value="#{ctrlRol.sgrol.nombre}" id="nomb" styleClass="form-control" pt:placeholder="Ingrese el nombre"/>
@@ -77,13 +79,15 @@
                                                             Guardar
                                                         </h:outputLink>
                                                     </h:panelGroup>
-                                                    <h:panelGroup rendered="#{!ctrlRol.btnInsert}">
+                                                    <h:panelGroup rendered="#{ctrlRol.btnInsert eq false}">
                                                         <h:outputLink id="btnEditElem" class="btn btn-primary">
                                                             <i class="fa fa-exclamation-triangle"></i>
                                                             Modificar
                                                         </h:outputLink>
-                                                        <h:outputLink id="btnElimElem" class="btn btn-danger"
-                                                                      pt:data-toggle="confirmation-popout" pt:data-placement="left">
+                                                        <h:outputLink id="btnElimElem" class="btn btn-danger" pt:data-title="¿Está seguro?"
+                                                                      pt:data-toggle="confirmation-popout" pt:data-placement="left"
+                                                                      pt:data-btnOkClass="btn-danger" pt:data-btnOkLabel="Sí"
+                                                                      pt:data-btnCancelClass="btn-default" pt:data-btnCancelLabel="No">
                                                             <i class="fa fa-times fa fa-white"></i>
                                                             Eliminar
                                                         </h:outputLink>
@@ -123,7 +127,7 @@
                                     </h:column>
                                     <h:column pt:data-field="id" pt:data-visible="true">
                                         <f:facet name="header" class="widget-header">
-                                            Id
+                                            Rol
                                         </f:facet>
                                         #{row.idrol}
                                     </h:column>
@@ -143,8 +147,6 @@
                     </div>
                 </div>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>
