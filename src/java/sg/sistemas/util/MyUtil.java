@@ -78,7 +78,7 @@ public class MyUtil {
     public static String baseUrlPagesConfig() {
         return "http://"+servidor+":"+puerto+"/"+project+"/faces/recursos/bootstrap/pages/Configuraciones/";
     }
-
+    
     public static String baseUrlPagesDatosBasicos() {
         return "http://"+servidor+":"+puerto+"/"+project+"/faces/recursos/bootstrap/pages/DatosBasicos/";
     }

@@ -109,6 +109,7 @@
       <!--<property name="javax.persistence.jdbc.user" value="sgsolution"/>-->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <!--<property name="javax.persistence.jdbc.password" value="Manager$15"/>-->
+      <property name="javax.persistence.validation.mode" value="AUTO" />
     </properties>
   </persistence-unit>
 </persistence>

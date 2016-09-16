@@ -91,7 +91,7 @@ public class AppBeans implements Serializable {
     public String baseUrlPagesConfig() {
         return MyUtil.baseUrlPagesConfig();
     }
-
+    
     public String baseUrlPagesDocumentacion() {
         return MyUtil.baseUrlPagesDocumentacion();
     }

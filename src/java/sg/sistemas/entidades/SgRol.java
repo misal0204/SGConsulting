@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 /*Se agrego los sp a las entidades:
@@ -87,6 +88,7 @@ public class SgRol implements Serializable {
     @Column(name = "IDROL")
     private String idrol;
     @Basic(optional = false)
+    @Size(min = 1, max = 30)
     @Column(name = "NOMBRE")
     private String nombre;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sgRol")
